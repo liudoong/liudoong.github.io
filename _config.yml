@@ -9,11 +9,14 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 # Author Settings
 author: Dong Liu # add your name
 author-img: d_liu.jpg
-about-author: I am an Economist # add description
+about-author: Welcome to my personal site # add description
 
-social-github: liudoong # add your Github handle
-social-linkedin: dong-liu # add your Linkedin handle
+
+
 social-email: guimet@foxmail.com 
+social-github: liudoong # add your Github handle
+social-instagram: don_dong_
+social-linkedin: dong-liu # add your Linkedin handle
 
 
 
