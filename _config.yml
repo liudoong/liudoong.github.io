@@ -12,8 +12,13 @@ author-img: 1557543914968.GPEG
 about-author: I am an Economist # add description
 
 social-github: liudoong # add your Github handle
+<<<<<<< HEAD
 social-linkedin: dong-liu # add your Linkedin handle
 social-email: guimet@foxmail.com 
+=======
+social-linkedin: dong-liu# add your Linkedin handle
+social-email: guimet@foxmail.com
+>>>>>>> 03c47064b838e36ea52c0a3dd84abf7f63ae1adb
 
 # Disqus
 discus-identifier: mr-brown # add your discus identifier
@@ -28,7 +33,7 @@ plugins:
   - jekyll-paginate
   - jemoji
 
-paginate: 8
+paginate: 100
 paginate_path: "/page/:num"
 
 exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
