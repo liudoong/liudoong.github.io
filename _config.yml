@@ -8,12 +8,12 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author Settings
 author: Dong Liu # add your name
-author-img: david-freeman.jpg # add your photo
+author-img: 1557543914968.GPEG
 about-author: I am an Economist # add description
 
 social-github: liudoong # add your Github handle
-social-linkedin: dong-liu# add your Linkedin handle
-social-email: guimet@foxmail.com# add your Email address
+social-linkedin: dong-liu # add your Linkedin handle
+social-email: guimet@foxmail.com 
 
 # Disqus
 discus-identifier: mr-brown # add your discus identifier
