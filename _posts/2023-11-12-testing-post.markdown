@@ -1,6 +1,6 @@
 ---
 layout: post
-title: My first testing post
+title: Testing Post
 date: 2023-11-12 00:00:00 +0300
 description: This is my first post to test out the template. # Add post description (optional)
 img: Post_Head_001.jpg # Add image post (optional)
