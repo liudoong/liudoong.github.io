@@ -8,7 +8,7 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author Settings
 author: Dong Liu # add your name
-author-img: 1557543914968.GPEG
+author-img: 1557543914968.jpg
 about-author: I am an Economist # add description
 
 social-github: liudoong # add your Github handle
@@ -25,6 +25,8 @@ discus-identifier: mr-brown # add your discus identifier
 
 # Tracker
 analytics: # Google Analytics
+
+mathjax: true #allow math equations globally
 
 # Build Settings
 markdown: kramdown
