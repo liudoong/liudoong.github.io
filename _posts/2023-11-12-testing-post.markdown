@@ -20,11 +20,11 @@ Man bun umami keytar 90's lomo drinking vinegar synth everyday carry +1 bitters 
 
 [Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula) relates the  complex exponential function to the trigonometric functions.
 
-$$ e^{i\theta}=\cos(\theta)+i\sin(\theta) $$
+$ e^{i\theta}=\cos(\theta)+i\sin(\theta) $
 
 [Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula) relates the  complex exponential function to the trigonometric functions.
 
-$$ e^{i\theta}=\cos(\theta)+i\sin(\theta) $$
+$ e^{i\theta}=\cos(\theta)+i\sin(\theta) $
 
 
 Embed code by putting `{{ "{% highlight language " }}%}` `{{ "{% endhighlight " }}%}` blocks around it.
