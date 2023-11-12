@@ -1,6 +1,36 @@
 ---
 layout: main
 ---
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title -->
+  <title>{{ page.title | escape }} - {{ site.title | escape }}</title>
+
+  <!-- MathJax Script for LaTeX (if needed) -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <!-- Stylesheets -->
+  {% if site.github.url %}
+  <link rel="stylesheet" href="{{ site.github.url }}/assets/css/style.css">
+  {% else %}
+  <link rel="stylesheet" href="/assets/css/style.css">
+  {% endif %}
+</head>
+
 <article class="article-page">
   <div class="page-content">
     {% if page.img %}
