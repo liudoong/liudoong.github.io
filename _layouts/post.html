@@ -48,6 +48,29 @@ layout: main
       <header class="header-page">
         <h1 class="page-title">{{page.title}}</h1>
         <div class="page-date"><span>{{page.date | date: '%Y, %b %d'}}&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+
+        <!-- MathJax Script for LaTeX (if needed) -->
+        <script>
+          window.MathJax = {
+            tex: {
+              inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+              fontCache: 'global'
+            }
+          };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+
+
+
+
+
+
+
+
+
       </header>
       {{content | markdownify}}
       <div class="page-footer">
