@@ -23,6 +23,7 @@ where:
 - $ \sigma $ is the volatility of the underlying asset's returns.
 - $ \Phi $ represents the cumulative distribution function of the standard normal distribution.
 
+
 $ d_1 $ and $ d_2 $ are given by:
 
 $$ d_1 = \frac{\ln\left(\frac{S_0}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)T}{\sigma\sqrt{T}} $$
