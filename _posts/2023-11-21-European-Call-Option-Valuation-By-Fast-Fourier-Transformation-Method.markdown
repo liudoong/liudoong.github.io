@@ -11,27 +11,23 @@ tags: [Option, Pricing, FFT] # add tag
 ### Black-Schole Model
 
 
-$
-C(S_0, K, T, r, \sigma) = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2)
-$
+
+$$ C(S_0, K, T, r, \sigma) = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2) $$
 
 where:
-- $C$ is the price of the call option.
-- $S_0$ is the current price of the underlying asset.
-- $K$ is the strike price of the option.
-- $T$ is the time to maturity (in years).
-- $r$ is the risk-free interest rate.
-- $\sigma$ is the volatility of the underlying asset's returns.
-- $\Phi$ represents the cumulative distribution function of the standard normal distribution.
-- $d_1$ and $d_2$ are given by:
+- $ C $ is the price of the call option.
+- $ S_0 $ is the current price of the underlying asset.
+- $ K $ is the strike price of the option.
+- $ T $ is the time to maturity (in years).
+- $ r $ is the risk-free interest rate.
+- $ \sigma $ is the volatility of the underlying asset's returns.
+- $ \Phi $ represents the cumulative distribution function of the standard normal distribution.
 
-$
-d_1 = \frac{\ln\left(\frac{S_0}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)T}{\sigma\sqrt{T}}
-$
+$ d_1 $ and $ d_2 $ are given by:
 
-$
-d_2 = d_1 - \sigma\sqrt{T}
-$
+$$ d_1 = \frac{\ln\left(\frac{S_0}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)T}{\sigma\sqrt{T}} $$
+
+$$ d_2 = d_1 - \sigma\sqrt{T} $$
 
 
 {% highlight c %}
