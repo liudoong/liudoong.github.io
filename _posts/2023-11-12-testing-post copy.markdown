@@ -3,7 +3,7 @@ layout: post
 title: Testing Post
 date: 2023-11-12 00:00:00 +0300
 description: This is my first post to test out the template. # Add post description (optional)
-img: Post_Head_001.jpg # Add image post (optional)
+img: Post_Head_000.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [Option, Pricing, FFT] # add tag
 ---
