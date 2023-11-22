@@ -31,14 +31,27 @@ $d_1$ and $d_2$ are given by:
 <br>
 
 <div style="text-align: center;">
-$
-d_1 = \frac{\ln\left(\frac{S_0}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)T}{\sigma\sqrt{T}}
-$
-
-$
-d_2 = d_1 - \sigma\sqrt{T}
-$
+$ d_1 = \frac{\ln\left(\frac{S_0}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)T}{\sigma\sqrt{T}} $
 </div>
+
+<div style="text-align: center;">
+$ d_2 = d_1 - \sigma\sqrt{T} $
+</div>
+
+
+<div style="text-align: center;">
+$ \phi_{BS}(u; T, S_0, r, \sigma) = \exp\left(iu\left(\ln(S_0) + \left(r - \frac{1}{2}\sigma^2\right)T\right) - \frac{1}{2}\sigma^2 u^2 T\right) $
+</div>
+
+<br>
+where:
+- \( \phi_{BS}(u; T, S_0, r, \sigma) \) is the characteristic function under the Black-Scholes model.
+- \( u \) is a complex number, representing the argument of the characteristic function.
+- \( T \) is the time to maturity of the option.
+- \( S_0 \) is the current stock price.
+- \( r \) is the risk-free interest rate.
+- \( \sigma \) is the volatility of the stock's returns.
+- \( i \) represents the imaginary unit.
 
 {% highlight c %}
 
