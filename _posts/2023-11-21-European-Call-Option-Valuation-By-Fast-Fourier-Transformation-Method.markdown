@@ -24,9 +24,9 @@ where:
 - $ \Phi $ represents the cumulative distribution function of the standard normal distribution.
 
 
-$ d_1 $ and $ d_2 $ are given by:
+$$ d_1 $ and $ d_2 $ are given by:
 
-$ d_1 = \frac{\ln\left(\frac{S_0}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)T}{\sigma\sqrt{T}} $
+$ d_1 = \frac{\ln\left(\frac{S_0}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)T}{\sigma\sqrt{T}} $$
 
 $ d_2 = d_1 - \sigma\sqrt{T} $
 
