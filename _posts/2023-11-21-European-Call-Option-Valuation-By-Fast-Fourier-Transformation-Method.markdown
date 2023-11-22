@@ -9,15 +9,13 @@ tags: [Option, Pricing, FFT] # add tag
 ---
 
 ### Black-Schole Model
+___
 
+<div style="text-align: center;">
+$ C(S_0, K, T, r, \sigma) = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2) $
+</div>
 
-
-$$
-C(S_0, K, T, r, \sigma) = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2)
-$$
-
-***
-
+<br>
 where:
 - $ C $ is the price of the call option.
 - $ S_0 $ is the current price of the underlying asset.
@@ -27,19 +25,20 @@ where:
 - $ \sigma $ is the volatility of the underlying asset's returns.
 - $ \Phi $ represents the cumulative distribution function of the standard normal distribution.
 
----
+<br>
 $d_1$ and $d_2$ are given by:
 
-***
+<br>
 
-$$
+<div style="text-align: center;">
+$
 d_1 = \frac{\ln\left(\frac{S_0}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)T}{\sigma\sqrt{T}}
-$$
+$
 
-$$
+$
 d_2 = d_1 - \sigma\sqrt{T}
-$$
-
+$
+</div>
 
 {% highlight c %}
 
