@@ -8,8 +8,95 @@ fig-caption: # Add figcaption (optional)
 tags: [Option, Pricing, FFT] # add tag
 ---
 
+In this post, I use two diffusion models to illustrate the
+
 ### Black-Schole Model
 ___
+
+
+The Black-Scholes model is a fundamental concept in modern financial theory and is widely used for pricing European-style options. Developed by Fischer Black, Myron Scholes, and Robert Merton in the early 1970s, this model revolutionized the field of financial economics by providing a mathematical framework for valuing options, a type of derivative security.
+
+Key aspects of the Black-Scholes model include:
+
+European Options: The model is primarily used for pricing European options, which can only be exercised at expiration, as opposed to American options, which can be exercised at any time up to expiration.
+Assumptions: The Black-Scholes model makes several simplifying assumptions:
+The stock price follows a log-normal distribution and exhibits geometric Brownian motion.
+The volatility of the stock (standard deviation of its returns) is constant.
+Markets are efficient, meaning that prices reflect all available information.
+There are no transaction costs or taxes, and trading of securities is continuous.
+The risk-free interest rate is constant and known.
+The Model: At its core, the Black-Scholes model is a partial differential equation that describes how the price of an option varies over time. The solution to this equation gives the theoretical price of European call and put options.
+Formula: The Black-Scholes formula for a European call option is:
+C
+(
+S
+,
+K
+,
+T
+,
+r
+,
+σ
+)
+=
+S
+Φ
+(
+d
+1
+)
+−
+K
+e
+−
+r
+T
+Φ
+(
+d
+2
+)
+C(S,K,T,r,σ)=SΦ(d 
+1
+​	
+ )−Ke 
+−rT
+ Φ(d 
+2
+​	
+ )
+where 
+C
+C is the call option price, 
+S
+S is the current stock price, 
+K
+K is the strike price, 
+T
+T is the time to expiration, 
+r
+r is the risk-free interest rate, 
+σ
+σ is the volatility, 
+Φ
+Φ is the cumulative distribution function of the standard normal distribution, and 
+d
+1
+d 
+1
+​	
+  and 
+d
+2
+d 
+2
+​	
+  are intermediate calculations based on these variables.
+Impact: The Black-Scholes model had a profound impact on the trading of options and led to the rapid growth of markets for these financial instruments. It also provided a foundation for more complex financial models and strategies.
+Limitations: Despite its widespread use, the model has limitations, especially concerning its assumptions of constant volatility and market efficiency. Real-world market conditions can deviate significantly from these assumptions, leading to discrepancies between model prices and observed market prices.
+The Black-Scholes model remains a cornerstone of financial theory and practice, forming the basis for various financial instruments and strategies, as well as for further research and development in financial mathematics.
+
 
 <div style="text-align: center;">
 $ C(S_0, K, T, r, \sigma) = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2) $
