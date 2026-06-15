@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The High-Demand Trap: Structural Profitability Paradox in the AI Investment Boom — This paper argues that under the current AI industry structure, rapid demand growth systematically obstructs the profitability inflection point through five mutually reinforcing mechanisms." />
+  <meta property="og:title" content="The High-Demand Trap: Structural Profitability Paradox in the AI Investment Boom" />
+  <meta property="og:description" content="The High-Demand Trap: Structural Profitability Paradox in the AI Investment Boom" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>The High-Demand Trap: Structural Profitability Paradox in the AI Investment Boom</title>
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        tags: 'ams',
+        packages: {'[+]': ['ams']}
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text-primary:   #1a1a1a;
+      --text-secondary: #555;
+      --text-muted:     #888;
+      --border:         #e0e0e0;
+      --bg-page:        #fafafa;
+      --bg-card:        #fff;
+      --accent:         #1a3a5c;
+      --accent-light:   #e8f0f8;
+      --font-serif:     'Georgia', 'Times New Roman', serif;
+      --font-sans:      -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono:      'SFMono-Regular', 'Consolas', monospace;
+      --max-width:      780px;
+      --line-height:    1.85;
+    }
+
+    html { font-size: 17px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-serif);
+      color: var(--text-primary);
+      background: var(--bg-page);
+      line-height: var(--line-height);
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    /* ── Layout ── */
+    .wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 56px 0 48px;
+      border-bottom: 3px solid #0d2540;
+    }
+
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #aac4e0;
+      text-decoration: none;
+      margin-bottom: 24px;
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+
+    .back-home:hover { opacity: 1; color: #fff; }
+
+    .paper-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #aac4e0;
+      margin-bottom: 18px;
+    }
+
+    h1.paper-title {
+      font-family: var(--font-serif);
+      font-size: 1.95rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    h1.paper-subtitle {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      font-style: italic;
+      color: #b8d0e8;
+      margin-bottom: 32px;
+    }
+
+    .paper-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      color: #aac4e0;
+    }
+
+    .paper-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ── Abstract box ── */
+    .abstract-box {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 28px 32px;
+      margin: 40px 0 48px;
+    }
+
+    .abstract-box .abstract-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .abstract-box p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .abstract-box p:last-child { margin-bottom: 0; }
+
+    .keywords {
+      margin-top: 16px;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .keywords strong { color: var(--text-primary); }
+
+    /* ── TOC ── */
+    nav.toc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 52px;
+    }
+
+    nav.toc .toc-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    nav.toc ol {
+      padding-left: 22px;
+      counter-reset: none;
+    }
+
+    nav.toc li {
+      margin-bottom: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+    }
+
+    nav.toc a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    nav.toc a:hover { text-decoration: underline; }
+
+    /* ── Article body ── */
+    article { padding-bottom: 80px; }
+
+    .section { margin-bottom: 56px; }
+
+    h2.section-heading {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+      margin-bottom: 28px;
+      margin-top: 60px;
+    }
+
+    h3 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 36px;
+      margin-bottom: 14px;
+    }
+
+    h4 {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-top: 24px;
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    p {
+      margin-bottom: 18px;
+      text-align: left;
+      hyphens: none;
+    }
+
+    .prop-box {
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 18px 22px;
+      margin: 24px 0;
+      background: #f7fafd;
+    }
+
+    .prop-box .prop-label {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .prop-box p { margin-bottom: 8px; font-size: 0.96rem; text-align: left; }
+    .prop-box p:last-child { margin-bottom: 0; }
+
+    .def-box {
+      border-left: 4px solid #2a7a4b;
+      background: #f4fbf6;
+    }
+
+    .def-box .prop-label { color: #2a7a4b; }
+
+    .corollary-box {
+      border-left: 4px solid #8a5a00;
+      background: #fdf8ee;
+    }
+
+    .corollary-box .prop-label { color: #8a5a00; }
+
+    .mjx-chtml { margin: 8px 0 !important; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-family: var(--font-sans);
+      font-size: 0.86rem;
+    }
+
+    th {
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td { background: #f5f8fb; }
+
+    strong { font-weight: 700; }
+    em { font-style: italic; }
+
+    blockquote {
+      border-left: 4px solid var(--accent);
+      margin: 24px 0;
+      padding: 16px 22px;
+      background: var(--accent-light);
+      font-style: italic;
+      color: var(--text-primary);
+      border-radius: 0 6px 6px 0;
+      text-align: left;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin-bottom: 18px;
+    }
+
+    li { margin-bottom: 8px; line-height: var(--line-height); text-align: left; }
+
+    .references { font-size: 0.88rem; }
+    .references p { text-indent: -1.6em; padding-left: 1.6em; margin-bottom: 10px; }
+
+    footer {
+      background: var(--accent);
+      color: #aac4e0;
+      padding: 32px 0;
+      text-align: center;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+    }
+
+    footer a { color: #c8ddf0; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    @media (max-width: 600px) {
+      html { font-size: 15px; }
+      h1.paper-title { font-size: 1.5rem; }
+      .abstract-box { padding: 20px; }
+      nav.toc { padding: 18px; }
+      table { font-size: 0.78rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrapper">
+    <a class="back-home" href="../../">← Dong Liu · Research</a>
+    <p class="paper-label">Working Paper · June 2026 · Draft — Comments Welcome</p>
+    <h1 class="paper-title">The High-Demand Trap: Structural Profitability Paradox in the AI Investment Boom</h1>
+    <h1 class="paper-subtitle">高需求陷阱：AI投资繁荣的结构性盈利悖论</h1>
+    <div class="paper-meta">
+      <span>✍ Dong Liu</span>
+      <span>📅 June 2026</span>
+      <span>🔗 <a href="https://www.linkedin.com/in/dong-liu/" style="color:#c8ddf0;">LinkedIn</a></span>
+      <span>💬 Comments welcome</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="wrapper">
+
+  <!-- Abstract -->
+  <div class="abstract-box" style="margin-top:44px;">
+    <p class="abstract-label">Abstract</p>
+    <p>This paper proposes and argues a counterintuitive thesis: under the current structure of the AI industry, rapid demand growth not only fails to guarantee investment returns but systematically obstructs the arrival of a profitability inflection point through five mutually reinforcing mechanisms. We term this phenomenon the <strong>High-Demand Trap</strong>.</p>
+    <p>Unlike existing literature, this paper does not treat demand realization as the key uncertainty variable. Instead, it fixes high demand as a <strong>given condition</strong> and derives its implications for cost structure, pricing dynamics, capital lock-in, value distribution, and financial stability. Our analytical framework integrates the Jevons Paradox from resource economics, the Bertrand competition model from industrial organization theory, real options and sunk-cost theory from financial economics, profit-capture mechanisms from value chain theory, and the BGG financial accelerator model from the New Keynesian DSGE framework.</p>
+    <p>The central finding is that the current profitability impasse in AI investment is not a temporary liquidity problem but an endogenous equilibrium outcome of the industry's structure. Achieving a profitability inflection point requires at least three of the five mechanisms to undergo discrete structural breaks — a probability distribution far more right-skewed than the base scenario implied by current asset pricing.</p>
+    <div class="keywords"><strong>Keywords:</strong> Jevons Paradox, Bertrand competition, financial accelerator, AI investment, special purpose vehicles, profitability inflection point, industry structure</div>
+  </div>
+
+  <!-- TOC -->
+  <nav class="toc">
+    <p class="toc-label">Contents</p>
+    <ol>
+      <li><a href="#sec1">Introduction and Problem Formulation</a></li>
+      <li><a href="#sec2">Dual-Sided Cost-Revenue Squeeze: Joint Effects of Mechanisms ①②</a></li>
+      <li><a href="#sec3">Capital Lock-In and Value Capture: Structural Constraints of Mechanisms ③④</a></li>
+      <li><a href="#sec4">Financial Accelerator and Procyclical Fragility: Macro Amplification of Mechanism ⑤</a></li>
+      <li><a href="#sec5">Integrated Framework, Observable Implications, and Theoretical Boundaries</a></li>
+      <li><a href="#refs">References</a></li>
+    </ol>
+  </nav>
+
+  <article>
+
+  <!-- ═══════════════════════
+       SECTION 1
+  ════════════════════════ -->
+  <div class="section" id="sec1">
+    <h2 class="section-heading">I. Introduction and Problem Formulation</h2>
+
+    <h3>1.1 A Paradox the Market Has Overlooked</h3>
+
+    <p>In the first quarter of 2026, the quarterly reports of the four hyperscalers (Amazon, Alphabet, Microsoft, Meta) revealed a configuration rare in modern business history: cloud revenue accelerating, AI-related revenue doubling year-on-year, Google Cloud's single-quarter order backlog reaching <span class="tex2jax_ignore">$462 billion</span> — while simultaneously, Amazon's trailing-twelve-month free cash flow fell 95% from its peak, Alphabet's quarterly free cash flow contracted 47% year-on-year, and Meta's quarterly free cash flow plunged from <span class="tex2jax_ignore">$26 billion</span> to <span class="tex2jax_ignore">$1.2 billion</span>. The four companies collectively announced 2026 capital expenditure plans exceeding <span class="tex2jax_ignore">$725 billion</span>, up 77% from 2025.</p>
+
+    <p>This juxtaposition of figures creates an explanatory difficulty within standard financial analysis frameworks: demand is real, revenue is growing, yet cash flows are deteriorating — and the rate of deterioration is proportional to, rather than the inverse of, revenue growth. If this pattern is extrapolated, the high-demand scenario has not only failed to produce convergence toward profitability, but appears to accelerate capital consumption in lockstep.</p>
+
+    <p>The mainstream market interpretation characterizes this phenomenon as a <strong>timing mismatch problem</strong>: front-loaded infrastructure investment is suppressing near-term free cash flow, but as compute utilization rises and depreciation amortizes, the profitability inflection point will arrive in the foreseeable future. This narrative is not logically impossible, but it depends on an assumption that has never been rigorously tested: that high demand is a sufficient condition for profitability realization, or at least a necessary one. The central argument of this paper is that this assumption is incorrect under the structural conditions currently prevailing in the AI industry.</p>
+
+    <h3>1.2 Precise Statement of the Paper's Thesis</h3>
+
+    <blockquote>
+      <strong>The High-Demand Trap Thesis:</strong> Under the current structure of the AI industry, rapid growth in inference demand systematically obstructs rather than promotes the realization of a profitability inflection point through five mutually reinforcing mechanisms. The high-demand scenario is not a sufficient condition for investment returns; rather, under specific industry-structural parameters, it is the triggering condition for simultaneous reinforcement of cost expansion, pricing erosion, capital lock-in, profit capture, and financial fragility.
+    </blockquote>
+
+    <p>The precision of this thesis rests on three delimitations. <strong>First</strong>, this paper fixes high demand as a <strong>given condition</strong> rather than an uncertain variable — the most fundamental departure from existing literature in terms of analytical starting point. <strong>Second</strong>, the joint effect of the five mechanisms is proven in Section V to be superadditive: the degree of joint action is strictly greater than the sum of each mechanism acting independently. <strong>Third</strong>, the paper's conclusions constitute a proposition about probability mass distribution, not a prediction of deterministic outcomes: achieving a profitability inflection point requires at least three of the five mechanisms to undergo discrete structural breaks, the probability distribution of which is far more right-skewed than the base scenario implied by current asset pricing.</p>
+
+    <h3>1.3 Numbering Convention for the Five Mechanisms</h3>
+
+    <p>To facilitate cross-referencing and joint analysis throughout the paper, the five mechanisms are assigned a unified numbering scheme as follows. This numbering will be used consistently throughout the paper and serves as the index for cross-terms in the superadditivity theorem in Section V.</p>
+
+    <table>
+      <thead>
+        <tr><th>Number</th><th>Mechanism Name</th><th>Domain</th><th>Section</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>①</strong></td><td>LLMflation (Jevons-Paradox-driven cost-expenditure divergence)</td><td>Cost side</td><td>§2.2</td></tr>
+        <tr><td><strong>②</strong></td><td>Bertrand compression (structural loss of pricing power in inference services)</td><td>Revenue side</td><td>§2.3</td></tr>
+        <tr><td><strong>③</strong></td><td>Capital ratchet (investment irreversibility and arms-race equilibrium)</td><td>Investment</td><td>§3.2</td></tr>
+        <tr><td><strong>④</strong></td><td>Nvidia tax (structural upstream profit capture in the value chain)</td><td>Value chain</td><td>§3.3</td></tr>
+        <tr><td><strong>⑤</strong></td><td>Financial accelerator and SPV leverage (procyclical financial fragility accumulation)</td><td>Financial</td><td>§4</td></tr>
+      </tbody>
+    </table>
+
+    <h3>1.4 Relationship to Existing Literature</h3>
+
+    <p><strong>Investment shock literature in the New Keynesian DSGE framework.</strong> Beaudry and Portier (2004), Jaimovich and Rebelo (2009), and Schmitt-Grohé and Uribe (2012) established the standard model of expectational shocks driving current investment through forward-looking pricing mechanisms. This paper accepts this framework's description of investment-driving mechanisms, but notes that it remains silent on <strong>conditions for profitability realization</strong>.</p>
+
+    <p><strong>The narrative shock framework of Liu (2026).</strong> Liu decomposes the driving force of AI investment into a Schumpeterian component and a Ponzi component, demonstrating that when signal producers are simultaneously signal beneficiaries, the exogeneity assumption of rational expectations is systematically violated. This paper and Liu (2026) form a complementary diptych: the former analyzes <em>how beliefs form and persist</em>; this paper analyzes <em>why profitability cannot be achieved even if beliefs are vindicated</em>.</p>
+
+    <p><strong>Industrial organization and platform economics literature.</strong> The cost structure of AI inference is jointly determined by physical compute constraints and competitive arms races; its convergence conditions are more stringent than those of traditional two-sided platforms and may be persistently offset by the Jevons Paradox.</p>
+
+    <h3>1.5 Data Background and Analytical Boundaries</h3>
+
+    <p>The empirical backdrop of this paper draws primarily on public financial data from 2023 through Q1 2026, covering hyperscaler quarterly earnings, partial disclosure data from AI-native companies, the BIS (March 2026) and FSB (May 2026) thematic studies, and industry research reports from major investment banks. The analytical scope is confined to the business models of US hyperscalers and AI-native companies, deriving structural constraints under the assumption of the current technology trajectory.</p>
+
+  </div><!-- /sec1 -->
+
+  <!-- ═══════════════════════
+       SECTION 2
+  ════════════════════════ -->
+  <div class="section" id="sec2">
+    <h2 class="section-heading">II. Dual-Sided Cost-Revenue Squeeze: Joint Effects of the Jevons Paradox and Bertrand Competition</h2>
+
+    <h3>2.1 Analytical Starting Point: The Fundamental Tension in Unit Economics</h3>
+
+    <p>Market analysis typically focuses on comparing revenue growth rates with capital expenditure growth rates, overlooking the critical intermediate variable that determines whether profit can be realized — <strong>unit economics</strong>. This section argues that the unit economics of the AI inference market face simultaneous bilateral compression on both the cost side and the revenue side, whose joint effect forms a dual constraint that systematically blocks the profitability inflection point.</p>
+
+    <h3>2.2 Cost Side: The Jevons Paradox and LLMflation (Mechanism ①)</h3>
+
+    <h4>2.2.1 Basic Framework</h4>
+
+    <p>Let $c_t$ denote the marginal cost of inference per million tokens and $q_t$ the total token consumption, so that total inference expenditure is $E_t = c_t \cdot q_t$. Taking the logarithmic time derivative:</p>
+
+    $$\frac{\dot{E}_t}{E_t} = \frac{\dot{c}_t}{c_t} + \frac{\dot{q}_t}{q_t} \tag{2.2}$$
+
+    <p>Define the price elasticity of demand $\varepsilon_t \equiv -d\ln q_t / d\ln c_t$. When costs decline at rate $g_c$ (where $g_c = -\dot{c}_t/c_t > 0$):</p>
+
+    $$\frac{\dot{E}_t}{E_t} = \left(\varepsilon_t - 1\right) \cdot g_c \tag{2.4}$$
+
+    <p><strong>Jevons Condition:</strong> If and only if $\varepsilon_t > 1$, a decline in unit cost leads to an increase in total inference expenditure.</p>
+
+    <h4>2.2.2 Triple Structural Amplification of Demand Elasticity</h4>
+
+    <p><strong>Channel A (Use-Case Unlocking Effect):</strong> Let the feasibility threshold cost of potential use cases follow distribution $F(\cdot)$, so total demand $q_t = \int_0^{c_t} d_u \cdot dF(\bar{c}_u)$, with corresponding elasticity component $\varepsilon^A_t = d_{c_t} \cdot f(c_t) \cdot c_t / q_t$, which increases monotonically as $c_t$ enters a dense interval of the distribution.</p>
+
+    <p><strong>Channel B (Endogenous Inference Depth):</strong> The user's optimal inference depth satisfies $v'(\lambda_i^*) = c_t \cdot \bar{d}$; from $v'' &lt; 0$ we obtain $\partial \lambda_i^* / \partial c_t &lt; 0$ — declining costs induce users to choose deeper reasoning chains, contributing additional elasticity $\varepsilon^B_t > 0$.</p>
+
+    <p><strong>Channel C (Competitive Arms Race):</strong> In a symmetric Nash equilibrium, the equilibrium input is $x^* = \pi'(1)/c_t$, yielding unit elasticity $\varepsilon^C_t = 1$, which ensures the Jevons Condition is always marginally satisfied.</p>
+
+    <div class="prop-box">
+      <p class="prop-label">Proposition 1 — Triple Amplification Theorem</p>
+      <p>When all three channels operate simultaneously, $\varepsilon_t^{\text{eff}} = \varepsilon^A_t + \varepsilon^B_t + \varepsilon^C_t > 1$, and $\varepsilon_t^{\text{eff}}$ increases monotonically as $c_t$ declines.</p>
+    </div>
+
+    <h4>2.2.3 Definition and Empirical Calibration of LLMflation</h4>
+
+    <div class="def-box prop-box">
+      <p class="prop-label">Definition 1 — LLMflation</p>
+      <p>When $\varepsilon_t^{\text{eff}} > 1$ and $\partial \varepsilon_t^{\text{eff}} / \partial c_t &lt; 0$, the economy is in a state of LLMflation: unit inference costs decline continuously while total inference expenditure rises continuously, with the divergence widening over time.</p>
+    </div>
+
+    <p><strong>Empirical calibration:</strong> From late 2022 to late 2025, the inference price for GPT-4-equivalent capability fell from approximately <span class="tex2jax_ignore">$60 per million</span> tokens to approximately <span class="tex2jax_ignore">$0.40</span> (roughly a 150-fold decline, $g_c \approx 167\%$ per year). Total inference expenditure grew approximately 320% over the same period, implying $\varepsilon_t^{\text{eff}} \approx 1.28$. As agentic workflows accelerate in 2025–2026, the current realized value is likely materially higher.</p>
+
+    <h3>2.3 Revenue Side: Bertrand Competition and the Structural Loss of Pricing Power (Mechanism ②)</h3>
+
+    <p>The high degree of homogeneity of AI inference services, strong cost observability, low switching costs, and the threat of open-source substitutes drive the competitive game toward a Bertrand structure. The equilibrium price $p^* = \min_i\{c_i\}$, and profit converges to zero.</p>
+
+    <p>Open-source models act as a competitive externality that further constrains the effective pricing ceiling for commercial providers to $\bar{p}_t = c^{\text{open}}_t + \Delta_t^{\text{quality}}$, where the quality premium $\Delta_t^{\text{quality}}$ declines continuously as open-source capabilities close the gap.</p>
+
+    <div class="prop-box">
+      <p class="prop-label">Proposition 2 — High Demand Accelerates Bertrand Compression</p>
+      <p>Under free entry, growth in AI inference demand attracts more providers into the market, accelerating the convergence of equilibrium prices toward marginal cost. High demand is an accelerator of pricing power loss, not a protective factor.</p>
+    </div>
+
+    <h3>2.4 The Dual-Sided Squeeze: The Profitability Impossible Triangle</h3>
+
+    <p>The operating margin of an AI model company is:</p>
+
+    $$\frac{\Pi_t}{R_t} = 1 - \frac{1}{\mu_t} - \frac{F_t}{p_t q_t} \tag{2.14}$$
+
+    <p>where $\mu_t \equiv p_t/c_t$ is the price-cost ratio.</p>
+
+
+    <p>Let there be $n$ symmetric providers in the market, each facing demand $q_i(p_i, p_{-i})$, with total market demand $Q_t = \sum_i q_i$. Define three objectives:</p>
+
+    <p><strong>(i) Maintain market share:</strong> $s_i \equiv q_i / Q_t \geq \bar{s} > 0$; <strong>(ii) Improve gross margin:</strong> $\dot{\mu}_t / \mu_t > 0$, i.e. $\dot{p}_t/p_t > \dot{c}_t/c_t$; <strong>(iii) Scale the business:</strong> $\dot{q}_i > 0$.</p>
+
+    <p>Under LLMflation, $\dot{c}_t/c_t = -g_c &lt; 0$ (letting $g_c > 0$ denote the cost decline rate). Under free-entry Bertrand competition, the equilibrium price satisfies $p_t \to c_t^{\min}$, i.e. $\dot{p}_t/p_t \to \dot{c}_t/c_t = -g_c$.</p>
+
+    <p><strong>Contradiction between (i) and (ii):</strong> Maintaining market share requires a provider not to unilaterally raise prices, i.e. $\dot{p}_i \leq \dot{p}^* = \dot{c}_t^{\min}$. Improving gross margin requires $\dot{p}_i > \dot{c}_i$. If both hold simultaneously, then $\dot{c}_t^{\min} \geq \dot{p}_i > \dot{c}_i$, implying the cost leader's cost improvement rate strictly exceeds the rate of price decline. But in a symmetric equilibrium $c_i = c_t^{\min}$, which requires $0 > \dot{c}_i > \dot{c}_i$ — a contradiction.</p>
+
+    <p><strong>Contradiction between (ii) and (iii):</strong> Improving gross margin requires prices to decline more slowly than marginal costs, i.e. an effective price increase. But under LLMflation with $\varepsilon_t^{\text{eff}} > 1$, aggregate demand $Q_t$ grows through volume expansion driven by lower prices. If a provider defends its gross margin by letting prices fall more slowly than costs, its relative price $p_i / p_{-i}$ rises, causing $q_i$ to fall — contradicting (iii).</p>
+
+    <p><strong>Long-run unsustainability of (i) and (iii) together:</strong> Under free entry, $\dot{q}_i > 0$ and $s_i \geq \bar{s}$ simultaneously require industry aggregate demand to grow at least as fast as individual output — feasible in the short run, but Bertrand equilibrium entry continuously depresses prices, driving $\mu_t \to 1$ and making (ii) fail in the limit. The three objectives cannot simultaneously hold in any steady-state equilibrium. $\blacksquare$</p>
+
+    <div class="prop-box">
+      <p class="prop-label">Proposition 3 — The Profitability Impossible Triangle</p>
+      <p>When LLMflation ($\varepsilon_t^{\text{eff}} > 1$) and Bertrand competition ($p_t \to c_t$) both hold, an AI model company cannot simultaneously: (i) maintain market share; (ii) improve gross margin; (iii) scale its business.</p>
+    </div>
+
+    <p>The accelerating effect of high demand on the bilateral squeeze is precisely expressed by:</p>
+
+    $$\frac{d}{dq_t}\!\left(\frac{\dot{E}_t}{E_t} - \frac{\dot{R}_t}{R_t}\right) > 0 \tag{2.16}$$
+
+    <p>That is, the gap between the growth rate of total inference costs and total revenues widens as demand grows. This is the precise mathematical expression of the High-Demand Trap thesis at the unit economics level.</p>
+
+    <div class="corollary-box prop-box">
+      <p class="prop-label">Corollary — Profitability Inflection Point Deferral Theorem</p>
+      <p>Achieving a profitability inflection point requires a discrete downward break in $\varepsilon_t^{\text{eff}}$, not something achievable through gradual optimization. High demand not only fails to accelerate the arrival of the inflection point; through (2.16), it systematically defers it.</p>
+    </div>
+
+    <h3>2.5 Empirical Record</h3>
+
+    <p>OpenAI generated approximately <span class="tex2jax_ignore">$3.7 billion</span> in revenue in 2025, while incurring inference costs of <span class="tex2jax_ignore">$8.4 billion</span>, yielding a gross margin of approximately 33%. After deducting R&D, sales, and Microsoft's revenue share (20% of total revenue), operating losses reached approximately <span class="tex2jax_ignore">$5 billion</span>. Inference costs are projected to rise to <span class="tex2jax_ignore">$14.1 billion</span> in 2026, growing faster (68%) than revenues — fully consistent with the direction predicted by the Profitability Inflection Deferral Theorem. Anthropic's annualized revenue as of late 2025 was approximately <span class="tex2jax_ignore">$19 billion</span> with a gross margin of roughly 40%, approximately 10 percentage points below its "optimistic projection," attributed to inference costs exceeding expectations by 23% — a direct empirical manifestation of Channel B in the context of accelerating agentic workflow adoption.</p>
+
+  </div><!-- /sec2 -->
+
+  <!-- ═══════════════════════
+       SECTION 3
+  ════════════════════════ -->
+  <div class="section" id="sec3">
+    <h2 class="section-heading">III. Capital Lock-In and Value Capture: Investment Irreversibility and Structural Profit Leakage</h2>
+
+    <h3>3.1 Analytical Starting Point: A Seemingly Paradoxical Behavior</h3>
+
+    <p>Section II established the systemic Profitability Impossible Triangle. Yet the four hyperscalers' 2026 capital expenditure guidance exceeds <span class="tex2jax_ignore">$725 billion</span>, growing at 77%. This behavioral pattern is not the result of information failure; it is the rational equilibrium output of two structural mechanisms: the <strong>capital ratchet effect</strong> and <strong>value-chain profit capture</strong>.</p>
+
+    <h3>3.2 The Capital Ratchet and Irreversible Investment (Mechanism ③)</h3>
+
+    <p>Within the real options framework of Dixit and Pindyck (1994), investment irreversibility generates a waiting option, with the optimal trigger threshold strictly greater than one. But when multiple hyperscalers are involved, the waiting option is eroded by competitors' first-mover actions — the irreversibility of first-mover advantage endogenizes the value of the waiting option to zero.</p>
+
+
+    <p>A critic might note that the leasability of cloud compute reduces first-mover advantages. This paper's response is that the source of irreversibility in AI compute investment lies not in the physical assets themselves but in two independent channels: <strong>ecosystem lock-in</strong> and <strong>model training accumulation</strong>.</p>
+
+    <p>Consider a symmetric game with $n = 2$ players, $i \in \{1, 2\}$, each choosing investment level $I_i \in [0, \bar{I}]$, with payoff function $\pi_i(I_i, I_j) = R(I_i, I_j) - I_i$, where market returns satisfy the <strong>strategic complementarity condition</strong>: $\partial^2 R / \partial I_i \partial I_j > 0$ — the more a rival invests, the higher the marginal return to own investment (an arms-race structure). First-mover advantage manifests as: if $i$ pre-commits to $I_i^H > I_i^{\text{Nash}}$, the rival's best response $I_j^*(I_i^H) > I_j^{\text{Nash}}$, causing total industry investment to exceed the level under simultaneous decision-making.</p>
+
+    <p>The empirical basis for strategic complementarity rests on three points. <strong>First</strong>, CUDA ecosystem dependence: the larger the GPU cluster, the stronger the network effects of developer communities, optimization libraries, and talent pools, making late movers strictly less productive than first movers. <strong>Second</strong>, training data and RLHF feedback scale accumulation: more compute supports larger-scale model training and user feedback iteration, building capability moats. <strong>Third</strong>, power and site scarcity for hyperscale data centers: grid connection capacity, cooling conditions, and local government permits at premium sites are subject to first-come-first-served physical constraints, with hard boundaries on late movers accessing equivalent sites.</p>
+
+    <p>Let the social planner maximize industry net present value $\Pi = R(I_1, I_2) - I_1 - I_2$; the interior optimum condition is $\partial R / \partial I_i = 1$. Each player's Nash equilibrium condition is $\partial R / \partial I_i + \partial R / \partial I_j \cdot \partial I_j^* / \partial I_i = 1$. Strategic complementarity ensures $\partial I_j^* / \partial I_i > 0$, making $I_i^*$ at equilibrium strictly greater than the social optimum $I_i^{\text{social}}$. $\blacksquare$</p>
+
+    <div class="prop-box">
+      <p class="prop-label">Proposition 4 — Arms-Race Equilibrium</p>
+      <p>In an AI compute investment game with first-mover advantage and strategic complementarity, the Nash equilibrium investment level $I^*$ strictly exceeds the socially optimal investment level $I^{\text{social}}$, with the excess increasing in the number of competitors.</p>
+    </div>
+
+    <p>Define the ratchet constraint $I_{t+1} \geq I_t - \kappa$, where $\kappa \approx 0$ (jointly constrained by construction contracts, supply-chain lock-in, and organizational inertia):</p>
+
+    <div class="prop-box">
+      <p class="prop-label">Proposition 5 — Ratchet Lock-In Theorem</p>
+      <p>Under construction cycle $\tau > 0$ and ratchet constraint $\kappa \approx 0$, investment commitments triggered by high-demand expectations become irrevocable for the next $\tau$ periods, forming a one-way lock on the capital expenditure path. Moody's estimate of <span class="tex2jax_ignore">$662 billion</span> in uncommenced data center lease commitments is the accounting manifestation of this ratchet constraint.</p>
+    </div>
+
+    <h3>3.3 Value-Chain Profit Capture (Mechanism ④)</h3>
+
+    <p>The AI industry value chain exhibits an extreme smile-curve structure. Profit is highly asymmetric: Nvidia recorded a single-quarter net income of <span class="tex2jax_ignore">$58.3 billion</span> in Q1 2026, with a gross margin of approximately 75%; OpenAI, with <span class="tex2jax_ignore">$3.7 billion</span> in revenue, lost approximately <span class="tex2jax_ignore">$5 billion</span>.</p>
+
+    <p>Nvidia's pricing power derives from its technology moat (H100/B200 series GPUs leading by approximately one generation) and its ecosystem moat (the CUDA architecture makes the migration cost of replacing underlying hardware far exceed the hardware price itself). Equilibrium pricing satisfies:</p>
+
+    $$p^{\text{Nvidia}}_t = \frac{\varepsilon^{\text{GPU}}_t}{\varepsilon^{\text{GPU}}_t - 1} \cdot c^{\text{Nvidia}}_t \tag{3.3}$$
+
+    <p>Define the <strong>Nvidia Tax</strong> as the profit share $\tau^{\text{Nvidia}}_t$ flowing to Nvidia per unit of AI investment by hyperscalers. Based on gross margin (approximately 75%) and GPU procurement as a share of total investment (approximately 40%–50%), we estimate $\tau^{\text{Nvidia}}_t \approx 0.30$–$0.38$.</p>
+
+    <div class="prop-box">
+      <p class="prop-label">Proposition 6 — Structural Profit Leakage Theorem</p>
+      <p>The upstream monopoly node, through CUDA ecosystem lock-in, continuously captures a fixed proportion $\tau^{\text{Nvidia}}_t$ of the value created by incremental downstream investment. Under ratchet-effect-driven investment expansion, the absolute amount of profit leakage grows with investment scale and does not converge with changes in the competitive landscape or improvements in technical efficiency.</p>
+    </div>
+
+    <h3>3.4 Joint Determination: The Rational Equilibrium of Investment Acceleration</h3>
+
+    <p>Hyperscalers' continued investment escalation despite the Profitability Impossible Triangle is the joint equilibrium output of four constraints: the competitive constraint, the ratchet constraint, the leakage constraint, and the narrative constraint. In equilibrium, the term $\tau^{\text{Nvidia}}_t \cdot I_t$ does not affect the relative ranking among competitors and therefore does not alter equilibrium investment decisions.</p>
+
+    <div class="prop-box">
+      <p class="prop-label">Proposition 7 — Rational Equilibrium of Investment Acceleration</p>
+      <p>Under all four constraints simultaneously, hyperscalers continue to scale up investment in Nash equilibrium even as the Profitability Impossible Triangle holds. This equilibrium is individually rational for each participant and collectively irrational for the industry as a whole. The problem lies not in the irrationality of market participants but in the systemic flaws of the game structure.</p>
+    </div>
+
+  </div><!-- /sec3 -->
+
+  <!-- ═══════════════════════
+       SECTION 4
+  ════════════════════════ -->
+  <div class="section" id="sec4">
+    <h2 class="section-heading">IV. Financial Accelerator and Procyclical Fragility: Greater Collapse Severity under the High-Demand Scenario (Mechanism ⑤)</h2>
+
+    <h3>4.1 Analytical Starting Point: The Coupling of Financial Structure and Real-Sector Distress</h3>
+
+    <p>Hyperscalers have transferred large volumes of liabilities to private credit markets through off-balance-sheet special purpose vehicles (SPVs), which are indirectly borne by insurance companies, pension funds, and sovereign wealth funds through complex structured financing instruments. This elevates the risk of the High-Demand Trap from the industry level to the level of macro-financial stability.</p>
+
+    <p>Core argument: <strong>The high-demand scenario sustains the integrity of narrative beliefs, supporting SPV ratings and private credit valuations, keeping the financial accelerator's positive feedback loop running. When beliefs reverse, the intensity of nonlinear deleveraging is proportional to the leverage accumulated beforehand. The high-demand scenario is not the most resilient equilibrium; it is the equilibrium that has accumulated the greatest downside risk.</strong></p>
+
+    <h3>4.2 The BGG Financial Accelerator and the Off-Balance-Sheet Leverage Modification</h3>
+
+    <p>In the standard BGG framework, the external finance premium is $\text{EFP}_t = \Phi(Q_t K_t / N_t)$, with $\Phi' > 0$. The key modification for AI infrastructure financing is that off-balance-sheet liabilities are not fully reflected in net worth:</p>
+
+    $$N_t^{\text{true}} = Q_t (K_t^{\text{on}} + K_t^{\text{off}}) - D_t^{\text{on}} - D_t^{\text{off}} < N_t^{\text{reported}} \tag{4.3}$$
+
+    <p>As of late 2025, hyperscalers had transferred over <span class="tex2jax_ignore">$120 billion</span> in data center debt off-balance-sheet, with Moody's estimating uncommenced lease commitments at <span class="tex2jax_ignore">$662 billion</span>. Reported net worth systematically overstates true net worth, causing outside observers to underestimate the potential amplification factor of the BGG mechanism.</p>
+
+    <h3>4.3 High Demand, Narrative Beliefs, and the Procyclical Symbiosis of SPV Ratings</h3>
+
+    <p>Using Meta's Beignet SPV as an example: the key to the debt achieving an A+ rating is Meta's residual value guarantee (RVG) of up to <span class="tex2jax_ignore">$28 billion</span> — the rating is essentially a repackaging of Meta's parent credit strength. This produces a procyclical loop:</p>
+
+    <p style="text-align:center; font-family: var(--font-sans); font-size:0.88rem; color:var(--text-secondary); background:#f5f8fb; padding:14px 20px; border-radius:6px; margin:20px 0;">
+      High-demand narrative → hyperscaler high valuation → RVG credit strength → SPV high rating → low financing cost → larger SPV scale → greater compute build-out → reinforces high-demand narrative
+    </p>
+
+    <p>Endogenizing narrative belief $\gamma_t$, the BGG accelerator equations and the narrative equilibrium are jointly described by the system of equations (4.6)–(4.9), depicting a procyclical system that is self-reinforcing under normal conditions. The high-demand scenario is its <strong>high-energy equilibrium</strong>: system kinetic energy is maximized, but so is the accumulated potential energy (hidden leverage, contingent liabilities, valuation premiums).</p>
+
+    <h3>4.4 Triggers for Belief Reversal and Nonlinear Deleveraging</h3>
+
+    <p>Belief reversal requires a critical event; within the current structure these include: <strong>Type I</strong>, accounting reclassification trigger (tightening of ASC 810 VIE test); <strong>Type II</strong>, major tenant credit event (Oracle SPV is highly dependent on OpenAI, with RPO of <span class="tex2jax_ignore">$300 billion</span>); <strong>Type III</strong>, GPU price collapse (SPV debt collateralized by GPUs faces sharp collateral value deterioration); <strong>Type IV</strong>, private credit redemption pressure (illiquid secondary market distressed sales trigger mark-downs).</p>
+
+    <p>Let beliefs undergo a discrete downward shift at time $t^*$; the change in true net worth contains a discrete jump term — RVG activation instantly converts Meta's up-to-<span class="tex2jax_ignore">$28 billion</span> contingent liability into a certain cash obligation:</p>
+
+    $$\Delta N_{t^*}^{\text{true}} = \Delta Q_{t^*} \cdot K_{t^*}^{\text{on}} + \Delta Q_{t^*} \cdot K_{t^*}^{\text{off}} - \mathbf{1}_{\{\text{RVG triggered}\}} \cdot \text{RVG} \tag{4.10}$$
+
+    <div class="prop-box">
+      <p class="prop-label">Proposition 8 — Nonlinear Deleveraging Amplification Theorem</p>
+      <p>When off-balance-sheet SPV structures and residual value guarantees coexist, the net worth shock and EFP jump triggered by belief reversal are strictly greater than predicted by the standard BGG model. The amplification factor is jointly determined by the off-balance-sheet leverage ratio $K^{\text{off}}/K^{\text{on}}$ and the RVG trigger probability. The high-demand scenario, by sustaining a larger-scale SPV financing structure, increases the accelerator amplification factor at the moment of belief reversal.</p>
+    </div>
+
+
+    <p>Following Minsky's (1986) classification framework, AI financing entities are divided into three categories by cash-flow coverage capacity: <strong>Hedge financing units</strong>: operating cash flow covers both principal and interest, $\text{OCF}_t > D_t + rL_t$; <strong>Speculative financing units</strong>: covers interest but not principal, $rL_t &lt; \text{OCF}_t &lt; D_t + rL_t$; <strong>Ponzi financing units</strong>: $\text{OCF}_t &lt; rL_t$, requiring continuous rollover of debt. Here $D_t$ is maturing principal, $L_t$ is the stock of liabilities, and $r$ is the financing rate.</p>
+
+    <p>Define the Minsky Fragility Index:</p>
+
+    $$\mathcal{M}_t \equiv \omega_S \cdot \frac{n_S(t)}{n} + \omega_P \cdot \frac{n_P(t)}{n}, \quad 0 < \omega_S < \omega_P \tag{4.11}$$
+
+    <p>where $n_S(t)$ and $n_P(t)$ are the counts of speculative-class and Ponzi-class financing entities at time $t$ respectively, and $\omega_P > \omega_S$ reflects the higher systemic fragility weight of Ponzi units.</p>
+
+    <p><strong>Monotonicity proof.</strong> Let $T$ be the duration of the high-demand scenario; we need to show $d\mathcal{M}_t / dT > 0$. By Proposition 5 (Ratchet Lock-In), $I_t$ is non-decreasing, so the liability stock $L_t = L_0 + \int_0^t I_s\, ds$ increases strictly in $t$. Simultaneously, by the Profitability Impossible Triangle, $\Pi_t \to 0$ or even turns negative, so $\text{OCF}_t$ does not grow at the same rate as $L_t$. Therefore for any entity $i$:</p>
+
+    $$\frac{d}{dt}\left[\text{OCF}_i(t) - rL_i(t)\right] < 0 \tag{4.12}$$
+
+    <p>With $r > 0$ and $\dot{L}_i > 0$, as $T$ extends, more and more financing entities drift from hedge to speculative, and from speculative to Ponzi. This is a one-way absorbing drift process (as long as $\text{OCF}_i$ does not experience a discrete upward jump), so $n_S(t) + n_P(t)$ is non-decreasing and $\mathcal{M}_t$ increases monotonically in $T$.</p>
+
+    <p>The high-demand scenario, by sustaining narrative belief $\gamma_t > 0$, enables private credit markets to continue refinancing entities in the speculative and Ponzi categories, postponing individual default triggers but also extending the system's stay at high $\mathcal{M}_t$ levels. The high-demand scenario is not a dissipating factor for $\mathcal{M}_t$ but an extender of its accumulation period — the higher $\mathcal{M}_T$ accumulated when beliefs reverse, the greater the intensity of nonlinear deleveraging, forming a precise analytical link with Proposition 8. $\blacksquare$</p>
+
+    <div class="prop-box">
+      <p class="prop-label">Proposition 9 — Minsky Fragility Proposition</p>
+      <p>The Minsky Fragility Index $\mathcal{M}_t$ of the AI financing ecosystem (as defined by equation (4.11)) increases monotonically with the duration of the high-demand scenario. The high-demand scenario is a period of Minsky fragility accumulation, not dissipation.</p>
+    </div>
+
+    <h3>4.5 Systematic Bias in Monetary Policy</h3>
+
+    <p>Within the framework of Liu (2026), the upward bias in the natural rate estimate caused by narrative contamination leads central banks to maintain monetary policy at a relatively tight level. This creates a policy paradox: tightening monetary policy to address narrative-driven inflationary pressure simultaneously raises the vulnerability of AI SPV financial structures at the moment of belief reversal. Incorporating off-balance-sheet leverage into the New Keynesian IS curve reveals an additional hidden drag term — the coexistence of high interest rates with highly leveraged AI financial structures is a tail-risk compounding that standard policy frameworks have failed to adequately price.</p>
+
+  </div><!-- /sec4 -->
+
+  <!-- ═══════════════════════
+       SECTION 5
+  ════════════════════════ -->
+  <div class="section" id="sec5">
+    <h2 class="section-heading">V. Integrated Framework, Observable Implications, and Theoretical Boundaries</h2>
+
+    <h3>5.1 Joint Equilibrium of the Five Mechanisms and Superadditivity</h3>
+
+    <p>Let $\mathbf{S}_t = (c_t, p_t, q_t, I_t, \tau_t^{\text{Nvidia}}, \gamma_t, N_t^{\text{true}}, \text{EFP}_t)$ be the system state vector; the high-demand scenario is defined as $\dot{q}_t / q_t \geq \bar{g} > 0$. The five mechanisms correspond to five subsystems (5.1)–(5.5).</p>
+
+    <p>Define the High-Demand Trap Intensity Index $\Psi_t \equiv d/dq_t \cdot (\dot{E}_t/E_t - \dot{\Pi}_t^{\text{downstream}}/\Pi_t^{\text{downstream}})$:</p>
+
+
+    <p>Denote the independent contribution of each of the five mechanisms to $\Psi_t$ as $\psi^{(k)}$, $k = 1,...,5$. The Superadditivity Theorem claims $\Psi_t > \sum_{k=1}^{5} \psi^{(k)}$, or equivalently, for any pair of mechanisms $(i,j)$, the cross partial derivative $\partial^2 \Psi_t / \partial \psi^{(i)} \partial \psi^{(j)} > 0$ must be strictly positive. We demonstrate this for the three key mechanism pairs:</p>
+
+    <p><strong>Cross-term (①,②): LLMflation × Bertrand compression.</strong> Mechanism ① pushes up the cost term in the operating margin ($1/\mu_t$ rises); Mechanism ② simultaneously compresses the price term ($\mu_t$ contracts). As $\mu_t \to 1$ (the Bertrand limit), the sensitivity of profit margin to $1/\mu_t$ tends to infinity — Bertrand compression amplifies every unit of deterioration from LLMflation. Formally, $\partial^2(\Pi_t/R_t)/\partial(1/\mu_t)^2 = 0$, but $\partial(\Pi_t/R_t)/\partial(1/\mu_t) \cdot d(1/\mu_t)/dq_t$ diverges at rate $(\mu_t - 1)^{-1}$ as $\mu_t \to 1$, so the cross-term is strictly positive.</p>
+
+    <p><strong>Cross-term (③,⑤): Ratchet lock-in × financial accelerator.</strong> The ratchet constraint ensures the investment path is monotonically increasing, causing the off-balance-sheet leverage stock $K_t^{\text{off}}$ to accumulate over time. The financial accelerator amplification factor is determined by true net worth: $\text{EFP}_t = \Phi(Q_t K_t / N_t^{\text{true}})$, $\Phi' > 0$. The ratchet effect causes $K_t^{\text{off}}$ to increase monotonically, directly depressing $N_t^{\text{true}}$ and thereby increasing $\text{EFP}_t$. Formally:</p>
+
+    $$\frac{\partial \text{EFP}_t}{\partial K_t^{\text{off}}} \cdot \frac{d K_t^{\text{off}}}{d\kappa} > 0 \quad (\kappa \to 0) \tag{5.2}$$
+
+    <p>The tighter the ratchet constraint ($\kappa \to 0$), the faster off-balance-sheet leverage accumulates and the faster the financial accelerator's fragility compounds. The cross-term is strictly positive.</p>
+
+    <p><strong>Cross-term (②,④): Bertrand compression × Nvidia tax.</strong> Let after-tax profit be $\tilde{\Pi}_t = \Pi_t - \tau_t^{\text{Nvidia}} \cdot I_t$. Bertrand competition drives $\Pi_t \to 0$, while the ratchet effect ensures $I_t$ does not decline, so $\tau_t^{\text{Nvidia}} \cdot I_t > 0$ continuously erodes distributable profit. Under Bertrand equilibrium, declining $\mu_t$ induces providers to scale up investment to maintain volumes ($\partial I_t / \partial \mu_t &lt; 0$), while greater compute demand strengthens Nvidia's pricing power ($\partial \tau_t^{\text{Nvidia}} / \partial q_t > 0$), so:</p>
+
+    $$\frac{\partial^2 \tilde{\Pi}_t}{\partial \mu_t \, \partial \tau_t^{\text{Nvidia}}} = -\frac{\partial I_t}{\partial \mu_t} \cdot \frac{\partial \tau_t^{\text{Nvidia}}}{\partial q_t} > 0 \tag{5.3}$$
+
+    <p>All three cross-terms are strictly positive; the joint effect $\Psi_t$ strictly exceeds the sum of the independent contributions of the five mechanisms. The Superadditivity Theorem is proved. $\blacksquare$</p>
+
+    <div class="prop-box">
+      <p class="prop-label">Proposition 10 — Superadditivity Theorem</p>
+      <p>The five mechanisms generate strictly positive superadditive terms in the following three pairwise interactions, making the joint effect strictly greater than the sum of the independent effects: (①,②) the two-sided compression of operating profit by LLMflation and Bertrand competition; (③,⑤) the potential energy amplification by ratchet lock-in and the financial accelerator; (②,④) the dual leakage structure of Bertrand compression and the Nvidia tax. The excess component of $\Psi_t$ increases monotonically with the duration of the high-demand scenario.</p>
+    </div>
+
+    <h3>5.2 Sufficient Conditions for the Profitability Inflection Point</h3>
+
+    <div class="prop-box">
+      <p class="prop-label">Proposition 11 — Sufficient Conditions for the Profitability Inflection Point</p>
+      <p>Achieving the profitability inflection point requires at least three of the following five conditions to undergo a structural break:</p>
+      <p><strong>SB1</strong> (LLMflation reversal): $\varepsilon_t^{\text{eff}}$ falls discretely to strictly below 1, requiring a paradigm-level leap in AI inference architecture.</p>
+      <p><strong>SB2</strong> (Pricing power restoration): quality premium $\Delta_t^{\text{quality}}$ stops narrowing; frontier models form a sustainable performance gap relative to open-source alternatives.</p>
+      <p><strong>SB3</strong> (Ratchet relaxation): compute investment enters a destocking phase; ratchet constraint $\kappa$ rises materially.</p>
+      <p><strong>SB4</strong> (Upstream monopoly loosening): the Nvidia tax rate falls materially; in-house chips or new architectures erode the CUDA moat.</p>
+      <p><strong>SB5</strong> (Soft landing of beliefs): narrative beliefs adjust gradually; off-balance-sheet leverage ratio stabilizes rather than continuing to rise.</p>
+    </div>
+
+    <h3>5.3 Scenario Classification</h3>
+
+    <table>
+      <thead>
+        <tr><th>Scenario</th><th>Core Characteristics</th><th>SB Condition Status</th><th>Market Pricing</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>I — Soft Landing</strong></td>
+          <td>Architectural efficiency breakthrough, model capability differentiation, real-sector improvement precedes financial stress</td>
+          <td>SB1, SB2, SB5 hold simultaneously</td>
+          <td>Systematically overpriced by current valuations</td>
+        </tr>
+        <tr>
+          <td><strong>II — High-Demand Trap Deepens</strong></td>
+          <td>Profitability stagnation and leverage accumulation coexist; Minsky fragility increases monotonically</td>
+          <td>SB1–3 all unrealized</td>
+          <td>Essentially unpriced</td>
+        </tr>
+        <tr>
+          <td><strong>III — Financial Structure Adjusts Before Real Economy</strong></td>
+          <td>Regulatory or tenant credit event triggers independently, regardless of demand conditions</td>
+          <td>SB5 discretely collapses</td>
+          <td>Systematically underpriced</td>
+        </tr>
+        <tr>
+          <td><strong>IV — Industry Structure Reorganization</strong></td>
+          <td>In-house chips compress the Nvidia tax; profit redistributes downstream</td>
+          <td>SB4 precedes other conditions</td>
+          <td>Severely underpriced</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>5.4 Observable Early Warning Indicators</h3>
+
+    <h4>Indicator Group A — Monthly Observable: Unit Economics</h4>
+    <ul>
+      <li>$A_1$: ARPU/ACPU ratio $\mu_t$. SB2 has not yet activated when this persistently remains below 1.3.</li>
+      <li>$A_2$: Performance gap $\Delta_t^{\text{quality}}$ between open-source models and leading commercial models.</li>
+      <li>$A_3$: Share of agentic workflows in enterprise AI spending. A persistent rise signals deteriorating SB1 conditions.</li>
+    </ul>
+
+    <h4>Indicator Group B — Quarterly Observable: Industry Financials</h4>
+    <ul>
+      <li>$B_1$: Consolidated FCF/CapEx. Currently approximately 0.08–0.15; historical normal approximately 0.35–0.45.</li>
+      <li>$B_2$: In-house chip share of inference workloads. SB4 cannot be realized in the medium term if this does not exceed 30% before 2027.</li>
+      <li>$B_3$: Rate at which AI-native company gross margins narrow relative to the SaaS benchmark (75%–85%).</li>
+    </ul>
+
+    <h4>Indicator Group C — Semi-Annual to Annual Observable: Financial Structure</h4>
+    <ul>
+      <li>$C_1$: Rate of change in hyperscaler weight within the Bloomberg IG index (current annualized growth rate approximately 90%).</li>
+      <li>$C_2$: CDS spreads on AI data center SPV debt. Contagion to high-rated entities is an early signal of financial accelerator activation.</li>
+      <li>$C_3$: Secondary market discount rates on AI infrastructure exposure in private credit funds.</li>
+      <li>$C_4$: Quantitative debt adjustments (QDA) triggered by rating agencies for hyperscaler off-balance-sheet commitments.</li>
+    </ul>
+
+    <p><strong>Discrimination logic:</strong> Scenario III is identified independently of real-economy indicators — a discrete jump in any of $C_2$, $C_3$, $C_4$, even when all Group A and B indicators are healthy, constitutes a Scenario III trigger signal. This is one of the most important policy implications of the High-Demand Trap thesis.</p>
+
+    <h3>5.5 Interface with Liu (2026)</h3>
+
+    <p>The interface between the two papers is precisely located at the equation $\tilde{A}_{t+k} = A^0_{t+k} + \phi \cdot \Delta I_t(\gamma_t \Theta_t^*) + \psi \cdot \Delta K^{AI}_t(\gamma_t \Theta_t^*)$. Liu (2026) analyzes the formation mechanism of $\gamma_t \Theta_t^*$; this paper analyzes whether, even when $\phi, \psi > 0$ allows partial productivity realization, industry-structural constraints permit this improvement to be converted into distributable downstream profit.</p>
+
+    <div class="corollary-box prop-box">
+      <p class="prop-label">Integrated Corollary — Insufficiency of Narrative Self-Realization for Profitability</p>
+      <p>Partial self-realization of the narrative ($\phi, \psi > 0$, sufficient to sustain $\gamma > 0$) does not constitute a sufficient condition for realization of downstream investment profitability. If and only if at least three of the five structural break conditions of Proposition 11 hold simultaneously can the profitability inflection point be realized on top of narrative sustenance. Under current parameter estimates, the probability of this condition being met is systematically overestimated by market pricing.</p>
+    </div>
+
+    <h3>5.6 Theoretical Boundaries</h3>
+
+    <p><strong>Boundary I (Exogeneity of technology paths):</strong> If photonic computing or neuromorphic chips reduce inference costs by three orders of magnitude within a single generation, SB1 may be realized in ways this framework cannot anticipate.</p>
+
+    <p><strong>Boundary II (Chinese AI competition):</strong> Chinese AI investment is partly driven by sovereign strategic objectives; within the Bertrand game, this is equivalent to a competitor with high subsidy capacity, potentially depressing global inference prices below the sustainable profitability floor for any commercial entity.</p>
+
+    <p><strong>Boundary III (Endogenization of regulation):</strong> When the incentive for regulators to tighten SPV accounting standards overtakes lobbying pressure is a political economy question with significant implications for the time-window estimate of Scenario III.</p>
+
+    <h3>5.7 Conclusion</h3>
+
+    <p>This paper has proposed and argued the High-Demand Trap thesis: under the current structure of the AI industry, rapid growth in inference demand systematically obstructs rather than promotes the realization of a profitability inflection point through five mutually reinforcing mechanisms. The analysis across five sections covers micro unit economics (Propositions 1–3), meso industry structure (Propositions 4–7), and macro financial stability (Propositions 8–9), converging in Section V through the Superadditivity Theorem (Proposition 10) and the sufficient conditions for the profitability inflection point (Proposition 11) into a unified operational framework.</p>
+
+    <p>The single most important conclusion of this paper is expressed in the Integrated Corollary: partial self-realization of the narrative does not constitute a sufficient condition for downstream investment profitability. The probability of Scenario I implied by current asset pricing is systematically overestimated under the joint operation of the five-mechanism framework and three classes of unobservable tail risks.</p>
+
+    <p>The analytical scope of this paper is strictly bounded to one proposition: <strong>under visible industry-structural and financial-structural parameters, the high-demand scenario is not a sufficient guarantee of the profitability inflection point, but is rather the common accelerator of five mutually reinforcing mechanisms — the higher the demand, the deeper the trap, and the greater the energy released when beliefs reverse.</strong></p>
+
+  </div><!-- /sec5 -->
+
+  <!-- ═══════════════════════
+       REFERENCES
+  ════════════════════════ -->
+  <div class="section references" id="refs">
+    <h2 class="section-heading">References</h2>
+
+    <p>Bernanke, B., M. Gertler, and S. Gilchrist. 1999. "The Financial Accelerator in a Quantitative Business Cycle Framework." <em>Handbook of Macroeconomics</em> 1: 1341–1393.</p>
+
+    <p>Beaudry, P., and F. Portier. 2004. "An Exploration into Pigou's Theory of Cycles." <em>NBER Working Paper</em> No. 10591.</p>
+
+    <p>BIS. 2026. "Financing the AI Infrastructure Boom: On- and Off-Balance Sheet Borrowing." <em>BIS Quarterly Review</em>, March 2026.</p>
+
+    <p>Dixit, A., and R. Pindyck. 1994. <em>Investment under Uncertainty</em>. Princeton: Princeton University Press.</p>
+
+    <p>FSB. 2026. "Report on Vulnerabilities in Private Credit." May 2026.</p>
+
+    <p>Jaimovich, N., and S. Rebelo. 2009. "Can News about the Future Drive the Business Cycle?" <em>American Economic Review</em> 99(4): 1097–1118.</p>
+
+    <p>Jevons, W. S. 1865. <em>The Coal Question</em>. London: Macmillan.</p>
+
+    <p>Jorgenson, D. W. 1963. "Capital Theory and Investment Behavior." <em>American Economic Review</em> 53(2): 247–259.</p>
+
+    <p>Liu, D. 2026. "Narrative as Shock: The Ponzi-Schumpeter Structure of the AI Boom and the Quiet Death of Rational Expectations." Draft, May 2026.</p>
+
+    <p>Minsky, H. P. 1986. <em>Stabilizing an Unstable Economy</em>. New Haven: Yale University Press.</p>
+
+    <p>Parker, G., and M. Van Alstyne. 2005. "Two-Sided Network Effects: A Theory of Information Product Design." <em>Management Science</em> 51(10): 1494–1504.</p>
+
+    <p>Rochet, J.-C., and J. Tirole. 2003. "Platform Competition in Two-Sided Markets." <em>Journal of the European Economic Association</em> 1(4): 990–1029.</p>
+
+    <p>Schmitt-Grohé, S., and M. Uribe. 2012. "What's News in Business Cycles." <em>Econometrica</em> 80(6): 2733–2764.</p>
+
+    <p>Shih, S. 1992. "Establishing Global Competitiveness." Acer Group Internal Document.</p>
+
+    <p>Woodford, M. 2003. <em>Interest and Prices: Foundations of a Theory of Monetary Policy</em>. Princeton: Princeton University Press.</p>
+
+  </div><!-- /refs -->
+
+  </article>
+
+</div><!-- /wrapper -->
+</main>
+
+<footer>
+  <div class="wrapper">
+    <p>© 2026 Dong Liu · Working Paper · Draft — Comments Welcome</p>
+    <p style="margin-top:8px;">
+      <a href="https://www.linkedin.com/in/dong-liu/">LinkedIn</a> &nbsp;·&nbsp;
+      <a href="https://github.com/liudoong">GitHub</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
