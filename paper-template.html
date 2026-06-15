@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="[PAPER DESCRIPTION — one sentence for SEO]" />
+  <meta property="og:title" content="[PAPER TITLE IN ENGLISH]" />
+  <meta property="og:description" content="[PAPER DESCRIPTION]" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>[PAPER TITLE IN ENGLISH]</title>
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        tags: 'ams',
+        packages: {'[+]': ['ams']}
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text-primary:   #1a1a1a;
+      --text-secondary: #555;
+      --text-muted:     #888;
+      --border:         #e0e0e0;
+      --bg-page:        #fafafa;
+      --bg-card:        #fff;
+      --accent:         #1a3a5c;
+      --accent-light:   #e8f0f8;
+      --font-serif:     'Georgia', 'Times New Roman', serif;
+      --font-sans:      -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono:      'SFMono-Regular', 'Consolas', monospace;
+      --max-width:      780px;
+      --line-height:    1.85;
+    }
+
+    html { font-size: 17px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-serif);
+      color: var(--text-primary);
+      background: var(--bg-page);
+      line-height: var(--line-height);
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    /* ── Layout ── */
+    .wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 56px 0 48px;
+      border-bottom: 3px solid #0d2540;
+    }
+
+    /* ── Back link ── */
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #aac4e0;
+      text-decoration: none;
+      margin-bottom: 24px;
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+
+    .back-home:hover { opacity: 1; color: #fff; }
+
+    .paper-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #aac4e0;
+      margin-bottom: 18px;
+    }
+
+    h1.paper-title {
+      font-family: var(--font-serif);
+      font-size: 1.95rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    h1.paper-subtitle {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      font-style: italic;
+      color: #b8d0e8;
+      margin-bottom: 32px;
+    }
+
+    .paper-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      color: #aac4e0;
+    }
+
+    .paper-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ── Abstract box ── */
+    .abstract-box {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 28px 32px;
+      margin: 40px 0 48px;
+    }
+
+    .abstract-box .abstract-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .abstract-box p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .abstract-box p:last-child { margin-bottom: 0; }
+
+    .keywords {
+      margin-top: 16px;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .keywords strong { color: var(--text-primary); }
+
+    /* ── TOC ── */
+    nav.toc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 52px;
+    }
+
+    nav.toc .toc-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    nav.toc ol {
+      padding-left: 22px;
+    }
+
+    nav.toc li {
+      margin-bottom: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+    }
+
+    nav.toc a { color: var(--accent); text-decoration: none; }
+    nav.toc a:hover { text-decoration: underline; }
+
+    /* ── Article body ── */
+    article { padding-bottom: 80px; }
+
+    .section { margin-bottom: 56px; }
+
+    h2.section-heading {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+      margin-bottom: 28px;
+      margin-top: 60px;
+    }
+
+    h3 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 36px;
+      margin-bottom: 14px;
+    }
+
+    h4 {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-top: 24px;
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    p {
+      margin-bottom: 18px;
+      text-align: left;
+      hyphens: none;
+    }
+
+    /* ── Proposition / Definition / Corollary boxes ── */
+    .prop-box {
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 18px 22px;
+      margin: 24px 0;
+      background: #f7fafd;
+    }
+
+    .prop-box .prop-label {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .prop-box p { margin-bottom: 8px; font-size: 0.96rem; text-align: left; }
+    .prop-box p:last-child { margin-bottom: 0; }
+
+    /* Definition box — green */
+    .def-box {
+      border-left: 4px solid #2a7a4b;
+      background: #f4fbf6;
+    }
+
+    .def-box .prop-label { color: #2a7a4b; }
+
+    /* Corollary box — amber */
+    .corollary-box {
+      border-left: 4px solid #8a5a00;
+      background: #fdf8ee;
+    }
+
+    .corollary-box .prop-label { color: #8a5a00; }
+
+    /* ── Math ── */
+    .mjx-chtml { margin: 8px 0 !important; }
+
+    /* ── Table ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-family: var(--font-sans);
+      font-size: 0.86rem;
+    }
+
+    th {
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td { background: #f5f8fb; }
+
+    /* ── Inline ── */
+    strong { font-weight: 700; }
+    em { font-style: italic; }
+
+    /* ── Blockquote ── */
+    blockquote {
+      border-left: 4px solid var(--accent);
+      margin: 24px 0;
+      padding: 16px 22px;
+      background: var(--accent-light);
+      font-style: italic;
+      color: var(--text-primary);
+      border-radius: 0 6px 6px 0;
+      text-align: left;
+    }
+
+    /* ── Lists ── */
+    ul, ol {
+      padding-left: 24px;
+      margin-bottom: 18px;
+    }
+
+    li { margin-bottom: 8px; line-height: var(--line-height); text-align: left; }
+
+    /* ── References ── */
+    .references { font-size: 0.88rem; }
+    .references p { text-indent: -1.6em; padding-left: 1.6em; margin-bottom: 10px; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--accent);
+      color: #aac4e0;
+      padding: 32px 0;
+      text-align: center;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+    }
+
+    footer a { color: #c8ddf0; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    @media (max-width: 600px) {
+      html { font-size: 15px; }
+      h1.paper-title { font-size: 1.5rem; }
+      .abstract-box { padding: 20px; }
+      nav.toc { padding: 18px; }
+      table { font-size: 0.78rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrapper">
+    <!-- DEPTH: ../../ for econ|risk|quant|review category papers -->
+    <a class="back-home" href="../../">← Dong Liu · Research</a>
+    <!-- paper-label format: "[Type] · [Month Year] · [Status]"            -->
+    <!-- Type options: Working Paper / Literature Review / Technical Note   -->
+    <!-- Status options: Draft — Comments Welcome / Forthcoming / Published -->
+    <p class="paper-label">Working Paper · [Month Year] · Draft — Comments Welcome</p>
+    <h1 class="paper-title">[TITLE IN ENGLISH]</h1>
+    <!-- Delete the subtitle line below if no Chinese title -->
+    <h1 class="paper-subtitle">[中文标题（如有）]</h1>
+    <div class="paper-meta">
+      <span>✍ Dong Liu</span>
+      <span>📅 [Month Year]</span>
+      <span>🔗 <a href="https://www.linkedin.com/in/dong-liu/" style="color:#c8ddf0;">LinkedIn</a></span>
+      <span>💬 Comments welcome</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="wrapper">
+
+  <!-- ═══════════════════════
+       ABSTRACT
+  ════════════════════════ -->
+  <div class="abstract-box" style="margin-top:44px;">
+    <p class="abstract-label">Abstract</p>
+    <p>[ABSTRACT PARAGRAPH 1]</p>
+    <p>[ABSTRACT PARAGRAPH 2 — optional]</p>
+    <p>[ABSTRACT PARAGRAPH 3 — central finding]</p>
+    <div class="keywords"><strong>Keywords:</strong> [keyword 1], [keyword 2], [keyword 3]</div>
+  </div>
+
+  <!-- ═══════════════════════
+       TABLE OF CONTENTS
+  ════════════════════════ -->
+  <nav class="toc">
+    <p class="toc-label">Contents</p>
+    <ol>
+      <li><a href="#sec1">[Section 1 Title]</a></li>
+      <li><a href="#sec2">[Section 2 Title]</a></li>
+      <li><a href="#sec3">[Section 3 Title]</a></li>
+      <li><a href="#refs">References</a></li>
+    </ol>
+  </nav>
+
+  <article>
+
+  <!-- ═══════════════════════
+       SECTION 1
+  ════════════════════════ -->
+  <div class="section" id="sec1">
+    <h2 class="section-heading">I. [Section 1 Title]</h2>
+
+    <h3>1.1 [Subsection Title]</h3>
+
+    <p>[Body text. Inline math: $x = \alpha + \beta$.]</p>
+
+    <!-- Definition box -->
+    <div class="prop-box def-box">
+      <p class="prop-label">Definition 1 — [Name]</p>
+      <p>[Definition text.]</p>
+    </div>
+
+    <!-- Proposition box -->
+    <div class="prop-box">
+      <p class="prop-label">Proposition 1 — [Name]</p>
+      <p>[Proposition statement.]</p>
+    </div>
+
+    <!-- Display math -->
+    <p>$$
+      Y_t = \alpha + \beta X_t + \varepsilon_t
+    $$</p>
+
+    <!-- Blockquote for thesis statements -->
+    <blockquote>
+      <strong>[Label]:</strong> [Thesis or key claim in blockquote style.]
+    </blockquote>
+
+  </div><!-- /sec1 -->
+
+  <!-- ═══════════════════════
+       SECTION 2
+  ════════════════════════ -->
+  <div class="section" id="sec2">
+    <h2 class="section-heading">II. [Section 2 Title]</h2>
+
+    <h3>2.1 [Subsection Title]</h3>
+
+    <p>[Body text.]</p>
+
+    <!-- Table -->
+    <table>
+      <thead>
+        <tr><th>[Col 1]</th><th>[Col 2]</th><th>[Col 3]</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>[Cell]</td><td>[Cell]</td><td>[Cell]</td></tr>
+        <tr><td>[Cell]</td><td>[Cell]</td><td>[Cell]</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Corollary box -->
+    <div class="prop-box corollary-box">
+      <p class="prop-label">Corollary 1 — [Name]</p>
+      <p>[Corollary text.]</p>
+    </div>
+
+  </div><!-- /sec2 -->
+
+  <!-- ═══════════════════════
+       SECTION 3
+  ════════════════════════ -->
+  <div class="section" id="sec3">
+    <h2 class="section-heading">III. [Section 3 Title]</h2>
+
+    <h3>3.1 [Subsection Title]</h3>
+
+    <p>[Body text.]</p>
+
+    <h4>[Sub-subsection heading in sans-serif]</h4>
+
+    <ul>
+      <li>[List item 1]</li>
+      <li>[List item 2]</li>
+    </ul>
+
+  </div><!-- /sec3 -->
+
+  <!-- ═══════════════════════
+       REFERENCES
+  ════════════════════════ -->
+  <div class="section references" id="refs">
+    <h2 class="section-heading">References</h2>
+
+    <!-- Hanging-indent format: Author(s). Year. "Title." Journal Volume(Issue): Pages. -->
+    <p>[Author Last], [First]. [Year]. "[Article Title]." <em>[Journal]</em> [Vol]([Issue]): [Pages].</p>
+    <p>[Author Last], [First], and [Second Author]. [Year]. <em>[Book Title]</em>. [City]: [Publisher].</p>
+
+  </div><!-- /refs -->
+
+  </article>
+
+</div><!-- /wrapper -->
+</main>
+
+<footer>
+  <div class="wrapper">
+    <p>© 2026 Dong Liu · Working Paper · Draft — Comments Welcome</p>
+    <p style="margin-top:8px;">
+      <a href="https://www.linkedin.com/in/dong-liu/">LinkedIn</a> &nbsp;·&nbsp;
+      <a href="https://github.com/liudoong">GitHub</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
