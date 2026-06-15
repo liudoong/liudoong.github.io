@@ -1,0 +1,21 @@
+title: "Dong Liu · Research"
+description: "Working papers on economics, risk, quantitative finance, and literature reviews."
+author: Dong Liu
+baseurl: ""
+url: "https://liudoong.github.io"
+
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+  input: GFM
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+mathjax: true
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md

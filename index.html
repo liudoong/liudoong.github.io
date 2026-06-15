@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dong Liu — Working papers on economics, risk, quantitative finance, and literature reviews." />
+  <title>Dong Liu · Research</title>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent:        #1a3a5c;
+      --accent-light:  #e8f0f8;
+      --border:        #e0e0e0;
+      --text-primary:  #1a1a1a;
+      --text-secondary:#555;
+      --text-muted:    #888;
+      --bg-page:       #fafafa;
+      --bg-card:       #fff;
+      --font-serif:    'Georgia', 'Times New Roman', serif;
+      --font-sans:     -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      /* category accent colours */
+      --econ:   #1a3a5c;
+      --risk:   #7a1a1a;
+      --quant:  #1a5c3a;
+      --review: #4a3a7a;
+    }
+
+    html { font-size: 17px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--text-primary);
+      background: var(--bg-page);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrapper { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Header ── */
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 52px 0 44px;
+      border-bottom: 3px solid #0d2540;
+    }
+
+    .site-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #aac4e0;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      font-size: 0.95rem;
+      color: #b8d0e8;
+      margin-bottom: 26px;
+      font-style: italic;
+      font-family: var(--font-serif);
+    }
+
+    .header-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 0.82rem;
+      color: #aac4e0;
+    }
+
+    .header-links a { color: #c8ddf0; text-decoration: none; }
+    .header-links a:hover { text-decoration: underline; }
+
+    /* ── Nav tabs ── */
+    .cat-nav {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .cat-nav ul {
+      display: flex;
+      list-style: none;
+      gap: 0;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .cat-nav a {
+      display: block;
+      padding: 14px 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text-muted);
+      border-bottom: 3px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .cat-nav a:hover { color: var(--text-primary); }
+    .cat-nav a.econ   { border-color: var(--econ);   color: var(--econ); }
+    .cat-nav a.risk   { border-color: var(--risk);   color: var(--risk); }
+    .cat-nav a.quant  { border-color: var(--quant);  color: var(--quant); }
+    .cat-nav a.review { border-color: var(--review); color: var(--review); }
+
+    /* ── Main ── */
+    main { flex: 1; padding: 52px 0 80px; }
+
+    /* ── Category section ── */
+    .category { margin-bottom: 60px; }
+
+    .category-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid;
+    }
+
+    .category-header.econ   { border-color: var(--econ);   }
+    .category-header.risk   { border-color: var(--risk);   }
+    .category-header.quant  { border-color: var(--quant);  }
+    .category-header.review { border-color: var(--review); }
+
+    .cat-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .cat-title.econ   { color: var(--econ);   }
+    .cat-title.risk   { color: var(--risk);   }
+    .cat-title.quant  { color: var(--quant);  }
+    .cat-title.review { color: var(--review); }
+
+    .cat-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ── Paper card ── */
+    .paper-list { list-style: none; }
+
+    .paper-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 0 8px 8px 0;
+      padding: 22px 26px;
+      margin-bottom: 16px;
+      border-left: 4px solid;
+      transition: box-shadow 0.15s;
+    }
+
+    .paper-card:hover { box-shadow: 0 2px 14px rgba(0,0,0,0.07); }
+
+    .paper-card.econ   { border-left-color: var(--econ);   }
+    .paper-card.risk   { border-left-color: var(--risk);   }
+    .paper-card.quant  { border-left-color: var(--quant);  }
+    .paper-card.review { border-left-color: var(--review); }
+
+    .paper-meta {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .paper-card h2 {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+
+    .paper-card h2 a { text-decoration: none; }
+    .paper-card h2 a:hover { text-decoration: underline; }
+
+    .paper-card.econ   h2 a { color: var(--econ);   }
+    .paper-card.risk   h2 a { color: var(--risk);   }
+    .paper-card.quant  h2 a { color: var(--quant);  }
+    .paper-card.review h2 a { color: var(--review); }
+
+    .paper-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      font-style: italic;
+      font-family: var(--font-serif);
+      margin-bottom: 10px;
+    }
+
+    .paper-snippet {
+      font-size: 0.86rem;
+      color: #444;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .read-link {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      border-bottom: 1px solid;
+      padding-bottom: 1px;
+    }
+
+    .paper-card.econ   .read-link { color: var(--econ);   border-color: var(--econ);   }
+    .paper-card.risk   .read-link { color: var(--risk);   border-color: var(--risk);   }
+    .paper-card.quant  .read-link { color: var(--quant);  border-color: var(--quant);  }
+    .paper-card.review .read-link { color: var(--review); border-color: var(--review); }
+
+    .read-link:hover { opacity: 0.65; }
+
+    /* ── Empty state ── */
+    .empty-state {
+      padding: 20px 26px;
+      background: #f5f5f5;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--accent);
+      color: #aac4e0;
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 0.82rem;
+      font-family: var(--font-sans);
+    }
+
+    footer a { color: #c8ddf0; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+      .cat-nav a { padding: 12px 12px; font-size: 0.72rem; letter-spacing: 0.06em; }
+      .paper-card { padding: 18px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrapper">
+    <p class="site-label">Research · Working Papers</p>
+    <h1>Dong Liu</h1>
+    <p class="tagline">Economics, Risk &amp; Quantitative Finance</p>
+    <div class="header-links">
+      <span>VP, Counterparty Risk · Barclays Investment Bank</span>
+      <span><a href="https://www.linkedin.com/in/dong-liu/">LinkedIn</a></span>
+      <span><a href="https://github.com/liudoong">GitHub</a></span>
+    </div>
+  </div>
+</header>
+
+<nav class="cat-nav">
+  <ul>
+    <li><a href="#econ"   class="econ"  >Econ</a></li>
+    <li><a href="#risk"   class="risk"  >Risk</a></li>
+    <li><a href="#quant"  class="quant" >Quant</a></li>
+    <li><a href="#review" class="review">Review</a></li>
+  </ul>
+</nav>
+
+<main>
+<div class="wrapper">
+
+  <!-- ── ECON ── -->
+  <section class="category" id="econ">
+    <div class="category-header econ">
+      <span class="cat-title econ">Econ</span>
+      <span class="cat-desc">Macroeconomics, industry structure, financial cycles</span>
+    </div>
+    <ul class="paper-list">
+      <li>
+        <div class="paper-card econ">
+          <p class="paper-meta">Working Paper · June 2026 · Draft — Comments Welcome</p>
+          <h2><a href="./econ/high-demand-trap/">The High-Demand Trap: Structural Profitability Paradox in the AI Investment Boom</a></h2>
+          <p class="paper-subtitle">高需求陷阱：AI投资繁荣的结构性盈利悖论</p>
+          <p class="paper-snippet">Under the current AI industry structure, rapid demand growth systematically obstructs the profitability inflection point through five mutually reinforcing mechanisms — Jevons Paradox, Bertrand competition, capital ratchet effects, value chain profit capture, and the BGG financial accelerator.</p>
+          <a class="read-link" href="./econ/high-demand-trap/">Read paper →</a>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ── RISK ── -->
+  <section class="category" id="risk">
+    <div class="category-header risk">
+      <span class="cat-title risk">Risk</span>
+      <span class="cat-desc">Counterparty risk, credit risk, model risk, stress testing</span>
+    </div>
+    <div class="empty-state">Papers forthcoming.</div>
+  </section>
+
+  <!-- ── QUANT ── -->
+  <section class="category" id="quant">
+    <div class="category-header quant">
+      <span class="cat-title quant">Quant</span>
+      <span class="cat-desc">Quantitative strategies, derivatives, factor models</span>
+    </div>
+    <div class="empty-state">Papers forthcoming.</div>
+  </section>
+
+  <!-- ── REVIEW ── -->
+  <section class="category" id="review">
+    <div class="category-header review">
+      <span class="cat-title review">Review</span>
+      <span class="cat-desc">Literature reviews, survey notes, reading memos</span>
+    </div>
+    <div class="empty-state">Papers forthcoming.</div>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <p>© 2026 Dong Liu · Draft versions — Comments welcome</p>
+  <p style="margin-top:8px;">
+    <a href="https://www.linkedin.com/in/dong-liu/">LinkedIn</a> &nbsp;·&nbsp;
+    <a href="https://github.com/liudoong">GitHub</a>
+  </p>
+</footer>
+
+</body>
+</html>
