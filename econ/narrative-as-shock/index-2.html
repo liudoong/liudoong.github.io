@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A formal model showing how strategically produced narratives about AI productivity act as endogenous news shocks, violating rational expectations and driving a self-reinforcing Ponzi-Schumpeter investment boom." />
+  <meta property="og:title" content="Narrative as Shock: The Ponzi-Schumpeter Structure of the AI Boom and the Quiet Death of Rational Expectations" />
+  <meta property="og:description" content="A formal model showing how strategically produced narratives about AI productivity act as endogenous news shocks, violating rational expectations and driving a self-reinforcing Ponzi-Schumpeter investment boom." />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Narrative as Shock: The Ponzi-Schumpeter Structure of the AI Boom and the Quiet Death of Rational Expectations</title>
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        tags: 'ams',
+        packages: {'[+]': ['ams']}
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text-primary:   #1a1a1a;
+      --text-secondary: #555;
+      --text-muted:     #888;
+      --border:         #e0e0e0;
+      --bg-page:        #fafafa;
+      --bg-card:        #fff;
+      --accent:         #1a3a5c;
+      --accent-light:   #e8f0f8;
+      --font-serif:     'Georgia', 'Times New Roman', serif;
+      --font-sans:      -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono:      'SFMono-Regular', 'Consolas', monospace;
+      --max-width:      780px;
+      --line-height:    1.85;
+    }
+
+    html { font-size: 17px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-serif);
+      color: var(--text-primary);
+      background: var(--bg-page);
+      line-height: var(--line-height);
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    .wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 56px 0 48px;
+      border-bottom: 3px solid #0d2540;
+    }
+
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #aac4e0;
+      text-decoration: none;
+      margin-bottom: 24px;
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+
+    .back-home:hover { opacity: 1; color: #fff; }
+
+    .paper-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #aac4e0;
+      margin-bottom: 18px;
+    }
+
+    h1.paper-title {
+      font-family: var(--font-serif);
+      font-size: 1.95rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    h1.paper-subtitle {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      font-style: italic;
+      color: #b8d0e8;
+      margin-bottom: 32px;
+    }
+
+    .paper-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      color: #aac4e0;
+    }
+
+    .paper-meta span { display: flex; align-items: center; gap: 6px; }
+
+    .abstract-box {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 28px 32px;
+      margin: 40px 0 48px;
+    }
+
+    .abstract-box .abstract-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .abstract-box p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .abstract-box p:last-child { margin-bottom: 0; }
+
+    .keywords {
+      margin-top: 16px;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .keywords strong { color: var(--text-primary); }
+
+    nav.toc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 52px;
+    }
+
+    nav.toc .toc-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    nav.toc ol { padding-left: 22px; }
+
+    nav.toc li {
+      margin-bottom: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+    }
+
+    nav.toc a { color: var(--accent); text-decoration: none; }
+    nav.toc a:hover { text-decoration: underline; }
+
+    article { padding-bottom: 80px; }
+
+    .section { margin-bottom: 56px; }
+
+    h2.section-heading {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+      margin-bottom: 28px;
+      margin-top: 60px;
+    }
+
+    h3 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 36px;
+      margin-bottom: 14px;
+    }
+
+    h4 {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-top: 24px;
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    p {
+      margin-bottom: 18px;
+      text-align: left;
+      hyphens: none;
+    }
+
+    .prop-box {
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 18px 22px;
+      margin: 24px 0;
+      background: #f7fafd;
+    }
+
+    .prop-box .prop-label {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .prop-box p { margin-bottom: 8px; font-size: 0.96rem; text-align: left; }
+    .prop-box p:last-child { margin-bottom: 0; }
+
+    .def-box { border-left: 4px solid #2a7a4b; background: #f4fbf6; }
+    .def-box .prop-label { color: #2a7a4b; }
+
+    .corollary-box { border-left: 4px solid #8a5a00; background: #fdf8ee; }
+    .corollary-box .prop-label { color: #8a5a00; }
+
+    .mjx-chtml { margin: 8px 0 !important; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-family: var(--font-sans);
+      font-size: 0.86rem;
+    }
+
+    th {
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td { background: #f5f8fb; }
+
+    strong { font-weight: 700; }
+    em { font-style: italic; }
+
+    blockquote {
+      border-left: 4px solid var(--accent);
+      margin: 24px 0;
+      padding: 16px 22px;
+      background: var(--accent-light);
+      font-style: italic;
+      color: var(--text-primary);
+      border-radius: 0 6px 6px 0;
+      text-align: left;
+    }
+
+    ul, ol { padding-left: 24px; margin-bottom: 18px; }
+    li { margin-bottom: 8px; line-height: var(--line-height); text-align: left; }
+
+    .references { font-size: 0.88rem; }
+    .references p { text-indent: -1.6em; padding-left: 1.6em; margin-bottom: 10px; }
+
+    footer {
+      background: var(--accent);
+      color: #aac4e0;
+      padding: 32px 0;
+      text-align: center;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+    }
+
+    footer a { color: #c8ddf0; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    @media (max-width: 600px) {
+      html { font-size: 15px; }
+      h1.paper-title { font-size: 1.5rem; }
+      .abstract-box { padding: 20px; }
+      nav.toc { padding: 18px; }
+      table { font-size: 0.78rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrapper">
+    <a class="back-home" href="../../">← Dong Liu · Research</a>
+    <p class="paper-label">Working Paper · May 2026 · Draft: Comments Welcome</p>
+    <h1 class="paper-title">Narrative as Shock: The Ponzi-Schumpeter Structure of the AI Boom and the Quiet Death of Rational Expectations</h1>
+    <div class="paper-meta">
+      <span>✍ Dong Liu</span>
+      <span>📅 May 2026</span>
+      <span>🔗 <a href="https://www.linkedin.com/in/dong-liu/" style="color:#c8ddf0;">LinkedIn</a></span>
+      <span>💬 Comments welcome</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="wrapper">
+
+  <div class="abstract-box" style="margin-top:44px;">
+    <p class="abstract-label">Abstract</p>
+    <p>We document a structural mechanism through which strategically manufactured narratives about future productivity gains function as endogenous news shocks within the New Keynesian DSGE framework. Using the 2026 Q1 earnings cycle of major U.S. financial institutions as a case study, we argue that when the producers of informational signals are also the primary beneficiaries of those signals being adopted, the exogeneity assumption underlying rational expectations formation is violated in an economically consequential way.</p>
+    <p>This generates a self-reinforcing loop, which we term the Ponzi-Schumpeter hybrid, in which narrative credibility substitutes for realized productivity, producing real distributional consequences that precede and are independent of eventual technological payoff.</p>
+    <p>We characterize the mechanism formally, derive conditions under which self-fulfilling narrative equilibria exist, and identify the boundaries of existing theoretical frameworks in addressing this class of phenomenon.</p>
+    <div class="keywords"><strong>Keywords:</strong> narrative economics, rational expectations, endogenous news shocks, New Keynesian DSGE, AI investment, monetary policy</div>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-label">Contents</p>
+    <ol>
+      <li><a href="#sec1">I. Introduction</a></li>
+      <li><a href="#sec2">II. The News Shock Framework: Mechanism and Maintained Assumptions</a></li>
+      <li><a href="#sec3">III. Endogenous Signal Production: Formal Characterization</a></li>
+      <li><a href="#sec4">IV. The Ponzi-Schumpeter Hybrid: Distributional Consequences</a></li>
+      <li><a href="#sec5">V. Rational Expectations under Endogenous Information</a></li>
+      <li><a href="#sec6">VI. Scenarios and Observable Implications</a></li>
+      <li><a href="#sec7">VII. Conclusion</a></li>
+      <li><a href="#refs">References</a></li>
+    </ol>
+  </nav>
+
+  <article>
+
+  <div class="section" id="sec1">
+    <h2 class="section-heading">I. Introduction</h2>
+
+    <p>In the first quarter of 2026, the six largest U.S. commercial banks, JPMorgan Chase, Citigroup, Bank of America, Goldman Sachs, Morgan Stanley, and Wells Fargo, reported combined net income of $47 billion, an 18 percent increase year-over-year, while simultaneously reducing headcount by approximately 15,000 employees. Each institution attributed workforce reductions, to varying degrees, to artificial intelligence deployment. The coincidence of record profitability and AI-attributed labor displacement in a single reporting cycle provides a natural laboratory for examining the relationship between strategic narrative production and macroeconomic expectation formation.</p>
+
+    <p>The empirical irregularities are instructive. Bank of America CEO Brian Moynihan had, less than four months prior, publicly assured the bank's 210,000 employees that artificial intelligence posed no threat to their employment. His Q1 earnings commentary attributed 1,000 job eliminations directly to AI-driven workflow automation and projected further displacement ahead. Citigroup's announced reduction of 20,000 positions included employees from its internal "AI Champions and Accelerators" program, personnel whose organizational function had been to advocate for AI adoption among colleagues. Wells Fargo's CEO, having declared in December that peer executives were reluctant to acknowledge AI's labor-displacing effects, saw that position become industry consensus within a single earnings season.</p>
+
+    <p>These observations motivate a question that standard macroeconomic frameworks are not well-equipped to address: when narrative attribution of economic outcomes is systematically detached from underlying causation, what are the macroeconomic consequences of the expectation-updating process that follows? The remainder of this paper develops a formal answer.</p>
+
+  </div>
+
+  <div class="section" id="sec2">
+    <h2 class="section-heading">II. The News Shock Framework: Mechanism and Maintained Assumptions</h2>
+
+    <h3>A. The Standard Transmission Mechanism</h3>
+
+    <p>Following Beaudry and Portier (2004), let total factor productivity evolve according to:</p>
+
+    <p>$$
+      A_{t+k} = \bar{A} + \varepsilon^{news}_t + \varepsilon^{surprise}_{t+k}, \qquad \varepsilon^{news}_t \perp \varepsilon^{surprise}_{t+k}, \tag{2.1}
+    $$</p>
+
+    <p>where $\varepsilon^{news}_t$ is an informational signal received at $t$ about productivity at $t+k$, orthogonal to the subsequent surprise component. A positive news shock leaves $A_t$ unchanged while triggering immediate adjustment across all forward-looking agents.</p>
+
+    <p>The representative household maximizes:</p>
+
+    <p>$$
+      E_t \sum_{s=0}^{\infty} \beta^s \left[ \frac{C_{t+s}^{1-\sigma}}{1-\sigma} - \chi \frac{N_{t+s}^{1+\varphi}}{1+\varphi} \right] \tag{2.2}
+    $$</p>
+
+    <p>subject to the budget constraint $P_t C_t + B_t = W_t N_t + R_{t-1} B_{t-1} + \Pi_t$. The optimality conditions yield the Euler equation and intratemporal labor supply condition:</p>
+
+    <p>$$
+      C_t^{-\sigma} = \beta\, E_t\!\left[ C_{t+1}^{-\sigma} \frac{R_t}{\pi_{t+1}} \right], \tag{2.3}
+    $$</p>
+
+    <p>$$
+      \frac{W_t}{P_t} = \chi N_t^{\varphi} C_t^{\sigma}. \tag{2.4}
+    $$</p>
+
+    <p>The news shock $\varepsilon^{news}_t > 0$ raises $E_t[C_{t+k}]$ through the permanent income channel. By equation (2.3), $C_t$ must rise as well. The critical implication follows from (2.4): holding the real wage fixed, the rise in $C_t^{\sigma}$ shifts the labor supply curve leftward. Equilibrium employment falls even as real wages rise, the mechanism through which a positive news shock generates a contemporaneous negative labor demand shock, matching the 2026 earnings-season pattern.</p>
+
+    <h3>B. The Investment Response and Tobin's Q</h3>
+
+    <p>On the firm side, the value of installed capital satisfies:</p>
+
+    <p>$$
+      Q_t = E_t\!\left[ \sum_{s=1}^{\infty} \beta^s \frac{\lambda_{t+s}}{\lambda_t} \Big( A_{t+s} F_K(K_{t+s}, N_{t+s}) + (1-\delta) Q_{t+s} \Big) \right], \tag{2.5}
+    $$</p>
+
+    <p>where $\lambda_t = C_t^{-\sigma}$. A positive news shock raises $E_t[A_{t+k}]$, directly increasing the expected marginal product of capital in (2.5) and therefore current $Q_t$. The investment Euler equation requires:</p>
+
+    <p>$$
+      Q_t = 1 + \Phi'\!\left( \frac{I_t}{K_t} \right), \tag{2.6}
+    $$</p>
+
+    <p>where $\Phi(\cdot)$ is the investment adjustment cost function. The rise in $Q_t$ implies higher current investment $I_t$, pulling capital accumulation forward in anticipation of future productivity gains.</p>
+
+    <h3>C. The Natural Rate and Monetary Policy</h3>
+
+    <p>The natural rate of interest, the real rate consistent with output at potential under flexible prices, is:</p>
+
+    <p>$$
+      r^n_t = \frac{1}{\sigma}\, E_t\!\left[ \Delta \ln C^*_{t+1} \right] + \rho, \tag{2.7}
+    $$</p>
+
+    <p>where $\rho = -\ln\beta$. A central bank following a Taylor rule,</p>
+
+    <p>$$
+      i_t = r^n_t + \phi_\pi \pi_t + \phi_y \tilde{y}_t, \tag{2.8}
+    $$</p>
+
+    <p>must raise the nominal rate when a positive news shock raises $r^n_t$. If the central bank's estimate of $r^n_t$ incorporates narrative-contaminated expectations, as we argue in Section 4, the resulting policy stance generates a systematic output gap.</p>
+
+    <h3>D. The Unexamined Premise</h3>
+
+    <p>Every equation above conditions on an information set $\Omega_t$ treated as exogenously given:</p>
+
+    <p>$$
+      E_t[\,\cdot\,] \equiv E[\,\cdot \mid \Omega_t\,], \qquad \Omega_t \text{ exogenous.} \tag{2.9}
+    $$</p>
+
+    <p>This is the load-bearing assumption of rational expectations as an equilibrium concept. When it fails, when $\Omega_t$ is itself partially constituted by agents with financial incentives to shape expectation outcomes, the equilibrium characterization requires fundamental revision.</p>
+
+  </div>
+
+  <div class="section" id="sec3">
+    <h2 class="section-heading">III. Endogenous Signal Production: Formal Characterization</h2>
+
+    <h3>A. The Narrative Investment Problem</h3>
+
+    <p>Consider an economy with households, firms, and a set of narrative producers $N = \{1, \dots, n\}$, technology companies, financial intermediaries, and their associated information ecosystems, each with financing objectives. Narrative producer $i$ chooses signal investment $\theta_{i,t} \geq 0$ at cost $c(\theta_{i,t})$, with $c' > 0$, $c'' > 0$, and critically $c(0) = 0$, $c'(0) \approx 0$, the marginal cost of initial signal production is negligible. The aggregate signal injected into the public information set is:</p>
+
+    <p>$$
+      \varepsilon^{narrative}_t = \sum_{i \in N} \theta_{i,t} + \eta_t, \tag{3.1}
+    $$</p>
+
+    <p>where $\eta_t$ is a genuine informational component orthogonal to narrative investment. Agents cannot decompose the observed signal into genuine and manufactured components, the observational equivalence problem. The market expectation of future productivity is therefore:</p>
+
+    <div class="prop-box def-box">
+      <p class="prop-label">Definition 1: Narrative-Contaminated Expectation</p>
+      <p>$$ E_t[A_{t+k}] = F\big(\Omega_t^{genuine}\big) + \gamma \sum_{i \in N} \theta_{i,t}, \tag{3.2} $$</p>
+      <p>where $\gamma > 0$ captures the per-unit credibility weight that agents attach to narrative signals.</p>
+    </div>
+
+    <h3>B. Incentive Compatibility and the Narrative Equilibrium</h3>
+
+    <p>Narrative producer $i$'s financing value $V_i(E_t[A_{t+k}])$ is increasing in expected productivity, $V_i' > 0$. The producer's optimization problem is:</p>
+
+    <p>$$
+      \max_{\theta_{i,t} \geq 0} \; V_i\!\left( F(\Omega_t^{genuine}) + \gamma \sum_j \theta_{j,t} \right) - c(\theta_{i,t}). \tag{3.3}
+    $$</p>
+
+    <p>The first-order condition for an interior solution is:</p>
+
+    <p>$$
+      \gamma\, V_i'\big(E_t[A_{t+k}]\big) = c'(\theta_{i,t}). \tag{3.4}
+    $$</p>
+
+    <p>Since $c'(0) \approx 0$ and $\gamma V_i' > 0$ for all $i$, equation (3.4) implies $\theta_i^* > 0$ for all narrative producers, narrative investment is always individually rational, regardless of technological fundamentals. This result requires neither coordination nor collusion; it follows from individual optimization alone.</p>
+
+    <p>The symmetric Nash equilibrium in narrative investment satisfies:</p>
+
+    <p>$$
+      \theta_t^* = (c')^{-1}\!\Big( \gamma\, V'\big( F(\Omega_t^{genuine}) + n\gamma \theta_t^* \big) \Big). \tag{3.5}
+    $$</p>
+
+    <p>By the implicit function theorem, $\partial \theta_t^* / \partial V' > 0$ and $\partial \theta_t^* / \partial c'' < 0$: equilibrium narrative investment rises with financing returns and falls with the curvature of production costs. In the contemporary AI environment, where digital communications infrastructure has driven $c''$ toward zero for large producers, the equilibrium $\theta_t^*$ is large relative to what genuine information would warrant.</p>
+
+    <h3>C. The Self-Fulfilling Equilibrium: A Fixed-Point Characterization</h3>
+
+    <p>The mechanism generates a self-fulfilling equilibrium when narrative-induced behavioral changes produce ex-post productivity improvements that partially validate the original signal. Let $\tilde{A}_{t+k}$ denote realized productivity under the narrative regime and $A^0_{t+k}$ the counterfactual without narrative investment:</p>
+
+    <p>$$
+      \tilde{A}_{t+k} = A^0_{t+k} + \phi \cdot \Delta I_t\big(\varepsilon^{narrative}_t\big) + \psi \cdot \Delta K^{AI}_t\big(\varepsilon^{narrative}_t\big), \tag{3.6}
+    $$</p>
+
+    <p>where $\phi, \psi > 0$ are technology-specific conversion parameters. A self-fulfilling narrative equilibrium is a fixed point $\theta_t^*$ such that the ex-post realized productivity $\tilde{A}_{t+k}(\theta_t^*)$ is sufficient to maintain the credibility weight $\gamma$ at its equilibrium level:</p>
+
+    <p>$$
+      \gamma\big(\tilde{A}_{t+k}(\theta_t^*)\big) \cdot \theta_t^* = \varepsilon^{narrative,*}_t. \tag{3.7}
+    $$</p>
+
+    <p>By continuity of $\tilde{A}_{t+k}(\cdot)$ and compactness of the strategy space, Brouwer's fixed-point theorem guarantees existence under mild regularity conditions. The critical insight is that partial self-fulfillment, $\phi$ and $\psi$ need not be large, suffices to sustain the loop. The narrative need not be entirely true; it need only be sufficiently true to maintain $\gamma > 0$.</p>
+
+  </div>
+
+  <div class="section" id="sec4">
+    <h2 class="section-heading">IV. The Ponzi-Schumpeter Hybrid: Distributional Consequences</h2>
+
+    <h3>A. Decomposing the Investment Regime</h3>
+
+    <p>Total investment in AI-adjacent capital decomposes as:</p>
+
+    <p>$$
+      I^{AI}_t = I^S_t + I^P_t, \tag{4.1}
+    $$</p>
+
+    <p>where $I^S_t$ denotes the Schumpeterian component justified by conservative discounted cash flows, and $I^P_t$ the Ponzi component driven by narrative-inflated expectations. The narrative premium is:</p>
+
+    <p>$$
+      \Delta^{narrative}_t \equiv E_t[A_{t+k}] - E[A_{t+k} \mid \Omega_t^{genuine}] = \gamma \sum_i \theta_{i,t}. \tag{4.2}
+    $$</p>
+
+    <p>The Ponzi component satisfies:</p>
+
+    <p>$$
+      I^P_t \approx \frac{\partial Q_t}{\partial \Delta^{narrative}_t} \cdot \Delta^{narrative}_t \cdot K_t, \tag{4.3}
+    $$</p>
+
+    <p>and is sustainable as long as $\Delta^{narrative}_t > 0$, i.e., as long as narrative credibility $\gamma > 0$ and aggregate narrative investment $\sum_i \theta_{i,t} > 0$.</p>
+
+    <h3>B. Labor Market Dynamics and the Distributional Wedge</h3>
+
+    <p>The worker's outside option value as a function of perceived displacement probability $p^{AI}_t$ is:</p>
+
+    <p>$$
+      U^{outside}_t = \big(1 - p^{AI}_t\big) U^{reemploy}_t + p^{AI}_t\, U^{displaced}_t, \tag{4.4}
+    $$</p>
+
+    <p>where $U^{displaced}_t \ll U^{reemploy}_t$ reflects the perceived permanence of AI-driven structural unemployment. The narrative mechanism directly inflates $p^{AI}_t$ without any necessary change in the underlying technology. Through (4.4), this reduces $U^{outside}_t$ and weakens the worker's Nash bargaining position, depressing equilibrium wages below the level implied by equation (2.4). The wage suppression is real and immediate; the productivity gain that would justify it may never arrive.</p>
+
+    <p>By 2026, the unemployment rate for recent college graduates aged 22 to 27 stands at 5.6 percent, against an aggregate rate of 4.2 percent, a gap representing the largest inversion of a 70-year historical pattern. Seventy-three percent of recent graduates report actively considering gig or freelance work as a primary career path, reflecting a collapse in expected returns to traditional employment rather than a preference shift.</p>
+
+    <p>The distributional logic is temporally asymmetric in a specific and important way. Capital gains from narrative validation are concentrated at the moment of technological delivery, whenever that occurs. Labor costs from behavioral adjustment to narrative credibility are distributed across the entire period of narrative persistence. The time windows do not overlap, and the costs precede the benefits systematically.</p>
+
+    <h3>C. Monetary Policy Miscalibration</h3>
+
+    <p>The central bank's natural rate estimate under narrative-contaminated expectations is:</p>
+
+    <p>$$
+      \hat{r}^n_t = \frac{1}{\sigma}\, E^{CB}_t\!\left[ \Delta \ln C^*_{t+1} \right] + \rho. \tag{4.5}
+    $$</p>
+
+    <p>The bias relative to the true natural rate is:</p>
+
+    <div class="prop-box corollary-box">
+      <p class="prop-label">Corollary 1: Natural Rate Bias</p>
+      <p>$$ \hat{r}^n_t - r^{n,true}_t = \frac{\gamma}{\sigma} \cdot \frac{\partial\, E[\Delta \ln C^*_{t+1}]}{\partial\, E_t[A_{t+k}]} \cdot \sum_i \theta_{i,t} > 0. \tag{4.6} $$</p>
+    </div>
+
+    <p>Substituting into the New Keynesian IS equation,</p>
+
+    <p>$$
+      \tilde{y}_t = E_t[\tilde{y}_{t+1}] - \frac{1}{\sigma}\Big( i_t - E_t[\pi_{t+1}] - r^{n,true}_t \Big), \tag{4.7}
+    $$</p>
+
+    <p>the narrative-induced bias generates a persistent negative output gap of magnitude proportional to $\gamma \sigma^{-2} \cdot \partial E[\Delta \ln C^*] / \partial E_t[A_{t+k}] \cdot \sum_i \theta_{i,t}$. The central bank is not making an error given its information set; it is operating within an information environment systematically distorted by endogenous narrative production. Its policy framework becomes, in effect, an inadvertent guarantor of the Ponzi component's survival.</p>
+
+    <p>The Alexopoulos episode at TD Bank illustrates the equilibrium incentive structure in miniature. In January 2026, analyst Steven Alexopoulos published a 102-page report predicting that AI would generate an initial "profit surge" for financial institutions, followed by a "fortune reversal period" as consumers deployed AI tools to find superior rates and cheaper loans. Following publication, Alexopoulos departed TD Bank; his position was not filled. He subsequently announced a career transition into AI research. Agents who identify and communicate narrative break points find no institutional home within the narrative production chain.</p>
+
+  </div>
+
+  <div class="section" id="sec5">
+    <h2 class="section-heading">V. Rational Expectations under Endogenous Information</h2>
+
+    <h3>A. Failure Under Endogenous Signal Production</h3>
+
+    <p>A rational expectations equilibrium (REE) under endogenous narratives requires a fixed point $(p^*, \theta^*, E^*[\,\cdot\,])$ satisfying three conditions: (i) price consistency, $p^*$ clears all markets given $E^*[\,\cdot\,]$; (ii) belief consistency, $E^*[A_{t+k}] = F(\Omega_t(\theta^*))$; (iii) narrative optimality, $\theta^*$ solves (3.3) given $E^*[\,\cdot\,]$ and $p^*$. Standard REE imposes only (i) and (ii). Condition (iii) introduces a strategic complementarity: higher $\theta_i$ by agent $i$ raises $E_t[A_{t+k}]$, which raises $V_j'$ for all $j \neq i$, which raises the optimal $\theta_j$ for all $j$. This generates multiple equilibria indexed by aggregate narrative investment $\Theta_t = \sum_i \theta_{i,t}$.</p>
+
+    <div class="prop-box">
+      <p class="prop-label">Proposition 1</p>
+      <p>Under endogenous narrative production with strategic complementarities in signal investment, the set of rational expectations equilibria is generically non-singleton, indexed by the equilibrium narrative investment level $\Theta^* \in [\Theta_{min}, \Theta_{max}]$.</p>
+    </div>
+
+    <p><strong>Proof sketch.</strong> Define $G(\Theta) \equiv \sum_i \theta_i^*(\Theta)$ where $\theta_i^*(\Theta)$ solves (3.3) given $\Theta_{-i} = \Theta - \theta_i$. Strategic complementarity implies $G'(\Theta) > 0$ near any interior equilibrium. By continuity, multiple fixed points of $G(\Theta) = \Theta$ exist whenever $V_i(\cdot)$ is sufficiently convex, which occurs generically given the financing structure described in Section III.</p>
+
+    <p>This provides formal grounds for the bubble-like dynamics in AI valuations without requiring irrationality: multiple REE exist, and the current configuration corresponds to coordination on a high-$\Theta^*$ equilibrium. Selection among equilibria is not pinned by fundamentals but by credibility events.</p>
+
+    <h3>B. Three Theoretical Approaches and Their Common Boundary</h3>
+
+    <p>The limitations of existing frameworks can be summarized as in Table 1.</p>
+
+    <table>
+      <thead>
+        <tr><th>Approach</th><th>Key Contribution</th><th>Binding Limitation</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Shiller (2019): Narrative economics</td>
+          <td>Treats narratives as economic variables with epidemiological dynamics</td>
+          <td>Descriptive framework; no normative apparatus for policy response</td>
+        </tr>
+        <tr>
+          <td>Angeletos &amp; La'O (2013): Endogenous information</td>
+          <td>Strategic complementarities generate sentiment-driven fluctuations</td>
+          <td>Policy implications sensitive to parameters difficult to identify empirically</td>
+        </tr>
+        <tr>
+          <td>Behavioral macro: Limited attention / learning</td>
+          <td>Relaxes full-information assumption underlying REE</td>
+          <td>Lacks unified theoretical structure for welfare analysis</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>All three approaches reach the same boundary: they can characterize the mechanism through which narratives influence expectations, but none provides a framework adequate to the problem of policy calibration when the information environment is subject to systematic strategic manipulation. The rational expectations equilibrium concept, in environments where information production is endogenous to financing incentives, may be less a useful approximation and more a maintained fiction.</p>
+
+  </div>
+
+  <div class="section" id="sec6">
+    <h2 class="section-heading">VI. Scenarios and Observable Implications</h2>
+
+    <p>The current configuration places us at an intermediate point in the feedback loop: narrative credibility remains substantially intact, the Schumpeterian component provides sufficient technological foundation to forestall immediate repricing, and the Ponzi component has not yet encountered a credibility threshold event. Three scenarios warrant simultaneous monitoring.</p>
+
+    <p>Under the <strong>soft landing scenario</strong>, the self-fulfilling productivity gain $\tilde{A}_{t+k}$ from (3.6) is sufficiently large that $\phi$ and $\psi$ validate a substantial fraction of the narrative premium $\Delta^{narrative}_t$. The natural rate bias (4.6) dissipates as genuine productivity growth closes the wedge from above. This is the implicit assumption embedded in current asset valuations.</p>
+
+    <p>Under the <strong>2000 analog scenario</strong>, a credibility shock drives a discrete reduction in $\gamma$, collapsing the high-$\Theta^*$ equilibrium. The Ponzi component undergoes repricing of order $(\partial Q_t / \partial \Delta^{narrative}_t) \cdot \Delta^{narrative,*}_t \cdot K_t$, while the Schumpeterian component retains option value. Whether AI compute infrastructure possesses the same legacy value as post-2000 fiber optics is an empirical question that deserves more rigorous analysis than it has received.</p>
+
+    <p>Under the <strong>stagflationary trap scenario</strong>, $\phi$ and $\psi$ in (3.6) are small, genuine productivity gains are slow to materialize, the monetary policy bias (4.6) persists, and labor share undergoes permanent compression. This scenario receives the least analytical attention, for reasons the incentive structure of Section III makes transparent.</p>
+
+    <blockquote>
+      <strong>Key discriminator:</strong> The observable variable that most efficiently discriminates among these trajectories is not any technological milestone but the rate at which the wedge between narrative-implied and realized productivity begins to close, and the institutional mechanisms through which adjustment costs are allocated across factors. These are measurable. Whether the institutional incentives exist to measure them carefully is a separate question.
+    </blockquote>
+
+  </div>
+
+  <div class="section" id="sec7">
+    <h2 class="section-heading">VII. Conclusion</h2>
+
+    <p>We have argued that the AI investment boom of the mid-2020s is best characterized as a Ponzi-Schumpeter hybrid: a genuine Schumpeterian technological transition overlaid with a Ponzi financing structure sustained by endogenous narrative production. The formal mechanism, strategic signal injection into the public information set, individual incentive compatibility driving equilibrium narrative investment, and self-fulfilling productivity gains generating fixed-point narrative equilibria, violates the exogeneity assumption underlying rational expectations as an equilibrium concept.</p>
+
+    <p>The distributional consequences are real, immediate, and asymmetrically borne by labor. The monetary policy implications are systematic but invisible within the standard policy framework. In any environment where information production is endogenous to financing incentives, the rational expectations equilibrium concept may serve as a maintained fiction rather than a useful approximation.</p>
+
+    <p>The appropriate response is not to abandon rational expectations as an analytical tool, but to extend the framework to incorporate endogenous information environments, a research program that Angeletos, Shiller, and others have begun but not completed. The 2026 earnings cycle suggests the empirical urgency of that program is higher than current analytical attention implies.</p>
+
+  </div>
+
+  <div class="section references" id="refs">
+    <h2 class="section-heading">References</h2>
+
+    <p>Angeletos, G.-M., and J. La'O. 2013. "Sentiments." <em>Econometrica</em> 81(2): 739–779.</p>
+    <p>Beaudry, P., and F. Portier. 2004. "An Exploration into Pigou's Theory of Cycles." <em>NBER Working Paper</em> No. 10591.</p>
+    <p>Jaimovich, N., and S. Rebelo. 2009. "Can News about the Future Drive the Business Cycle?" <em>American Economic Review</em> 99(4): 1097–1118.</p>
+    <p>Lucas, R. E. 1976. "Econometric Policy Evaluation: A Critique." <em>Carnegie-Rochester Conference Series on Public Policy</em> 1: 19–46.</p>
+    <p>Schmitt-Grohé, S., and M. Uribe. 2012. "What's News in Business Cycles." <em>Econometrica</em> 80(6): 2733–2764.</p>
+    <p>Shiller, R. J. 2019. <em>Narrative Economics: How Stories Go Viral and Drive Major Economic Events</em>. Princeton: Princeton University Press.</p>
+    <p>Woodford, M. 2003. <em>Interest and Prices: Foundations of a Theory of Monetary Policy</em>. Princeton: Princeton University Press.</p>
+
+  </div>
+
+  </article>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrapper">
+    <p>© 2026 Dong Liu · Working Paper · Draft: Comments Welcome</p>
+    <p style="margin-top:8px;">
+      <a href="https://www.linkedin.com/in/dong-liu/">LinkedIn</a> &nbsp;·&nbsp;
+      <a href="https://github.com/liudoong">GitHub</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
