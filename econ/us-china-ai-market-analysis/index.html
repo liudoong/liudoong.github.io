@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Structural Analysis of US-China AI Competition: Pricing Power, Market Share, and Capacity Constraints." />
+  <meta property="og:title" content="Structural Analysis of US-China AI Competition" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Structural Analysis of US-China AI Competition</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        tags: 'ams',
+        packages: {'[+]': ['ams']}
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text-primary:   #1a1a1a;
+      --text-secondary: #555;
+      --text-muted:     #888;
+      --border:         #e0e0e0;
+      --bg-page:        #fafafa;
+      --bg-card:        #fff;
+      --accent:         #1a3a5c;
+      --accent-light:   #e8f0f8;
+      --font-serif:     'Georgia', 'Times New Roman', serif;
+      --font-sans:      -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono:      'SFMono-Regular', 'Consolas', monospace;
+      --max-width:      780px;
+      --line-height:    1.85;
+    }
+
+    html { font-size: 17px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-serif);
+      color: var(--text-primary);
+      background: var(--bg-page);
+      line-height: var(--line-height);
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    .wrapper { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 56px 0 48px;
+      border-bottom: 3px solid #0d2540;
+    }
+
+    .back-home {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; color: #aac4e0;
+      text-decoration: none; margin-bottom: 24px; opacity: 0.85; transition: opacity 0.15s;
+    }
+    .back-home:hover { opacity: 1; color: #fff; }
+
+    .paper-label {
+      font-family: var(--font-sans); font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #aac4e0; margin-bottom: 18px;
+    }
+
+    h1.paper-title {
+      font-family: var(--font-serif); font-size: 1.95rem; font-weight: 700;
+      line-height: 1.3; color: #fff; margin-bottom: 12px;
+    }
+
+    h1.paper-subtitle {
+      font-family: var(--font-serif); font-size: 1.15rem; font-weight: 400;
+      font-style: italic; color: #b8d0e8; margin-bottom: 32px;
+    }
+
+    .paper-meta {
+      display: flex; flex-wrap: wrap; gap: 20px;
+      font-family: var(--font-sans); font-size: 0.82rem; color: #aac4e0;
+    }
+    .paper-meta span { display: flex; align-items: center; gap: 6px; }
+
+    .abstract-box {
+      background: var(--accent-light); border-left: 4px solid var(--accent);
+      border-radius: 0 6px 6px 0; padding: 28px 32px; margin: 40px 0 48px;
+    }
+    .abstract-box .abstract-label {
+      font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+    }
+    .abstract-box p { font-size: 0.95rem; line-height: 1.8; color: var(--text-primary); margin-bottom: 12px; }
+    .abstract-box p:last-child { margin-bottom: 0; }
+
+    .keywords { margin-top: 16px; font-family: var(--font-sans); font-size: 0.8rem; color: var(--text-secondary); }
+    .keywords strong { color: var(--text-primary); }
+
+    nav.toc {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
+      padding: 24px 28px; margin-bottom: 52px;
+    }
+    nav.toc .toc-label {
+      font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px;
+    }
+    nav.toc ol { padding-left: 22px; }
+    nav.toc li { margin-bottom: 6px; font-family: var(--font-sans); font-size: 0.9rem; }
+    nav.toc a { color: var(--accent); text-decoration: none; }
+    nav.toc a:hover { text-decoration: underline; }
+
+    article { padding-bottom: 80px; }
+    .section { margin-bottom: 56px; }
+
+    h2.section-heading {
+      font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--accent);
+      margin-bottom: 28px; margin-top: 60px;
+    }
+    h3 {
+      font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; color: var(--text-primary);
+      margin-top: 36px; margin-bottom: 14px;
+    }
+    h4 {
+      font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; color: var(--text-secondary);
+      margin-top: 24px; margin-bottom: 10px; letter-spacing: 0.02em;
+    }
+    p { margin-bottom: 18px; text-align: left; hyphens: none; }
+
+    .prop-box {
+      border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 0 6px 6px 0;
+      padding: 18px 22px; margin: 24px 0; background: #f7fafd;
+    }
+    .prop-box .prop-label {
+      font-family: var(--font-sans); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+    }
+    .prop-box p { margin-bottom: 8px; font-size: 0.96rem; text-align: left; }
+    .prop-box p:last-child { margin-bottom: 0; }
+
+    .def-box { border-left: 4px solid #2a7a4b; background: #f4fbf6; }
+    .def-box .prop-label { color: #2a7a4b; }
+
+    .corollary-box { border-left: 4px solid #8a5a00; background: #fdf8ee; }
+    .corollary-box .prop-label { color: #8a5a00; }
+
+    .mjx-chtml { margin: 8px 0 !important; }
+
+    table { width: 100%; border-collapse: collapse; margin: 24px 0; font-family: var(--font-sans); font-size: 0.86rem; }
+    th { background: var(--accent); color: #fff; padding: 10px 14px; text-align: left; font-weight: 600; }
+    td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tr:nth-child(even) td { background: #f5f8fb; }
+
+    strong { font-weight: 700; }
+    em { font-style: italic; }
+
+    blockquote {
+      border-left: 4px solid var(--accent); margin: 24px 0; padding: 16px 22px; background: var(--accent-light);
+      font-style: italic; color: var(--text-primary); border-radius: 0 6px 6px 0; text-align: left;
+    }
+
+    ul, ol { padding-left: 24px; margin-bottom: 18px; }
+    li { margin-bottom: 8px; line-height: var(--line-height); text-align: left; }
+
+    .references { font-size: 0.88rem; }
+    .references p { text-indent: -1.6em; padding-left: 1.6em; margin-bottom: 10px; }
+
+    footer {
+      background: var(--accent); color: #aac4e0; padding: 32px 0; text-align: center;
+      font-family: var(--font-sans); font-size: 0.82rem;
+    }
+    footer a { color: #c8ddf0; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    @media (max-width: 600px) {
+      html { font-size: 15px; }
+      h1.paper-title { font-size: 1.5rem; }
+      .abstract-box { padding: 20px; }
+      nav.toc { padding: 18px; }
+      table { font-size: 0.78rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrapper">
+    <a class="back-home" href="../../">← Dong Liu · Research</a>
+    <p class="paper-label">Working Paper · July 2026 · Draft · Comments Welcome</p>
+    <h1 class="paper-title">Structural Analysis of US-China AI Competition</h1>
+    <h1 class="paper-subtitle">Pricing Power, Market Share, and Capacity Constraints</h1>
+    <div class="paper-meta">
+      <span>✍ Dong Liu</span>
+      <span>📅 July 2026</span>
+      <span>🔗 <a href="https://www.linkedin.com/in/dong-liu/" style="color:#c8ddf0;">LinkedIn</a></span>
+      <span>💬 Comments welcome</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="wrapper">
+
+  <div class="abstract-box" style="margin-top:44px;">
+    <p class="abstract-label">Abstract</p>
+    <p>This paper asks three questions about competition between America's closed-source AI duopoly and China's open-source AI suppliers: can US vertical-differentiation pricing power hold, how will China's US market share evolve, and how much of that evolution is driven by price competition versus capacity constraints on both sides. China's AI sector is modeled as a perfectly competitive fringe; the US side as a single dominant firm defending a shrinking quality advantage.</p>
+    <p>China's share of US enterprise token consumption rose from 4.5% in early 2025 to about 60% by July 2026, with the quality gap narrowing at roughly 0.20–0.24 per month. Two scenarios put China's share at 67–75% by October 2026 and 72–84% by January 2027, leaving the US side a residual, compliance-driven share of 16–29%. Pricing power holds for now, but the window looks short, and the October data point offers a first test of which path is closer to reality.</p>
+    <div class="keywords"><strong>Keywords:</strong> vertical product differentiation, competitive fringe, Bertrand competition, capacity constraints, share inversion, partial identification, open-source large language models, US-China AI competition</div>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-label">Contents</p>
+    <ol>
+      <li><a href="#sec1">1. Introduction and Research Questions</a></li>
+      <li><a href="#sec2">2. Literature Review</a></li>
+      <li><a href="#sec3">3. Market Structure</a></li>
+      <li><a href="#sec4">4. A Reduced-Form Model: The Three-Equation Operating System</a></li>
+      <li><a href="#sec5">5. Assumptions and Their Empirical Support</a></li>
+      <li><a href="#sec6">6. Data and Metric Definitions</a></li>
+      <li><a href="#sec7">7. Parameters and Estimation</a></li>
+      <li><a href="#sec8">8. Scenarios and Results</a></li>
+      <li><a href="#sec9">9. Limitations</a></li>
+      <li><a href="#sec10">10. Conclusion: Provisional Answers to the Research Questions</a></li>
+      <li><a href="#sec11">11. Future Work</a></li>
+      <li><a href="#refs">References</a></li>
+    </ol>
+  </nav>
+
+  <article>
+
+  <!-- SECTION 1 -->
+  <div class="section" id="sec1">
+    <h2 class="section-heading">1. Introduction and Research Questions</h2>
+
+    <p>In the first half of 2026, Chinese AI labs, including DeepSeek, Zhipu's GLM, and Moonshot's Kimi, released a wave of open-source models that now approach, and in places surpass, the flagship products of America's closed-source duopoly (OpenAI, Anthropic) on third-party benchmarks, while distributing them free or near-free to the world as a quasi-public good. The Chinese-model share of US enterprise token consumption rose from 4.5% in the first half of 2025 to about 60% by July 2026. Globally, the Chinese share of total OpenRouter platform volume rose from under 2% in early 2025, overtook the US for the first time in February 2026, and has held above 45% since May. This pattern gives a direct empirical test of two boundary conditions left unexamined in Liu (2026b), "The High-Demand Trap": Boundary II ("Chinese AI investment is partly driven by sovereign strategic objectives") and Boundary III ("the political economy of endogenous regulation").</p>
+
+    <p>This paper asks three questions:</p>
+    <ol>
+      <li>Can the US duopoly's vertical-differentiation pricing power hold?</li>
+      <li>How will the Chinese open-source share of the US market evolve?</li>
+      <li>How much of that evolution is driven by market structure (price competition) and how much by capacity constraints on both sides (US grid bottlenecks, Chinese chip export controls)?</li>
+    </ol>
+
+    <p>The paper stays on the market-structure track. Liu (2026a)'s narrative-economics equilibrium, Liu (2026b)'s LLMflation decomposition, and the domestic political economy of access-side policy wedges are all taken as given or left for future extensions, outside the scope solved here.</p>
+
+    <p>The paper's main contribution is a formal structure linking market share dynamics and capacity constraints into a solvable operating system (Equations 1–3 in Section 4), supplemented by a theoretical account of pricing (Section 4.2). That account is a theoretical benchmark and is not operationally integrated with the rest of the system. Section 4.2 shows that combining them directly forces market share to a constant one-half, contradicting the data. The three pieces divide labor rather than solve jointly; the structure itself does not depend on any particular parameter value, and the causal chain survives even if the calibrated results are later revised. The specific numbers forecast in Section 8 are a test application of this structure, not the paper's main output. Confidence in those numbers is constrained by two distinct kinds of uncertainty.</p>
+
+    <p><strong>First, data uncertainty.</strong> Observable data points are scarce (the share inversion in Section 7 rests on just three or four usable time points) and pass through one round of correction for time-varying prices. This is a "not enough data" problem in principle, one that should ease as more data accumulates.</p>
+
+    <p><strong>Second, structural uncertainty.</strong> The asymptotic share ceiling $K$ cannot be point-identified given what is observable now; the boundary of market segmentation rests on economic argument rather than statistical fit and will not converge to a point forecast as data accumulates. It can only be presented as a scenario range. The true dynamic path of capacity constraints is likewise unidentifiable from current data; Section 5's assumption A5 (a step function) is a simplification of that unknown path, not an estimate of it. The paper makes no quantitative correction for the one capacity-constraint event actually observed in July (Kimi K3's rate limiting), taking the raw observed value instead; modeling the dynamic path is left to Section 11.</p>
+
+    <p>On these two grounds, the paper's forecast horizon is explicitly set at <strong>three to six months</strong>. That is not an arbitrary choice: it is anchored to the half-life implied by the $\lambda$ values actually used in Section 8's two scenarios (0.199/month and 0.28/month), roughly 2.5 to 3.5 months. Six months is about 1.7 to 2.4 half-lives; beyond that window the model's accumulated structural uncertainty grows quickly and the forecasts stop being informative. The three-month forecast in Section 8 (the October 2026 checkpoint) is the paper's main falsifiable claim; the six-month forecast is directional only and makes no claim to numerical accuracy.</p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section" id="sec2">
+    <h2 class="section-heading">2. Literature Review</h2>
+
+    <p><strong>Vertical product differentiation.</strong> Mussa and Rosen (1978) set out the benchmark in which consumers are ranked by willingness to pay and firms escape homogeneous price competition through quality-price bundles. Shaked and Sutton (1982) and Gabszewicz and Thisse (1979) show that as long as the quality gap is strictly positive, the higher-quality firm can sustain positive profit and avoid the Bertrand paradox. Equation (4) here (Section 4.2) builds directly on the linear-demand version of this literature.</p>
+
+    <p><strong>Open-source versus proprietary dynamic competition.</strong> Casadesus-Masanell and Ghemawat (2006), "Dynamic Mixed Duopoly: A Model Motivated by Linux vs. Windows" (<em>Management Science</em>), is the most direct precedent for this paper. It models a paid proprietary firm competing dynamically against a free substitute whose quality improves endogenously over time, a structure that maps closely onto US-China AI competition. Equation (1)'s quality-gap dynamics draw on this framework.</p>
+
+    <p><strong>Price competition under capacity constraints.</strong> Standard Bertrand competition assumes unlimited capacity. Edgeworth (1897) first showed that binding capacity can break the existence of a pure-strategy equilibrium; Kreps and Scheinkman (1983) gave the modern formal resolution: a two-stage game of capacity choice followed by price competition, whose equilibrium reproduces Cournot outcomes. Equation (3)'s capacity-rationing mechanism rests on this literature.</p>
+
+    <p><strong>Trade policy and strategic competition.</strong> Brander and Spencer's (1985) strategic trade-policy model, Salop and Scheffman's (1983) "raising rivals' costs," and Grossman and Helpman's (1994) "protection for sale" political-economy framework together provide the theoretical grounding for the two policy wedges in this paper ($\tau^{\text{input}}$, $\tau^{\text{access}}$); in this reduced-form version both are taken as exogenous and are not solved endogenously.</p>
+
+    <p><strong>Partial identification and structural estimation.</strong> Manski's (1990) theory of partial identification is the methodological basis for using scenario ranges in place of unidentified point estimates. Berry, Levinsohn, and Pakes's (1995) share-inversion method is the direct source of the paper's core identification strategy. Chetty's (2009) sufficient-statistics approach underlies the substitution of observed prices for a full cost decomposition (assumption A1). Boiteux (1949) provides standard grounding for the paper's step-function simplification of the capacity constraint.</p>
+
+    <p><strong>Relation to prior work.</strong> Liu (2026a) builds a narrative-economics framework explaining how US investment narratives function as endogenous news shocks sustaining valuations. Liu (2026b) argues that even where narratives are partly vindicated, structural constraints in the industry can still block the arrival of a profitability inflection point. This paper attempts to formalize Liu (2026b)'s Boundary II and Boundary III as a solvable market structure model.</p>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section" id="sec3">
+    <h2 class="section-heading">3. Market Structure</h2>
+
+    <div class="def-box prop-box">
+      <p class="prop-label">Definition 1: Open-Source Fringe Market Structure</p>
+      <p>The market has two types of suppliers: (i) the US side, aggregated into a single observable market price $p_t^{US}$ and quality level $q_t^{US}$ (Section 4.2 further simplifies US firm behavior to profit-maximizing decisions by a single representative firm, assumption A2, used only for the derivation in that section, and not a necessary condition for this definition itself); (ii) the Chinese side, where multiple open-source labs aggregate into a single perfectly competitive supplier with quality $q_t^{CN} &lt; q_t^{US}$ and price equal to marginal cost, $p_t^{CN} \to c_t^{CN} \approx 0$. Both sides face hard capacity ceilings: $q_t^{US}\leq \bar Q_t^{US}$ (US grid infrastructure) and $q_t^{CN}\leq \bar Q_t^{CN}$ (Chinese chip export controls).</p>
+    </div>
+
+    <p><em>A preliminary caveat:</em> the assumption in (ii) that Chinese prices equal marginal cost, near zero, holds for most Chinese labs (DeepSeek, GLM, and others) but has a known exception. Section 9's limitation (7) discusses how Kimi K3's pricing from July 2026 onward has moved well away from this assumption. The paper treats this as an aggregation-level simplification for now; it does not affect the market structure definition, and the exception is discussed later.</p>
+
+    <p>The full name for this structure is "a vertically differentiated duopoly facing a policy-wedged, perfectly competitive public-good fringe," shortened here to the Open-Source Fringe Model. The market does not clear on price alone; it is a capacity-constrained competition in the sense of Edgeworth and Kreps-Scheinkman: a pure-strategy price equilibrium may not exist near the capacity ceiling, and what is actually observed is a mix of price competition and quantity rationing.</p>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section" id="sec4">
+    <h2 class="section-heading">4. A Reduced-Form Model: The Three-Equation Operating System</h2>
+
+    <p>Consumers are indexed by willingness to pay for quality, $\theta\sim U[0,1]$ (the standard Mussa-Rosen setup), and the quality premium is $\Delta_t \equiv q_t^{US}-q_t^{CN}$. The operating system actually used for estimation and forecasting consists of the following three equations. The US firm's theoretical optimal price is important background for understanding the market structure, but it is never substituted into any actual calculation, so it is set apart in Section 4.2 as a theoretical discussion and is not counted among the operating system's equations.</p>
+
+    <h4>Equation (1): Quality-gap dynamics</h4>
+    $$\dot\Delta_t = -\lambda\Delta_t + \mu\bar\tau \tag{1}$$
+    <p>Here $\lambda$ is the convergence rate of the quality premium, $\bar\tau$ is export-control intensity (a tariff-equivalent wedge), and $\mu$ is the extent to which controls slow that convergence.</p>
+
+    <h4>Equation (2): Marginal consumer / Chinese share</h4>
+    $$s_t^{CN} = \hat\theta_t = \frac{p_t^{US}}{\Delta_t} \tag{2}$$
+    <p>This is a demand-side indifference condition: $\hat\theta_t$ is the consumer type whose willingness to pay leaves them exactly indifferent between the US and Chinese products. $p_t^{US}$ is taken as the actual observed market price and need not satisfy any firm-optimization condition, which is exactly why this equation can stand independently of the pricing theory in Section 4.2 and be used on its own for the share inversion in Section 7.</p>
+
+    <h4>Equation (3): Realized share under capacity constraints</h4>
+    $$s_t^{CN,\text{realized}} = \min\left\{\hat\theta_t,\; \frac{\bar Q_t^{CN}}{Q_t^{\text{total}}}\right\} \tag{3}$$
+    <p>This is the switch between the price-competition solution and the capacity-rationing solution: when the constraint does not bind, share is set by Equation (2); when it does bind, as when Kimi K3 was forced to pause new subscriptions in July 2026 because of compute pressure, share is simply the capacity ceiling as a fraction of total demand, and price stops mattering.</p>
+
+    <h3>4.1 How the equations are actually used</h3>
+    <p>Equations (1)–(3) form the operating system used in this paper. Equation (1) supplies the theoretical dynamics of the quality gap and the functional form used to calibrate $\lambda$ in Section 7. Equation (2) supplies the bridge from observed prices back to the quality premium and is the direct basis for the share inversion (Equation 5) in Section 7. Equation (3) supplies the switching rule between price competition and capacity rationing and underlies the scenario construction in Section 8. The three are used in this sequence and do not form a system that must be solved jointly. Equation (2) needs only the observed price $p_t^{US}$ as input, and that price need not satisfy the firm-optimization condition discussed in Section 4.2.</p>
+
+    <h3>4.2 US Pricing: A Theoretical Benchmark</h3>
+
+    <div class="prop-box">
+      <p class="prop-label">Proposition 1: Vertical differentiation pricing at the fringe</p>
+      <p>Under assumption A1 (Chinese price equal to marginal cost, near zero) and assumption A4 (US marginal cost second-order small relative to the quality premium), the first-order condition of the US firm's profit-maximization problem, facing demand $D^{US}(p_t^{US})=1-\hat\theta_t$, gives:</p>
+      $$p_t^{US*} = \frac{\Delta_t}{2}, \qquad \Pi_t^{US*} = \frac{\Delta_t}{4} \tag{4}$$
+      <p>This says US price and profit are strictly proportional to the quality premium $\Delta_t$. Without any further assumption, the model reproduces the limiting result of the Bertrand paradox endogenously: as $\Delta_t\to0$, $p_t^{US*}\to0$ and $\Pi_t^{US*}\to0$, with the speed of convergence set entirely by $\lambda$.</p>
+    </div>
+
+    <p>Equation (4) is a theoretical benchmark. It explains what price the US firm would charge if it kept repricing to maximize profit as the quality premium changed, but it is never substituted into any step of the actual calculation in Equations (2)–(3). The reason: substituting Equation (4) directly into Equation (2) gives $s_t^{CN}=(\Delta_t/2)/\Delta_t=1/2$, a constant share of exactly one-half, independent of $\Delta_t$. That directly contradicts the core empirical fact reported in Sections 7 and 8, that share has risen steadily from 4.5% to about 60%. So Equation (4) cannot serve as the operational constraint driving Equation (2). The share inversion in Section 7 (Equation 5) uses the <strong>actual observed market price</strong> $p_t^{US}$, not the theoretical optimum $p_t^{US*}$ from Equation (4).</p>
+
+    <p>The gap between Equation (4)'s theoretical optimum and the observed price is itself an unresolved puzzle. It may point to price stickiness in US duopoly behavior, or to the US firms not strictly following a single representative firm's profit-maximizing logic. This paper does not model that gap further and leaves it for future work (Section 11). Equation (4)'s role here is explanatory: it grounds the answer to Question 1 in Section 10 (price and profit scale with the quality premium, so a narrowing premium means narrowing pricing power), but it is not an operational input to the estimation or forecasting of market share.</p>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section" id="sec5">
+    <h2 class="section-heading">5. Assumptions and Their Empirical Support</h2>
+
+    <p>The paper's assumptions fall into two groups by function. The first group is the core operational assumptions that Sections 6 through 8 rely on directly for estimation and forecasting. The second group only supports the pricing theory in Section 4.2 (Proposition 1) and enters no actual calculation.</p>
+
+    <h4>Core operational assumptions</h4>
+    <table>
+      <thead><tr><th>No.</th><th>Assumption</th><th>Theoretical basis</th><th>Empirical support</th></tr></thead>
+      <tbody>
+        <tr><td>A1</td><td>Chinese suppliers aggregate to a single perfectly competitive fringe, price equal to marginal cost, and observed price can stand in directly for effective cost without decomposing cost structure</td><td>Bertrand competition's zero-marginal-cost limit; sufficient statistics (Chetty, 2009 tradition)</td><td>DeepSeek V4-Pro cut prices 75%, approaching cache-hit cost levels</td></tr>
+        <tr><td>A3</td><td>$\theta\sim U[0,1]$</td><td>Mussa and Rosen (1978)</td><td>The standard simplest prior absent information favoring another distributional shape</td></tr>
+        <tr><td>A5</td><td>Capacity constraint modeled as a step function</td><td>Boiteux (1949) peak-load pricing</td><td>Kimi K3's suspended subscriptions were a clean step discontinuity, not a gradual price rise</td></tr>
+        <tr><td>A6</td><td>Export controls act only through the cost channel, $\mu=0$</td><td>Channel-separation assumption</td><td>GLM-5.2's "Day 0 support for domestic compute platforms" suggests controls show up mainly as higher cost, not slower speed</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Supplementary assumptions: support only the Section 4.2 pricing benchmark, not part of the operating system</h4>
+    <table>
+      <thead><tr><th>No.</th><th>Assumption</th><th>Theoretical basis</th><th>Empirical support</th></tr></thead>
+      <tbody>
+        <tr><td>A2</td><td>The US duopoly is collapsed into a single representative dominant firm</td><td>Standard dominant-firm / fringe treatment</td><td>OpenAI and Anthropic's pricing strategies and lobbying positions are closely aligned</td></tr>
+        <tr><td>A4</td><td>US marginal cost is second-order small, $p^{US*}=\Delta_t/2$</td><td>Quality-premium-dominates assumption</td><td>Anthropic's token volume is a fraction of DeepSeek's, yet its revenue share is still about 46%, implying gross margin far exceeds marginal compute cost</td></tr>
+      </tbody>
+    </table>
+
+    <p>This paper does not model the dynamic evolution path of the capacity ceilings $\bar Q_t^{US}$ and $\bar Q_t^{CN}$: US grid-expansion lags and Chinese chip-substitution diffusion. Capacity constraints show up in the data only through one known event shock in the July observation (Kimi K3's rate limiting), for which no quantitative correction is applied; modeling the dynamic path is left for the extension in Section 11. The heterogeneous dynamics of the quality premium $\Delta_t$ across task type, frontend versus general-purpose scenarios, likewise fall outside this paper's treatment of $\Delta_t$ as a single scalar. Both are model limitations, discussed in Section 9.</p>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section" id="sec6">
+    <h2 class="section-heading">6. Data and Metric Definitions</h2>
+
+    <p>The paper draws on two percentage metrics that are numerically close but conceptually distinct; they must be kept separate, and the paper (including all results in Sections 8 and 9) <strong>uses only the primary metric</strong>:</p>
+
+    <table>
+      <thead><tr><th>Metric</th><th>Definition</th><th>Denominator</th><th>Unit</th><th>Role in this paper</th></tr></thead>
+      <tbody>
+        <tr><td>Primary metric</td><td>Chinese-model share of US enterprise token consumption</td><td>Total token consumption by US enterprises</td><td>Token volume</td><td>Corresponds to $s_t^{CN}$ in Equations (2)–(3); the sole basis for estimation and forecasting</td></tr>
+        <tr><td>Auxiliary check</td><td>Anthropic's global revenue share</td><td>Total global AI market revenue</td><td>US dollars</td><td>Corroborates the direction of vertical-differentiation pricing only (see empirical support for A4); its closeness to the primary metric's value is coincidental and the two are not comparable</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Time series for the primary metric</h4>
+    <p>These are only four discrete observation points; the sample is too small to be a "time series" in a strict sense. The reason they can still support the $\lambda$ estimate in Section 7 is that three independently fitted intervals agree closely (see Section 7.4), not any large-sample statistical property.</p>
+
+    <svg viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; margin:24px 0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+      <!-- gridlines -->
+      <g stroke="#e0e0e0" stroke-width="1">
+        <line x1="100" y1="340" x2="700" y2="340"/>
+        <line x1="100" y1="278" x2="700" y2="278"/>
+        <line x1="100" y1="216" x2="700" y2="216"/>
+        <line x1="100" y1="154" x2="700" y2="154"/>
+        <line x1="100" y1="92"  x2="700" y2="92"/>
+        <line x1="100" y1="30"  x2="700" y2="30"/>
+      </g>
+      <!-- y-axis labels -->
+      <g fill="#888" font-size="12" text-anchor="end">
+        <text x="90" y="344">0%</text>
+        <text x="90" y="282">20%</text>
+        <text x="90" y="220">40%</text>
+        <text x="90" y="158">60%</text>
+        <text x="90" y="96">80%</text>
+        <text x="90" y="34">100%</text>
+      </g>
+      <!-- axes -->
+      <line x1="100" y1="340" x2="700" y2="340" stroke="#1a3a5c" stroke-width="1.5"/>
+      <line x1="100" y1="30"  x2="100" y2="340" stroke="#1a3a5c" stroke-width="1.5"/>
+
+      <!-- main line: four observed points -->
+      <polyline points="100,326.05 469.2,247 607.7,197.4 700,154"
+                fill="none" stroke="#1a3a5c" stroke-width="2.5"/>
+
+      <!-- data points -->
+      <circle cx="100"   cy="326.05" r="5" fill="#1a3a5c"/>
+      <circle cx="469.2" cy="247"    r="5" fill="#1a3a5c"/>
+      <circle cx="607.7" cy="197.4"  r="5" fill="#1a3a5c"/>
+      <circle cx="700"   cy="154"    r="5" fill="#1a3a5c"/>
+
+      <!-- x-axis time labels -->
+      <g fill="#555" font-size="12" text-anchor="middle">
+        <text x="100"   y="362">H1 2025</text>
+        <text x="469.2" y="362">2026-02-08</text>
+        <text x="607.7" y="362">2026-05-24</text>
+        <text x="700"   y="362">2026-07</text>
+      </g>
+
+      <!-- value labels -->
+      <g font-size="12" fill="#1a1a1a" font-weight="700">
+        <text x="100"   y="312" text-anchor="middle">4.5%</text>
+        <text x="469.2" y="233" text-anchor="middle">~30%</text>
+        <text x="607.7" y="183" text-anchor="middle">~46%</text>
+        <text x="686"   y="158" text-anchor="end">~60%</text>
+      </g>
+
+      <!-- axis title -->
+      <text x="400" y="395" text-anchor="middle" font-size="12" fill="#555">Time</text>
+
+      <!-- title -->
+      <text x="100" y="16" font-size="13" font-weight="700" fill="#1a3a5c">Figure 1. Primary metric: Chinese-model share of US enterprise token consumption</text>
+    </svg>
+
+    <p>Price anchors: the US market average price $p^{US}\approx\$4.00$ per million tokens; the Chinese market average price $p^{CN}\approx\$0.18$ per million tokens; Claude Opus flagship pricing fell from \$25 to \$15 within three months, used as the aggressive-tier anchor for the price-decline rate $g_p$.</p>
+
+    <p><strong>An exception worth flagging:</strong> the \$0.18 Chinese average above is a volume-weighted figure dominated by DeepSeek, GLM, and other labs pricing near marginal cost; Kimi K3 is a clear exception. See the limitations discussion in Section 9. Most Chinese labs still price low, so the average remains representative of the market as a whole.</p>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section" id="sec7">
+    <h2 class="section-heading">7. Parameters and Estimation</h2>
+
+    <h3>7.1 Parameter taxonomy</h3>
+
+    <p>Parameters in this paper fall into four groups by nature: endogenous state variables (model outputs, not parameters to be estimated); parameters resolved by economic assumption (no calibration needed); parameters that can be substituted directly from observed data; and parameters that cannot be point-identified and require scenario treatment. Besides $\lambda$, introduced in Section 4 and calibrated in Sections 7.3–7.4, this last group should also include two parameters that appeared earlier in the methodological discussion but were never formally listed: $g_p$ (the rate of decline in US average price) and $K$ (the asymptotic share ceiling). All three share the same character: none can be identified from currently available data, so all three belong in the same category.</p>
+
+    <table>
+      <thead><tr><th>Parameter</th><th>Category</th><th>Economic meaning</th><th>Basis</th><th>Value / status</th></tr></thead>
+      <tbody>
+        <tr><td>$\Delta_t$</td><td>Endogenous state variable</td><td>Quality premium: the quality gap between US and Chinese models, priced in dollars per million tokens</td><td>Determined by the dynamics of Equation (1); a model output, not an estimated parameter</td><td>See the inversion results in Section 7.4: \$88.9 (H1 2025) → \$6.67 (July 2026)</td></tr>
+        <tr><td>$\hat\theta_t\ (s_t^{CN})$</td><td>Endogenous state variable</td><td>Marginal consumer type / Chinese market share: the model's core output</td><td>Equations (2)–(3)</td><td>See Section 8: 60% (starting point) → 71.5%–83.7% (six months out, two scenarios)</td></tr>
+        <tr><td>$p_t^{US*}$</td><td>Pure notation (not an operational state variable)</td><td>US theoretical optimal price, used only for the theoretical account in Section 4.2</td><td>Equation (4), Proposition 1</td><td>Never assigned a value or substituted into any calculation, unlike $\Delta_t$ and $s_t^{CN}$, which have concrete numerical trajectories</td></tr>
+        <tr><td>$\sigma$</td><td>Resolved by assumption</td><td>Equivalent discount rate for Chinese subsidy/cross-subsidy</td><td>Assumption A1: under perfect competition, observed price stands in directly for effective cost, no decomposition needed</td><td>No separate calibration needed</td></tr>
+        <tr><td>$c_0^{US}$</td><td>Resolved by assumption</td><td>US baseline marginal compute cost (excluding the quality-premium component)</td><td>Assumption A4: quality-premium-dominates, treated as second-order small</td><td>No separate calibration needed</td></tr>
+        <tr><td>$c_0^{CN}$</td><td>Resolved by assumption</td><td>Chinese baseline marginal compute cost</td><td>Assumption A1: under perfect competition, price equals marginal cost</td><td>No separate calibration needed</td></tr>
+        <tr><td>$\mu$</td><td>Resolved by assumption</td><td>Extent to which export controls slow the convergence rate of the quality premium</td><td>Assumption A6: channel separation; controls act only through the cost channel</td><td>Set to 0</td></tr>
+        <tr><td>$p_t^{US}$</td><td>Substituted from observed data</td><td>US market average price</td><td>Price anchor paragraph in Section 6</td><td>≈\$4/million tokens; flagship pricing fell from \$25 to \$15 (Opus 4.6→4.7)</td></tr>
+        <tr><td>$p_t^{CN}$</td><td>Substituted from observed data</td><td>Chinese market average price</td><td>Price anchor paragraph in Section 6; exception in Section 9, limitation (7)</td><td>≈\$0.18/million tokens (Kimi K3 an exception, at \$3/\$15)</td></tr>
+        <tr><td>$\bar\tau$</td><td>Substituted from observed data</td><td>Export-control intensity (tariff-equivalent wedge)</td><td>Inverse of H200/MI325X license approval rates</td><td>A qualitative proxy; no specific value given here</td></tr>
+        <tr><td>$\lambda$</td><td>Cannot be point-identified, scenario treatment</td><td>Convergence rate of the quality premium</td><td>Indirectly estimated by share inversion (Equation 5); see Sections 7.3–7.4</td><td>Naive estimate 0.20–0.24/month; after price-timing correction: conservative 0.219, aggressive 0.369/month (half-life 1.9–3.2 months)</td></tr>
+        <tr><td>$g_p$</td><td>Cannot be point-identified, scenario treatment</td><td>Rate of decline in US average price, used to correct the naive $\lambda$ estimate</td><td>Correction 1, anchored to Opus 4.6→4.7's flagship price decline for the aggressive tier</td><td>Conservative 2%/month, aggressive 17%/month</td></tr>
+        <tr><td>$K$</td><td>Cannot be point-identified, scenario treatment</td><td>Asymptotic ceiling on Chinese share, corresponding to the size of the market US compliance moats can lock in</td><td>Proposition 3, market-segmentation argument (liability, compliance audits, SLAs)</td><td>Scenario 1: 78%; Scenario 2: 92%</td></tr>
+      </tbody>
+    </table>
+
+    <p>These four groups do not sit on equal methodological footing. Among the endogenous state variables, $\Delta_t$ and $\hat\theta_t/s_t^{CN}$ are solved by the model and have concrete numerical trajectories, while $p_t^{US*}$ is a pure symbol never assigned a value; the three should not be treated alike. Parameters resolved by assumption presumably have true values in principle, but identification is difficult, so an economic assumption is used to fix them directly; this group is a direct extension of the assumption list in Section 5. Parameters substituted from observed data come closest to "data" in the traditional econometric sense; the main risk is whether a given time point is representative (as with the Kimi K3 exception for $p_t^{CN}$). The parameters that cannot be point-identified are the methodologically weakest part of the paper: $\lambda$, $g_p$, and $K$ all resist identification from currently available data and can only be handled through scenario ranges, which is the focus of Section 9's limitations (3) and (4).</p>
+
+    <h3>7.2 Identification strategy: share inversion</h3>
+    <p>Because benchmark scores are not comparable across time, the sample is small, and release timing is strategically endogenous, this paper does not fit a series of benchmark scores directly. Instead it inverts the market structure equation (a share inversion in the style of Berry, Levinsohn, and Pakes):</p>
+    $$\Delta_t^{\text{implied}} = \frac{p_t^{US}}{s_t^{CN}} \tag{5}$$
+
+    <div class="prop-box">
+      <p class="prop-label">Proposition 2: The share-inversion identity</p>
+      <p>Strictly speaking, Equation (5)'s validity rests on assumption A1 ($p_t^{CN}\approx0$, so Equation (2) need not carry a separate $p_t^{CN}$ term) and assumption A3 ($\theta\sim U[0,1]$, so share equals the marginal type $\hat\theta_t$ itself rather than some nonlinear transform of its distribution function); A2 and A4 (the supplementary assumptions in Section 4.2 that support only the theoretical benchmark) are not necessary conditions for this identity. Given A1 and A3, and provided the capacity constraint is not binding, $\Delta_t^{\text{implied}}$ from Equation (5) is a consistent estimator of the quality premium. When the constraint binds (when the $\min\{\}$ operator in Equation (3) takes the capacity term), the observed share is suppressed and $\Delta_t^{\text{implied}}$ will be systematically overestimated; those time points need to be identified and corrected first.</p>
+    </div>
+
+    <h3>7.3 A correction for time-varying prices</h3>
+    <p>The US average price $p_t^{US}$ also falls over time, so the true convergence rate should be $\lambda^{\text{true}}=g_p+\lambda^{\text{naive}}$; a conservative tier uses $g_p\approx2\%$/month and an aggressive tier uses $g_p\approx17\%$/month, borrowed from the pace of Opus's flagship price decline.</p>
+
+    <p>A further note: the July 2026 observation point (60%) overlaps with the Kimi K3 rate-limiting event. If capacity constraints did in fact suppress that month's observed value, true share could be higher than 60%. This paper makes no quantitative correction for that possibility and uses the observed value directly, a conservative choice. If the suppression effect is real, this paper's results are more likely to understate than overstate the actual pace of China's share gains (see Question 3 in Section 10).</p>
+
+    <h3>7.4 Inversion results</h3>
+    <table>
+      <thead><tr><th>Time</th><th>$s_t^{CN}$</th><th>$\Delta_t^{\text{implied}}$ (\$/million tokens)</th></tr></thead>
+      <tbody>
+        <tr><td>H1 2025</td><td>4.5%</td><td>\$88.9</td></tr>
+        <tr><td>February 2026</td><td>30%</td><td>\$13.3</td></tr>
+        <tr><td>May 2026</td><td>46%</td><td>\$8.7</td></tr>
+        <tr><td>July 2026</td><td>60%</td><td>\$6.67</td></tr>
+      </tbody>
+    </table>
+    <p>Fitting $\ln\Delta_t=\ln\Delta_0-\lambda t$ across the three intervals gives $\lambda^{\text{naive}}\approx0.20$–$0.24$/month, with close agreement across all three (the estimate anchored on July as the endpoint is $\lambda^{\text{naive}}\approx0.199$/month). Adding the time-varying-price correction, $\lambda^{\text{true}}$ falls between 0.219 (conservative) and 0.369 (aggressive), corresponding to a half-life of 1.9 to 3.2 months.</p>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="section" id="sec8">
+    <h2 class="section-heading">8. Scenarios and Results</h2>
+
+    <p>Equation (2)'s ratio form has no natural ceiling as $\Delta_t\to0$: under pure exponential extrapolation, $\Delta_t$ would fall below $p_t^{US}$ within roughly 1.8 to 2.6 months, pushing $\hat\theta_t$ above 1, which has no economic meaning. The model therefore switches to a bounded logistic growth path, whose ceiling $K$ is given by a market-segmentation mechanism distinct from Equation (2) (see Proposition 3 below):</p>
+    $$s(t)=\frac{K}{1+\left(\frac{K-s_0}{s_0}\right)e^{-\lambda t}} \tag{6}$$
+
+    <div class="prop-box">
+      <p class="prop-label">Proposition 3: The economic meaning of the asymptotic share ceiling</p>
+      <p>$K$ in Equation (6) corresponds to the share of enterprise customers the US side can lock in on non-quality grounds: compliance, SLAs, and liability assignment. This share is independent of whether the quality premium $\Delta_t$ converges to zero; it is the US side's last line of defense in the structural-reversal scenario.</p>
+    </div>
+
+    <p><strong>What makes up the compliance moat:</strong> the locked-in demand comes from three concrete, non-price, non-quality barriers to entry. The first is <strong>liability assignment</strong>. If an AI output causes harm (buggy generated code, advice that creates compliance or financial exposure), closed-source vendors typically offer clear liability terms and indemnification in their service agreements, whereas a firm running an open-source model on its own has no one to hold accountable. The second is <strong>compliance auditing</strong>. Regulated industries such as finance, healthcare, and government typically require vendors to hold specific security certifications (SOC 2, ISO 27001, and the like), which open-source models do not come with, leaving the enterprise to bear the compliance cost itself. The third is the <strong>SLA</strong>: the uptime guarantees, response times, and support that come bundled into a closed-source vendor's commercial terms; running an open-source model in-house means the enterprise absorbs that operational cost and risk alone. What these customers are really buying is not "a stronger model" but institutional assurance that someone is accountable when something goes wrong, so even at price and performance parity with Chinese open-source models, this demand is unlikely to move. That is the economic basis for setting $K$ at 78% or 92% rather than 100%.</p>
+
+    <p>Building on the market-segmentation argument that compliance-sensitive enterprise customers form the US side's structural moat, the paper constructs two scenarios. Both paths start from the observed July 2026 value of 60%:</p>
+    <ul>
+      <li><strong>Scenario 1 (continued catch-up):</strong> $K=0.78$, $\lambda=0.199$/month: the compliance moat mostly holds, leaving the US side roughly 29% of the market on structural grounds</li>
+      <li><strong>Scenario 2 (structural reversal):</strong> $K=0.92$, $\lambda=0.28$/month: the compliance moat narrows sharply without vanishing entirely; the US side's structural share compresses to about 16%</li>
+    </ul>
+
+    <p>Scenario 1's $\lambda=0.199$ is taken directly from the naive estimate in Section 7.4, fit across three intervals with July as the endpoint, without adding the time-varying-price correction, implicitly assuming $g_p\approx0$. Scenario 2's $\lambda=0.28$ is not an independently calibrated value; it is a qualitative assumption chosen between the naive estimate (0.199) and Section 7.4's corrected aggressive tier (0.369), meant to represent a structural-reversal case where price competition and the decline in the US average price accelerate together. Its specific value has no independent data backing it (see the limitations summary in Section 9); the two scenarios' $\lambda$ values are not produced side by side from the same method.</p>
+
+    <table>
+      <thead><tr><th>Time</th><th>Scenario 1</th><th>Scenario 2</th></tr></thead>
+      <tbody>
+        <tr><td>Today (July 2026)</td><td>60.0%</td><td>60.0%</td></tr>
+        <tr><td>3 months out (October 2026)</td><td>66.9%</td><td>74.8%</td></tr>
+        <tr><td>6 months out (January 2027)</td><td>71.5%</td><td>83.7%</td></tr>
+      </tbody>
+    </table>
+
+    <p>The two scenarios diverge by more than 12 percentage points over the six-month window, giving a clear falsification standard for the October 2026 checkpoint: new data near 67% supports Scenario 1, and near 75% supports Scenario 2.</p>
+  </div>
+
+  <!-- SECTION 9 -->
+  <div class="section" id="sec9">
+    <h2 class="section-heading">9. Limitations</h2>
+
+    <p>The paper's limitations are summarized below:</p>
+    <ol>
+      <li>$p_t^{US}=\$4$ is held fixed in the base inversion, when it should in fact be time-varying; this is partly corrected through the two $g_p$ tiers.</li>
+      <li>The July observation point (60%) overlaps with the Kimi K3 rate-limiting event; this paper makes no correction for the potential suppression effect, a conservative rather than precise treatment. See Section 7.</li>
+      <li>$K$ is currently set by pure economic argument, with no independent data behind it.</li>
+      <li>Scenario 2's $\lambda=0.28$ is the product of a qualitative assumption, not an independently calibrated value; its derivation is described in Section 8.</li>
+      <li>The inversion in this paper corresponds to $\Delta_t^{\text{general}}$ (general-purpose tasks); the frontend scenario has already been found to cross zero and may show divergent rather than decaying dynamics, requiring separate treatment.</li>
+      <li>Capacity constraints have not been modeled as a persistent variable, and the paper makes no quantitative correction even for the one known one-off event (Kimi K3's rate limiting). See the discussion under Question 3 in Section 10.</li>
+      <li>Pricing among Chinese suppliers has begun to diverge, and assumption A1 has an exception at the frontier: Kimi K3's July 2026 pricing (about \$3 input, \$15 output per million tokens) is five to six times its predecessor's and sits in the same price band as Claude Sonnet 5, well above the roughly \$0.18 Chinese market average used in this paper. Goldman Sachs and Morgan Stanley have read this increase as a signal that Chinese AI vendors are shifting from cost-efficiency competition toward pricing-power competition, and Kimi K3's API call volume and ARR rose rather than fell after the price increase, evidence this was not an isolated pricing mistake. Most Chinese vendors (DeepSeek, GLM, and others) still price near marginal cost, so the market average used here remains valid overall; but if this divergence widens, future applications of the envelope method, which takes "the strongest Chinese model at the time" as the frontier competitor, may no longer be able to assume Chinese prices near zero, and Equations (2)–(3) may need to be rewritten as a standard vertical-differentiation framework with positive pricing on both sides. That is a task for the next version of this paper and is left untouched here.</li>
+    </ol>
+  </div>
+
+  <!-- SECTION 10 -->
+  <div class="section" id="sec10">
+    <h2 class="section-heading">10. Conclusion: Provisional Answers to the Research Questions</h2>
+
+    <p>The answers below all build on the results in Section 8; the scenarios have not yet been checked against the October 2026 data point and remain provisional. All figures use the primary metric (Section 6); Anthropic's revenue share (the auxiliary check) is qualitative corroboration only and is not comparable to the primary metric's values.</p>
+
+    <h3>Question 1: Can the US duopoly's vertical-differentiation pricing power hold?</h3>
+
+    <p>In the short run, three to six months, it can hold in part, but it is eroding quickly, and the window is limited. Section 8's two scenarios show the US side's residual share at 28.5% (Scenario 1, i.e. $1-71.5\%$) and 16.3% (Scenario 2, i.e. $1-83.7\%$) six months out. Even by January 2027, somewhere between a sixth and nearly a third of American AI token consumption will still come from users who choose to pay a premium for the US product even when a near-free Chinese alternative is available. In terms of Equation (2), these are the users with willingness to pay $\theta$ above the threshold $\hat\theta_t$: those who cannot tolerate even a 1% quality gap, or who need compliance credentials that open-source models cannot supply. The 28.5% and 16.3% figures are a direct measure of how much market differentiated pricing power can still cover; the roughly 12.2-point gap between them is the spread between the two scenarios' pricing-power outlooks.</p>
+
+    <p>The "limited window" judgment rests on the convergence rate actually used in Section 8's two scenarios, $\lambda=0.199$–$0.28$/month, corresponding to a half-life of roughly 2.5 to 3.5 months: absent any structural break (the reverse of condition SB2, "pricing power restored," in Proposition 11 of Liu 2026b), the current quality premium $\Delta_t$ roughly halves every two and a half to three and a half months. Even the part of the market the US side can still hold through differentiated pricing rests on a quality gap that is itself eroding at a fairly brisk pace; Section 8's six-month forecast window does not extend far enough to say whether that residual market will keep shrinking further, which is a limit of the forecast horizon, not a forecasting error.</p>
+
+    <h3>Question 2: How will the Chinese share evolve?</h3>
+
+    <p>Share should keep rising, landing between 66.9% and 74.8% three months out and between 71.5% and 83.7% six months out, with the actual path depending on which scenario holds. The forecast interval widens from roughly 7.9 points at three months to about 12.2 points at six months, a natural consequence of logistic growth: the two scenarios coincide exactly at the starting point (60%) but diverge over time because their convergence rates ($\lambda=0.199$ vs. $0.28$) and asymptotic ceilings ($K=0.78$ vs. $0.92$) differ. This widening interval is itself a useful signal for judging which scenario is closer to reality. If the October data point sits near the upper end (close to 75%), that supports Scenario 2; if it sits near the lower end (around 67%), that supports Scenario 1.</p>
+
+    <p>$K=0.78$ or $K=0.92$ is not a claim about where China's share will ultimately settle; it is a structural ceiling in the sense that "if the US side can hold onto compliance-sensitive enterprise customers, share should not in principle exceed this number." A useful analogy is Linux's penetration of the enterprise server market: even where Linux is free and performance is comparable, a meaningful share of enterprise customers keeps buying commercial Unix or Windows Server for reasons unrelated to performance, such as support contracts and compliance requirements, and that demand sets a natural ceiling on open-source penetration. The $K$ values used here draw on that kind of historical analogy for economic justification, not on independent data estimation (see limitation 3 in Section 9).</p>
+
+    <h3>Question 3: How much of this is driven by price competition, and how much by capacity constraints?</h3>
+
+    <p>Right now the evolution is driven mainly by price competition; capacity constraints are real but their scale has not yet been quantified. Price competition shows up in $\lambda$ itself, which captures the pace of share transfer purely from quality catch-up, with no supply-side hard constraint involved. There is clear event-level evidence that capacity constraints exist: Kimi K3 was forced to suspend new retail subscriptions in July 2026 because of compute pressure, an event that overlaps with this paper's July observation window. No quantitative correction is made for that observation; the raw 60% figure is used directly, a conservative rather than precise treatment (see Section 7). If the suppression effect is real, Section 8's two forward paths are more likely to understate than overstate the true pace of China's share gains. The setting of $K$ also carries the implicit judgment that even if price competition runs unchecked, capacity and compliance factors will still cap the ceiling on share. Neither of Section 8's forward paths builds capacity constraints in as a persistent variable: if a US grid bottleneck binds suddenly in some future month (a data center forced to cut compute because of grid queuing, say) or if Chinese chip controls tighten further, the actual observed path is likely to diverge from the numbers in the table, showing the same kind of sawtooth pattern the July rate-limiting event produced, an initial suppression followed by a rebound, rather than the smooth curves in the table. Capacity constraints can currently only be identified after the fact; they cannot yet be quantified and built into the forecast in advance, which is the largest known gap in the present version of this paper.</p>
+  </div>
+
+  <!-- SECTION 11 -->
+  <div class="section" id="sec11">
+    <h2 class="section-heading">11. Future Work</h2>
+    <p>New data in October 2026 will provide the first test of which scenario is closer to the truth. Beyond that, incorporating the frontend scenario's independent dynamics, a persistent model of capacity constraints, and the domestic political economy of the access-side policy wedge $\tau^{\text{access}}$ into the next version of the model are natural extensions of this work. Modeling capacity constraints as persistent will specifically require two dynamic assumptions: a path for US grid expansion (which could draw on institutional data such as interstate transmission-line approval timelines) and a path for the diffusion of Chinese chip substitution (which could borrow Bass's (1969) standard S-curve of technology diffusion, calibrated externally from comparable historical cases of import substitution).</p>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="section references" id="refs">
+    <h2 class="section-heading">References</h2>
+    <p>Bass, F. M. 1969. "A New Product Growth for Model Consumer Durables." <em>Management Science</em> 15(5): 215–227.</p>
+    <p>Berry, S., J. Levinsohn, and A. Pakes. 1995. "Automobile Prices in Market Equilibrium." <em>Econometrica</em> 63(4): 841–890.</p>
+    <p>Boiteux, M. 1949. "La Tarification des Demandes en Pointe." <em>Revue Générale de l'Électricité</em> 58: 321–340.</p>
+    <p>Brander, J. A., and B. J. Spencer. 1985. "Export Subsidies and International Market Share Rivalry." <em>Journal of International Economics</em> 18(1–2): 83–100.</p>
+    <p>Casadesus-Masanell, R., and P. Ghemawat. 2006. "Dynamic Mixed Duopoly: A Model Motivated by Linux vs. Windows." <em>Management Science</em> 52(7): 1072–1084.</p>
+    <p>Chetty, R. 2009. "Sufficient Statistics for Welfare Analysis: A Bridge Between Structural and Reduced-Form Methods." <em>Annual Review of Economics</em> 1: 451–488.</p>
+    <p>Edgeworth, F. Y. 1897. "La Teoria Pura del Monopolio." <em>Giornale degli Economisti</em> 40: 13–31.</p>
+    <p>Gabszewicz, J. J., and J.-F. Thisse. 1979. "Price Competition, Quality and Income Disparities." <em>Journal of Economic Theory</em> 20(3): 340–359.</p>
+    <p>Grossman, G. M., and E. Helpman. 1994. "Protection for Sale." <em>American Economic Review</em> 84(4): 833–850.</p>
+    <p>Kreps, D. M., and J. A. Scheinkman. 1983. "Quantity Precommitment and Bertrand Competition Yield Cournot Outcomes." <em>Bell Journal of Economics</em> 14(2): 326–337.</p>
+    <p>Liu, D. 2026a. "Narrative as Shock: The Ponzi-Schumpeter Structure of the AI Boom and the Quiet Death of Rational Expectations." Working Paper, May 2026.</p>
+    <p>Liu, D. 2026b. "The High-Demand Trap: Structural Profitability Paradox in the AI Investment Boom." Working Paper, June 2026.</p>
+    <p>Manski, C. F. 1990. "Nonparametric Bounds on Treatment Effects." <em>American Economic Review Papers and Proceedings</em> 80(2): 319–323.</p>
+    <p>Mussa, M., and S. Rosen. 1978. "Monopoly and Product Quality." <em>Journal of Economic Theory</em> 18(2): 301–317.</p>
+    <p>Salop, S. C., and D. T. Scheffman. 1983. "Raising Rivals' Costs." <em>American Economic Review</em> 73(2): 267–271.</p>
+    <p>Shaked, A., and J. Sutton. 1982. "Relaxing Price Competition Through Product Differentiation." <em>Review of Economic Studies</em> 49(1): 3–13.</p>
+  </div>
+
+  </article>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrapper">
+    <p>© 2026 Dong Liu · Working Paper · Draft · Comments Welcome</p>
+    <p style="margin-top:8px;">
+      <a href="https://www.linkedin.com/in/dong-liu/">LinkedIn</a> &nbsp;·&nbsp;
+      <a href="https://github.com/liudoong">GitHub</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
