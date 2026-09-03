@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A Markov-switching state-space synthesis unifying a New Keynesian DSGE core, a financial-accelerator credit channel, and a macro-finance term-structure model to explain leading indicators of the business cycle." />
+  <meta property="og:title" content="A Markov-Switching State-Space Synthesis of Business-Cycle Trading Indicators" />
+  <meta property="og:description" content="A Markov-switching state-space synthesis unifying a New Keynesian DSGE core, a financial-accelerator credit channel, and a macro-finance term-structure model to explain leading indicators of the business cycle." />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>A Markov-Switching State-Space Synthesis of Business-Cycle Trading Indicators</title>
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        tags: 'ams',
+        packages: {'[+]': ['ams']}
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text-primary:   #1a1a1a;
+      --text-secondary: #555;
+      --text-muted:     #888;
+      --border:         #e0e0e0;
+      --bg-page:        #fafafa;
+      --bg-card:        #fff;
+      --accent:         #1a3a5c;
+      --accent-light:   #e8f0f8;
+      --font-serif:     'Georgia', 'Times New Roman', serif;
+      --font-sans:      -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono:      'SFMono-Regular', 'Consolas', monospace;
+      --max-width:      780px;
+      --line-height:    1.85;
+    }
+
+    html { font-size: 17px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-serif);
+      color: var(--text-primary);
+      background: var(--bg-page);
+      line-height: var(--line-height);
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    .wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 56px 0 48px;
+      border-bottom: 3px solid #0d2540;
+    }
+
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #aac4e0;
+      text-decoration: none;
+      margin-bottom: 24px;
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+
+    .back-home:hover { opacity: 1; color: #fff; }
+
+    .paper-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #aac4e0;
+      margin-bottom: 18px;
+    }
+
+    h1.paper-title {
+      font-family: var(--font-serif);
+      font-size: 1.95rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    h1.paper-subtitle {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      font-style: italic;
+      color: #b8d0e8;
+      margin-bottom: 32px;
+    }
+
+    .paper-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      color: #aac4e0;
+    }
+
+    .paper-meta span { display: flex; align-items: center; gap: 6px; }
+
+    .abstract-box {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 28px 32px;
+      margin: 40px 0 48px;
+    }
+
+    .abstract-box .abstract-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .abstract-box p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .abstract-box p:last-child { margin-bottom: 0; }
+
+    .keywords {
+      margin-top: 16px;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .keywords strong { color: var(--text-primary); }
+
+    nav.toc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 52px;
+    }
+
+    nav.toc .toc-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    nav.toc ol { padding-left: 22px; }
+
+    nav.toc li {
+      margin-bottom: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+    }
+
+    nav.toc a { color: var(--accent); text-decoration: none; }
+    nav.toc a:hover { text-decoration: underline; }
+
+    article { padding-bottom: 80px; }
+
+    .section { margin-bottom: 56px; }
+
+    h2.section-heading {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 28px;
+      margin-top: 60px;
+    }
+
+    h3 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 36px;
+      margin-bottom: 14px;
+    }
+
+    h4 {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-top: 24px;
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    p {
+      margin-bottom: 18px;
+      text-align: left;
+      hyphens: none;
+    }
+
+    .prop-box {
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 18px 22px;
+      margin: 24px 0;
+      background: #f7fafd;
+    }
+
+    .prop-box .prop-label {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .prop-box p { margin-bottom: 8px; font-size: 0.96rem; text-align: left; }
+    .prop-box p:last-child { margin-bottom: 0; }
+
+    .def-box { border-left: 4px solid #2a7a4b; background: #f4fbf6; }
+    .def-box .prop-label { color: #2a7a4b; }
+
+    .corollary-box { border-left: 4px solid #8a5a00; background: #fdf8ee; }
+    .corollary-box .prop-label { color: #8a5a00; }
+
+    .mjx-chtml { margin: 8px 0 !important; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-family: var(--font-sans);
+      font-size: 0.86rem;
+    }
+
+    th {
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td { background: #f5f8fb; }
+
+    table a { color: var(--accent); }
+
+    strong { font-weight: 700; }
+    em { font-style: italic; }
+
+    blockquote {
+      border-left: 4px solid var(--accent);
+      margin: 24px 0;
+      padding: 16px 22px;
+      background: var(--accent-light);
+      font-style: italic;
+      color: var(--text-primary);
+      border-radius: 0 6px 6px 0;
+      text-align: left;
+    }
+
+    ul, ol { padding-left: 24px; margin-bottom: 18px; }
+    li { margin-bottom: 8px; line-height: var(--line-height); text-align: left; }
+
+    .references { font-size: 0.88rem; }
+    .references p { text-indent: -1.6em; padding-left: 1.6em; margin-bottom: 10px; }
+
+    .figure { margin: 28px 0; }
+    .figure-caption {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    footer {
+      background: var(--accent);
+      color: #aac4e0;
+      padding: 32px 0;
+      text-align: center;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+    }
+
+    footer a { color: #c8ddf0; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    @media (max-width: 600px) {
+      html { font-size: 15px; }
+      h1.paper-title { font-size: 1.5rem; }
+      .abstract-box { padding: 20px; }
+      nav.toc { padding: 18px; }
+      table { font-size: 0.78rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrapper">
+    <a class="back-home" href="../../">← Dong Liu · Research</a>
+    <p class="paper-label">Article · September 2026 · Draft · Comments Welcome</p>
+    <h1 class="paper-title">A Markov-Switching State-Space Synthesis of Business-Cycle Trading Indicators</h1>
+    <h1 class="paper-subtitle">商业周期交易信号的马尔可夫转换状态空间综合框架</h1>
+    <div class="paper-meta">
+      <span>✍ Dong Liu</span>
+      <span>📅 September 2026</span>
+      <span>🔗 <a href="https://www.linkedin.com/in/dong-liu/" style="color:#c8ddf0;">LinkedIn</a></span>
+      <span>💬 Comments welcome</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="wrapper">
+
+  <div class="abstract-box" style="margin-top:44px;">
+    <p class="abstract-label">Abstract</p>
+    <p>This article builds on the third chapter of Willer and Saunders (2026), <em>Trading Global Macro Markets</em>, which documents a set of empirical regularities linking the ISM manufacturing index, the shape of the Treasury yield curve, corporate earnings, monetary policy, and bank-equity performance to the business cycle. Each regularity is well established individually, but the chapter presents them as a list of reduced-form facts rather than as the output of a single model of the economy. This article asks whether they can be organized as the latter.</p>
+    <p>Each regularity is mapped onto one of three structural blocks, a New Keynesian DSGE core, a financial-accelerator credit channel, and a macro-finance affine term-structure model, nested inside a discrete regime chain that governs which parameter regime each block operates under. The resulting system is formally a Markov-switching state-space model. The article provides a free data source for every structural variable, reviews the literature each block draws on, and argues that the requirement that monetary policy be non-neutral, evident in the "Fed cuts required for a bottom" regularity, rules out a Real Business Cycle interpretation of the framework.</p>
+    <div class="keywords"><strong>Keywords:</strong> business cycle, regime-switching, New Keynesian DSGE, financial accelerator, affine term structure, state-space model, leading indicators</div>
+  </div>
+
+  <nav class="toc">
+    <p class="toc-label">Contents</p>
+    <ol>
+      <li><a href="#sec1">I. Introduction and Motivation</a></li>
+      <li><a href="#sec2">II. Empirical Regularities</a></li>
+      <li><a href="#sec3">III. Mapping Indicators to Structural State Variables</a></li>
+      <li><a href="#sec4">IV. Related Literature</a></li>
+      <li><a href="#sec5">V. Structural Modules: Equations, Triggers, and Data</a></li>
+      <li><a href="#sec6">VI. A Unified State-Space Representation</a></li>
+      <li><a href="#sec7">VII. Model Choice: New Keynesian DSGE versus Real Business Cycle</a></li>
+      <li><a href="#refs">References</a></li>
+    </ol>
+  </nav>
+
+  <article>
+
+  <!-- SECTION I -->
+  <div class="section" id="sec1">
+    <h2 class="section-heading">I. Introduction and Motivation</h2>
+
+    <p>Willer and Saunders (2026), in the third chapter of <em>Trading Global Macro Markets</em>, summarize a set of empirical regularities that practitioners have used for decades to trade the business cycle. These span official statistics such as the ISM manufacturing index, market-based indicators such as the shape of the Treasury yield curve, and a set of trading heuristics tying equity positioning, bond duration, and monetary policy to the phase of the cycle. Taken individually, each regularity is a reduced-form empirical fact, established by event studies or conditional-mean comparisons rather than derived from an explicit model of the economy.</p>
+
+    <p>This article asks whether these regularities can be organized as the observable implications of a single underlying structural model. The exercise clarifies three things: which regularities are different observable faces of the same mechanism (yield-curve inversion and the requirement that the Fed cut rates for a bottom are both statements about the same monetary policy reaction function), which regularities are genuinely independent (the credit channel proxied by bank-equity performance operates through a distinct financial-accelerator mechanism), and which regularities are in tension with a standard modeling choice (Section VII).</p>
+
+    <p>This article proposes a three-layer structure. A discrete Markov regime chain sits on top of three continuous-state structural blocks: a New Keynesian DSGE core, a credit and bank channel built on the financial-accelerator literature, and a macro-finance affine term-structure model. Section II restates the empirical regularities. Section III maps each regularity onto one of the three blocks and lists a freely downloadable data source for every variable involved. Section IV reviews the literature each block draws on. Section V writes out the equations, regime-switching trigger, and data requirements of each block in turn. Section VI assembles the three blocks into a single regime-switching state-space model. Section VII closes by arguing that the New Keynesian, rather than Real Business Cycle, branch of the DSGE family is required by the data.</p>
+
+  </div><!-- /sec1 -->
+
+  <!-- SECTION II -->
+  <div class="section" id="sec2">
+    <h2 class="section-heading">II. Empirical Regularities</h2>
+
+    <p>The regularities below are restated from the summary of Willer and Saunders (2026, ch. 3) that motivates this article. They are organized by domain rather than in the order presented in the original chapter.</p>
+
+    <table>
+      <thead><tr><th>Domain</th><th>Regularity</th></tr></thead>
+      <tbody>
+        <tr><td>Official data</td><td>The ISM manufacturing index is one of the most informative official releases; one-month forward SPX returns are strongest when the ISM is below 50 and rising, though the sample supporting this conditional pattern is small.</td></tr>
+        <tr><td>Yield curve</td><td>Curve inversion, particularly 3-month/10-year, is the most prominent market-based leading indicator. Duration performs particularly well after inversion, while equities show mild underperformance after <em>disinversion</em> rather than after the inversion itself.</td></tr>
+        <tr><td>Trading rules</td><td>Rules of thumb call for avoiding equities two to three months before a recession begins and remaining bearish through the first half of the recession.</td></tr>
+        <tr><td>Earnings and valuation</td><td>EPS typically falls more than 10 percent during a recession, and valuation multiples compress simultaneously.</td></tr>
+        <tr><td>Monetary policy</td><td>Fed rate cuts are a necessary condition for equities to put in a bottom during recessions.</td></tr>
+        <tr><td>Lead-lag structure</td><td>Bond yields react to recession risk much earlier than equities, often more than a year in advance. Higher inflation shortens this lead time.</td></tr>
+        <tr><td>Soft versus hard data</td><td>Soft and hard landings are difficult to distinguish ex ante, but periods in which soft data weakens aggressively relative to hard data are associated with elevated recession risk.</td></tr>
+        <tr><td>Financial accidents</td><td>Significant, sustained underperformance of bank equities proxies a financial "accident." In the median case the SPX rebounds quickly following such an accident, while rates continue to fall and banks continue to underperform for longer.</td></tr>
+      </tbody>
+    </table>
+
+    <p>Willer and Saunders (2026) also discuss regions outside the United States and their bearing on the global macro cycle. That discussion is outside the scope of this article.</p>
+
+  </div><!-- /sec2 -->
+
+  <!-- SECTION III -->
+  <div class="section" id="sec3">
+    <h2 class="section-heading">III. Mapping Indicators to Structural State Variables</h2>
+
+    <h3>3.1 From regularity to mechanism</h3>
+
+    <p>Table 1 maps each empirical regularity onto a structural mechanism and, where the underlying series exists, a freely downloadable data source. The ISM was removed from FRED in its entirety in June 2016 at the requester's instruction, so the table lists regional Federal Reserve manufacturing surveys and the Chicago Fed National Activity Index as free substitutes rather than the ISM series itself.</p>
+
+    <table>
+      <thead><tr><th>Empirical regularity</th><th>Structural mechanism</th><th>Free data source</th></tr></thead>
+      <tbody>
+        <tr><td>Manufacturing ISM</td><td>High-frequency proxy for the output gap; leading indicator of firm marginal cost in the New Keynesian core</td><td>Philadelphia Fed General Activity Index (<a href="https://fred.stlouisfed.org/series/GACDFSA066MSFRBPHI">GACDFSA066MSFRBPHI</a>); Chicago Fed National Activity Index (<a href="https://fred.stlouisfed.org/series/CFNAI">CFNAI</a>)</td></tr>
+        <tr><td>3m/10y curve inversion</td><td>Gap between the expected policy-rate path and the Taylor-rule-implied neutral rate</td><td><a href="https://fred.stlouisfed.org/series/T10Y3M">T10Y3M</a></td></tr>
+        <tr><td>Duration outperformance post-inversion; term premium</td><td>Compression, and eventual sign reversal, of the term-structure risk-pricing factor</td><td>New York Fed ACM term-premium estimates (<a href="https://www.newyorkfed.org/research/data_indicators/term-premia-tabs">newyorkfed.org</a>)</td></tr>
+        <tr><td>EPS decline; valuation compression</td><td>Negative TFP shock to the corporate sector combined with a rise in the risk-aversion component of the stochastic discount factor</td><td>Robert Shiller's public dataset (<a href="http://www.econ.yale.edu/~shiller/data.htm">econ.yale.edu/~shiller</a>); FRED corporate profits (<a href="https://fred.stlouisfed.org/series/CP">CP</a>)</td></tr>
+        <tr><td>Fed cuts required for a bottom</td><td>Regime switch in the monetary policy reaction function toward accommodation</td><td><a href="https://fred.stlouisfed.org/series/DFF">DFF</a></td></tr>
+        <tr><td>Soft-hard data divergence</td><td>Signal-extraction problem under information frictions; widening variance of the news-shock component</td><td>Soft: Michigan Consumer Sentiment (<a href="https://fred.stlouisfed.org/series/UMCSENT">UMCSENT</a>); Hard: Retail Sales (<a href="https://fred.stlouisfed.org/series/RSAFS">RSAFS</a>), Payrolls (<a href="https://fred.stlouisfed.org/series/PAYEMS">PAYEMS</a>)</td></tr>
+        <tr><td>Bank-equity underperformance (financial accident)</td><td>Shock to financial-intermediary net worth in the financial-accelerator mechanism</td><td>Bank/financial ETF prices, e.g. XLF, via the free CSV download on the Yahoo Finance historical-data page (<a href="https://finance.yahoo.com/quote/XLF/history">finance.yahoo.com/quote/XLF/history</a>)</td></tr>
+        <tr><td>Credit spreads</td><td>External finance premium, the output of the financial-accelerator block</td><td>ICE BofA OAS indices (<a href="https://fred.stlouisfed.org/series/BAMLC0A0CM">BAMLC0A0CM</a>, <a href="https://fred.stlouisfed.org/series/BAMLH0A0HYM2">BAMLH0A0HYM2</a>); Baa spread (<a href="https://fred.stlouisfed.org/series/BAA10Y">BAA10Y</a>)</td></tr>
+        <tr><td>Aggregate financial conditions</td><td>Overall tightness of financial frictions governing whether the intermediary's capital constraint binds</td><td>Chicago Fed <a href="https://fred.stlouisfed.org/series/NFCI">NFCI</a>; St. Louis Fed <a href="https://fred.stlouisfed.org/series/STLFSI4">STLFSI4</a></td></tr>
+        <tr><td>Output gap</td><td>Core state variable of the New Keynesian block</td><td>Real GDP (<a href="https://fred.stlouisfed.org/series/GDPC1">GDPC1</a>) less CBO potential GDP (<a href="https://fred.stlouisfed.org/series/GDPPOT">GDPPOT</a>)</td></tr>
+        <tr><td>Risk premium / volatility</td><td>Market-observable proxy for the shock to the stochastic discount factor</td><td><a href="https://fred.stlouisfed.org/series/VIXCLS">VIXCLS</a></td></tr>
+      </tbody>
+    </table>
+    <p class="figure-caption" style="text-align:left;">Table 1. Mapping of empirical regularities to structural mechanisms and free data sources.</p>
+
+    <h3>3.2 A three-layer structural diagram</h3>
+
+    <p>Figure 1 summarizes the mapping. Three observed indicators, the ISM proxy, bank-equity relative performance, and the yield-curve spread, sit at the top and feed a discrete regime chain, drawn as the dashed outer container, that governs which parameter regime is active in each of the three structural blocks below it. Each block produces its own regime-switching trigger and, at the bottom, its own market-observable output.</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 640 400" width="100%" role="img" aria-label="Three-layer structural diagram mapping observed indicators through a regime-switching layer to three structural blocks and their market outputs">
+        <defs>
+          <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <rect x="20" y="40" width="180" height="50" rx="6" fill="#fff" stroke="var(--border)"/>
+        <text x="110" y="60" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="600" fill="var(--text-primary)">Manufacturing ISM</text>
+        <text x="110" y="78" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">level &amp; direction</text>
+
+        <rect x="230" y="40" width="180" height="50" rx="6" fill="#fff" stroke="var(--border)"/>
+        <text x="320" y="60" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="600" fill="var(--text-primary)">Bank equity</text>
+        <text x="320" y="78" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">financial accident proxy</text>
+
+        <rect x="440" y="40" width="180" height="50" rx="6" fill="#fff" stroke="var(--border)"/>
+        <text x="530" y="60" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="600" fill="var(--text-primary)">Yield curve</text>
+        <text x="530" y="78" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">3m/10y inversion</text>
+
+        <line x1="110" y1="90" x2="110" y2="130" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <line x1="320" y1="90" x2="320" y2="130" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <line x1="530" y1="90" x2="530" y2="130" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+        <rect x="10" y="130" width="620" height="150" rx="14" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="26" y="150" font-family="var(--font-sans)" font-size="12" font-weight="700" fill="var(--accent)">Discrete regime chain S_t</text>
+        <text x="26" y="166" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">governs which (T, Z) apply per block</text>
+
+        <rect x="20" y="178" width="180" height="86" rx="6" fill="var(--accent-light)" stroke="var(--accent)"/>
+        <text x="110" y="200" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="700" fill="var(--accent)">NK-DSGE core</text>
+        <text x="110" y="220" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-secondary)">output gap, policy rate</text>
+        <text x="110" y="240" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--text-secondary)">1{ISM&lt;50, ΔISM&gt;0}</text>
+
+        <rect x="230" y="178" width="180" height="86" rx="6" fill="var(--accent-light)" stroke="var(--accent)"/>
+        <text x="320" y="200" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="700" fill="var(--accent)">Credit / bank channel</text>
+        <text x="320" y="220" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-secondary)">bank net worth, spreads</text>
+        <text x="320" y="240" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--text-secondary)">R_bank − R_mkt &lt; −1.5σ</text>
+
+        <rect x="440" y="178" width="180" height="86" rx="6" fill="var(--accent-light)" stroke="var(--accent)"/>
+        <text x="530" y="200" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="700" fill="var(--accent)">Macro-finance ATSM</text>
+        <text x="530" y="220" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-secondary)">term premium &amp; SDF</text>
+        <text x="530" y="240" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--text-secondary)">sign(y10−y3m) flips</text>
+
+        <line x1="110" y1="264" x2="110" y2="310" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <line x1="320" y1="264" x2="320" y2="310" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <line x1="530" y1="264" x2="530" y2="310" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+        <rect x="20" y="310" width="180" height="50" rx="6" fill="#fff" stroke="var(--border)"/>
+        <text x="110" y="330" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="600" fill="var(--text-primary)">SPX &amp; EPS</text>
+        <text x="110" y="348" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">rebounds, EPS falls</text>
+
+        <rect x="230" y="310" width="180" height="50" rx="6" fill="#fff" stroke="var(--border)"/>
+        <text x="320" y="330" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="600" fill="var(--text-primary)">Credit spreads</text>
+        <text x="320" y="348" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">banks lag longest</text>
+
+        <rect x="440" y="310" width="180" height="50" rx="6" fill="#fff" stroke="var(--border)"/>
+        <text x="530" y="330" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="600" fill="var(--text-primary)">Duration / rates</text>
+        <text x="530" y="348" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">rates fall further</text>
+      </svg>
+      <p class="figure-caption">Figure 1. Observed indicators (top) feed a discrete regime chain governing three structural blocks (middle), each with its own trigger condition and market-observable output (bottom).</p>
+    </div>
+
+  </div><!-- /sec3 -->
+
+  <!-- SECTION IV -->
+  <div class="section" id="sec4">
+    <h2 class="section-heading">IV. Related Literature</h2>
+
+    <h3>4.1 Markov-switching state space and DSGE</h3>
+    <p>Hamilton (1989) provides the foundational framework for combining a discrete regime chain with a linear state-space model, developing the filtering and maximum-likelihood machinery on which this literature builds. The central computational obstacle, that the number of regime paths grows exponentially with sample length, is addressed by Kim (1994), whose approximate filter collapses the regime history at each step and makes the Hamilton framework tractable for estimation. Sims and Zha (2006) extend Markov-switching to structural VARs, allowing both coefficients and shock variances to switch regime, and apply the framework to identify shifts in U.S. monetary policy. Farmer, Waggoner and Zha (2011) and Bianchi (2013) embed regime-switching directly in the structural parameters of a DSGE model, including the coefficients of the monetary policy rule, and Bianchi's application to the transition between pre-Volcker and Volcker-Greenspan regimes is a natural template for the outer regime layer used here.</p>
+
+    <p>Three questions raised by this literature remain open in the application pursued below: whether the three regime triggers identified in Section III belong to a single Markov chain or to several correlated but imperfectly synchronized chains; whether joint filtering of several correlated chains remains computationally tractable; and whether the lead-lag structure between regime transitions requires a duration-dependent or semi-Markov transition probability rather than the time-homogeneous chain assumed in Section V.1.</p>
+
+    <h3>4.2 Credit and bank channel</h3>
+    <p>The financial-accelerator mechanism used in Section 5.3 follows Bernanke, Gertler and Gilchrist (1999), in which entrepreneurial net worth determines the external finance premium faced by borrowers. Gertler and Kiyotaki (2010) instead make the balance sheet of the financial intermediary the constrained agent, which is the more natural counterpart to a bank-equity-based regime trigger. He and Krishnamurthy (2013) treat the intermediary's capital constraint as occasionally binding rather than permanently active, closer in spirit to the discrete regime switch used here than to a smooth financial-accelerator nonlinearity.</p>
+
+    <h3>4.3 Macro-finance term structure</h3>
+    <p>Ang and Piazzesi (2003) is the founding application of a no-arbitrage affine term-structure model in which the state vector includes macroeconomic variables alongside latent factors, the template followed in Section 5.4. Bikbov and Chernov (2013) introduce regime-switching directly into a macro-finance term-structure model and show that shifts in the monetary policy regime change both the sign and magnitude of the term premium, the direct precedent for the regime-dependent term-structure block used here. Ang, Bekaert and Wei (2008) decompose the term structure of real rates and expected inflation under regime-switching, relevant to the treatment of the inflation state in Section 5.2.</p>
+
+    <h3>4.4 New Keynesian DSGE core</h3>
+    <p>The medium-scale estimated New Keynesian frameworks of Christiano, Eichenbaum and Evans (2005) and Smets and Wouters (2007) are the standard references for the IS curve, Phillips curve, and monetary policy rule used in Section 5.2. This article treats that block's structural parameters as calibrated rather than jointly estimated with the credit and term-structure blocks.</p>
+
+  </div><!-- /sec4 -->
+
+  <!-- SECTION V -->
+  <div class="section" id="sec5">
+    <h2 class="section-heading">V. Structural Modules: Equations, Triggers, and Data</h2>
+
+    <h3>5.1 The regime chain</h3>
+
+    <p>Let $S_t \in \{1,\dots,K\}$ follow a Markov chain with $\Pr(S_t=j\mid S_{t-1}=i)=p_{ij}$. Conditional on $S_t$, the system obeys a linear Gaussian state space:</p>
+    <p>$$y_t = Z(S_t)\alpha_t+\varepsilon_t,\qquad \varepsilon_t\sim N(0,H(S_t))$$</p>
+    <p>$$\alpha_t = T(S_t)\alpha_{t-1}+R(S_t)\eta_t,\qquad \eta_t\sim N(0,Q(S_t))$$</p>
+
+    <p>$S_t$ is not directly observed and must be inferred by filtering (Kim, 1994). In practice, $S_t$ is approximated using the three trigger conditions attached to the blocks below: the direction of the ISM proxy, the relative return of bank equities, and the sign of the yield-curve spread, downloadable respectively from the Philadelphia Fed and Chicago Fed series, an ETF price series via Yahoo Finance, and FRED's <a href="https://fred.stlouisfed.org/series/T10Y3M">T10Y3M</a>.</p>
+
+    <p>This layer contributes the transition probability matrix $P=\{p_{ij}\}$ and the regime-dependent innovation covariances $H(S_t)$ and $Q(S_t)$. None of these has a standard calibrated value; all must be estimated from the data, typically via the Hamilton (1989) filter or its Kim (1994) approximation, since the regime chain itself is not observed.</p>
+
+    <h3>5.2 New Keynesian DSGE core</h3>
+
+    <p>IS curve:</p>
+    <p>$$\hat x_t = E_t\hat x_{t+1}-\frac{1}{\sigma}\big(i_t-E_t\pi_{t+1}-r_t^n\big)$$</p>
+    <p>Phillips curve:</p>
+    <p>$$\pi_t = \beta E_t\pi_{t+1}+\kappa\hat x_t$$</p>
+    <p>Regime-dependent monetary policy rule:</p>
+    <p>$$i_t = \rho\, i_{t-1}+(1-\rho)\big[\phi_\pi(S_t)\pi_t+\phi_x(S_t)\hat x_t\big]+\varepsilon_t^m$$</p>
+    <p>with trigger condition $1\{ISM_t<50,\ \Delta ISM_t>0\}$.</p>
+
+    <p>The output gap $\hat x_t$ is constructed from real GDP (<a href="https://fred.stlouisfed.org/series/GDPC1">GDPC1</a>) less CBO potential GDP (<a href="https://fred.stlouisfed.org/series/GDPPOT">GDPPOT</a>). Inflation $\pi_t$ is taken from CPI (<a href="https://fred.stlouisfed.org/series/CPIAUCSL">CPIAUCSL</a>) or the PCE price index (<a href="https://fred.stlouisfed.org/series/PCEPI">PCEPI</a>). The policy rate $i_t$ is the federal funds rate (<a href="https://fred.stlouisfed.org/series/DFF">DFF</a>). The natural rate $r_t^n$ is unobserved; the New York Fed's Laubach-Williams estimate of $r^*$ (<a href="https://www.newyorkfed.org/research/policy/rstar">newyorkfed.org/research/policy/rstar</a>) is used rather than re-estimating it.</p>
+
+    <p>This block introduces the discount factor $\beta$, the inverse intertemporal elasticity of substitution $\sigma$, the Phillips-curve slope $\kappa$, the policy-rate smoothing coefficient $\rho$, and the regime-dependent reaction coefficients $\phi_\pi(S_t)$ and $\phi_x(S_t)$. $\beta$ and $\sigma$ are ordinarily calibrated, since steady-state and micro-level evidence pin them down largely independently of business-cycle dynamics. $\kappa$, $\rho$, and the regime-dependent Taylor-rule coefficients govern the model's cyclical behavior directly and are estimated from the data.</p>
+
+    <h3>5.3 Credit and bank channel</h3>
+
+    <p>Leverage-dependent external finance premium, log-linearized:</p>
+    <p>$$\hat s_t = \psi\big(\hat q_t+\hat k_{t+1}-\hat n_{t+1}\big)$$</p>
+    <p>Net worth accumulation:</p>
+    <p>$$\hat n_{t+1} = \frac{\bar R^k\bar K}{\bar N}\big(\hat R^k_t-\hat R_{t-1}\big)+\hat R_{t-1}+\hat n_t$$</p>
+    <p>Spread-return relation:</p>
+    <p>$$E_t\big[\hat R^k_{t+1}-\hat R_t\big]=\hat s_t$$</p>
+    <p>with trigger condition $R^{bank}_t-R^{mkt}_t<-1.5\sigma$.</p>
+
+    <p>The credit spread $\hat s_t$ is taken from investment-grade and high-yield option-adjusted spreads (<a href="https://fred.stlouisfed.org/series/BAMLC0A0CM">BAMLC0A0CM</a>, <a href="https://fred.stlouisfed.org/series/BAMLH0A0HYM2">BAMLH0A0HYM2</a>) or the Baa spread (<a href="https://fred.stlouisfed.org/series/BAA10Y">BAA10Y</a>). Bank net worth $\hat n_t$ is proxied by financial-sector ETF prices such as XLF, downloadable at no cost and without registration from the Yahoo Finance historical-data page. The overall tightness of the intermediary constraint is proxied by the Chicago Fed's <a href="https://fred.stlouisfed.org/series/NFCI">NFCI</a> or the St. Louis Fed's <a href="https://fred.stlouisfed.org/series/STLFSI4">STLFSI4</a>. The capital return $\hat R^k_t$ has no direct free series and is approximated by combining a corporate-bond spread with the Treasury yield of matching maturity.</p>
+
+    <p>This block introduces the elasticity of the external finance premium to leverage $\psi$, the steady-state ratio $\bar R^k\bar K/\bar N$, and the regime threshold itself, the $1.5\sigma$ multiple in the trigger condition, which is a choice of quantile rather than a free structural parameter. $\psi$ and the steady-state leverage ratio are conventionally calibrated to match average balance-sheet and credit-spread ratios, following Bernanke, Gertler and Gilchrist (1999) and Gertler and Kiyotaki (2010); the trigger quantile can be calibrated separately by matching the historical frequency of financial accidents in Section II.</p>
+
+    <h3>5.4 Macro-finance affine term structure</h3>
+
+    <p>State VAR(1):</p>
+    <p>$$X_t = \mu+\Phi X_{t-1}+\Sigma\varepsilon_t$$</p>
+    <p>Affine pricing kernel:</p>
+    <p>$$m_{t+1} = -i_t-\tfrac12\lambda_t'\lambda_t-\lambda_t'\varepsilon_{t+1}$$</p>
+    <p>Log yields as an affine function of the state:</p>
+    <p>$$y_t^{(n)} = -\frac{1}{n}\big(A_n+B_n'X_t\big)$$</p>
+    <p>Term premium:</p>
+    <p>$$TP_t^{(n)} = y_t^{(n)}-\frac{1}{n}\sum_{i=0}^{n-1}E_t[i_{t+i}]$$</p>
+    <p>with trigger condition $\text{sign}(y_{10}-y_{3m})$ flipping.</p>
+
+    <p>Treasury yields $y_t^{(n)}$ are taken directly from FRED (<a href="https://fred.stlouisfed.org/series/DGS3MO">DGS3MO</a>, <a href="https://fred.stlouisfed.org/series/DGS10">DGS10</a>, and intermediate maturities as needed). The term premium $TP_t^{(n)}$ need not be re-estimated: the New York Fed publishes the Adrian, Crump and Moench (2013) estimates directly. The state vector $X_t$ can be constructed either by extracting level, slope, and curvature factors from the yield curve itself, or by using macroeconomic state variables directly, following Ang and Piazzesi (2003).</p>
+
+    <p>This block introduces the VAR(1) coefficients $\mu,\Phi,\Sigma$ and the price-of-risk parameters $\lambda_0,\lambda_1$ in $\lambda_t=\lambda_0+\lambda_1 X_t$. None of these has a calibrated counterpart in micro-level evidence; all are estimated directly from the panel of Treasury yields, typically via the two-step method summarized in Section 5.5.</p>
+
+  </div><!-- /sec5 -->
+
+  <!-- SECTION VI -->
+  <div class="section" id="sec6">
+    <h2 class="section-heading">VI. A Unified State-Space Representation</h2>
+
+    <p>Stacking the three blocks of Section V into a single state vector,</p>
+    <p>$$\alpha_t = \big[\underbrace{\hat x_t,\ \pi_t,\ i_t}_{\text{module 1}}\ \big|\ \underbrace{\hat n_t,\ \hat s_t}_{\text{module 2}}\ \big|\ \underbrace{X_t'}_{\text{module 3}}\big]'$$</p>
+
+    <p>The system of Sections 5.1 to 5.4 is jointly a Markov-switching state-space model with transition equation</p>
+    <p>$$\alpha_t = c(S_t)+T(S_t)\alpha_{t-1}+R(S_t)\eta_t,\qquad T(S_t)=\begin{pmatrix}T_{11}(S_t)&0&0\\ \Gamma_{21}(S_t)&T_{22}(S_t)&0\\ \Gamma_{31}(S_t)&\Gamma_{32}(S_t)&T_{33}(S_t)\end{pmatrix}$$</p>
+    <p>and measurement equation $y_t = Z(S_t)\alpha_t+\varepsilon_t$, where $y_t$ stacks the ISM proxy, inflation, and policy-rate observables of module 1; the bank-equity and credit-spread observables of module 2; the yield-curve and term-premium observables of module 3; and the SPX/EPS observables of the bottom layer in Table 1.</p>
+
+    <p>The block-triangular structure of $T(S_t)$ encodes a specific causal ordering: the macro core drives capital returns and hence the net-worth equation of module 2 through $\Gamma_{21}$, and both the macro core and the credit channel enter the term structure's risk-pricing factor $\lambda_t$ through $\Gamma_{31}$ and $\Gamma_{32}$. This ordering is a modeling choice rather than a restriction implied by the data; a feedback channel running from term-structure stress back into the output gap, for instance, would require non-zero blocks above the diagonal, and is left for future work.</p>
+
+    <p>$Z(S_t)$ is close to block-diagonal under normal conditions, since each observable primarily loads on its own module's state. Regime-dependence allows off-diagonal loadings to open under stress, capturing, for example, an increase in the loading of SPX on the credit-spread state during a financial accident, which is the mechanism behind the "banks underperform longer while SPX rebounds quickly" regularity of Section II.</p>
+
+
+    <h3>6.1 Calibration and estimation</h3>
+
+    <p>Table 2 collects every parameter introduced in Sections 5.1 through 5.4 and indicates whether it is calibrated, meaning fixed from steady-state or micro-level restrictions largely independent of the estimation sample, or estimated, meaning chosen to fit the dynamics of the observables in Table 1.</p>
+
+    <table>
+      <thead><tr><th>Block</th><th>Parameter</th><th>Approach</th><th>Method or literature source</th></tr></thead>
+      <tbody>
+        <tr><td>Regime chain</td><td>$P=\{p_{ij}\}$</td><td>Estimated</td><td>Hamilton (1989) filter or Kim (1994) approximation; Hamilton's own application found business-cycle regimes to be highly persistent, with the probability of remaining in the same state close to 0.9 per quarter</td></tr>
+        <tr><td>Regime chain</td><td>$H(S_t),\,Q(S_t)$</td><td>Estimated</td><td>jointly with $p_{ij}$ via the same filter</td></tr>
+        <tr><td>NK-DSGE core</td><td>$\beta$</td><td>Calibrated</td><td>matched to the average real interest rate over the sample, commonly close to 0.99 at quarterly frequency, as in Smets and Wouters (2007)</td></tr>
+        <tr><td>NK-DSGE core</td><td>$\sigma$</td><td>Calibrated or estimated</td><td>set from consumption Euler-equation evidence, or estimated jointly with the rest of the block as in Smets and Wouters (2007)</td></tr>
+        <tr><td>NK-DSGE core</td><td>$\kappa$</td><td>Calibrated or estimated</td><td>implied by an assumed Calvo price-stickiness parameter, or estimated directly via Bayesian methods</td></tr>
+        <tr><td>NK-DSGE core</td><td>$\rho,\,\phi_\pi(S_t),\,\phi_x(S_t)$</td><td>Estimated</td><td>Bayesian estimation as in Smets and Wouters (2007) and Christiano, Eichenbaum and Evans (2005), with regime-dependence handled as in Farmer, Waggoner and Zha (2011) and Bianchi (2013)</td></tr>
+        <tr><td>Credit channel</td><td>$\psi$</td><td>Calibrated</td><td>set to match a modest steady-state external finance premium over the riskless rate, following Bernanke, Gertler and Gilchrist (1999)</td></tr>
+        <tr><td>Credit channel</td><td>$\bar R^k\bar K/\bar N$</td><td>Calibrated</td><td>matched to average intermediary balance-sheet leverage, following Gertler and Kiyotaki (2010)</td></tr>
+        <tr><td>Credit channel</td><td>$1.5\sigma$ trigger quantile</td><td>Calibrated</td><td>chosen so the trigger frequency matches the historical incidence of financial accidents in Section II</td></tr>
+        <tr><td>ATSM</td><td>$\mu,\,\Phi,\,\Sigma$</td><td>Estimated</td><td>OLS on the extracted or macro state, the first step of Ang and Piazzesi (2003)</td></tr>
+        <tr><td>ATSM</td><td>$\lambda_0,\,\lambda_1$</td><td>Estimated</td><td>second step of Ang and Piazzesi (2003), matching model-implied to observed yields across maturities; regime-dependence follows Bikbov and Chernov (2013)</td></tr>
+      </tbody>
+    </table>
+
+    <p>Two broad strategies are available for turning this parameter list into estimates, and they differ in how they treat the cross-block links $\Gamma_{21}, \Gamma_{31}, \Gamma_{32}$ introduced above.</p>
+
+    <p>The first is block-recursive, or staged, estimation. Because $T(S_t)$ is lower-triangular, the New Keynesian core can be estimated on its own, using standard Bayesian techniques with a Kalman-filter likelihood and Metropolis-Hastings sampling, exactly as in Smets and Wouters (2007). Its output-gap and policy-rate series then enter the credit-channel block as data rather than as jointly estimated objects, so the credit channel can be estimated second, largely using the calibrated values from Bernanke, Gertler and Gilchrist (1999) and Gertler and Kiyotaki (2010) together with an estimated regime threshold. The term-structure block is estimated last, using the two-step method of Ang and Piazzesi (2003) with the macro core's output gap and inflation, or the credit channel's spread, entering as state variables where the regime-dependent specification of Bikbov and Chernov (2013) calls for them. The regime chain's transition matrix can be estimated at each stage using the relevant trigger series, or re-estimated jointly at the end by full-sample Kim (1994) filtering across all three trigger series together.</p>
+
+    <p>The second is full joint estimation, treating $\alpha_t$, $S_t$, and every parameter in Table 2 as unknowns in a single Bayesian model. The standard tool for the regime-switching part of such a joint estimation is Gibbs sampling in the style of Chib (1996): parameters are drawn conditional on a candidate regime path, and the regime path is redrawn conditional on the parameters using forward-filtering, backward-sampling. Bianchi (2013) and Farmer, Waggoner and Zha (2011) apply this approach to single-chain MS-DSGE models of the size of the New Keynesian core alone; extending it to three coupled blocks with cross-block loadings, rather than one block with regime-dependent coefficients, has not been attempted in the literature reviewed in Section IV and is considerably more demanding computationally, since the state dimension and the number of regime paths to integrate over both grow with the number of blocks.</p>
+
+    <p>Staged estimation is therefore the practical starting point. It is not a simplification imposed on the data; it follows directly from the lower-triangular structure of $T(S_t)$ above, which already assumes that estimation can proceed recursively from the macro core through the credit channel to the term structure. Joint estimation becomes necessary only once the block-triangular assumption itself is relaxed, for instance to allow feedback from term-structure stress back into the output gap, a modeling choice already noted above.</p>
+
+  </div><!-- /sec6 -->
+
+  <!-- SECTION VII -->
+  <div class="section" id="sec7">
+    <h2 class="section-heading">VII. Model Choice: New Keynesian DSGE versus Real Business Cycle</h2>
+
+    <p>Real Business Cycle (RBC) models are themselves a branch of the DSGE methodology, distinguished from the New Keynesian branch by the assumption of fully flexible prices. Under that assumption, the classical dichotomy holds and monetary policy is neutral: changes in the nominal policy rate have no effect on real output or employment. The framework of Sections V and VI cannot be written in an RBC form without contradicting the empirical regularities it is built to explain.</p>
+
+    <p>The regularity that Fed rate cuts are a necessary condition for a market bottom presupposes that monetary policy is non-neutral. Under RBC's classical dichotomy this regularity cannot arise: a change in $i_t$ has no effect on $\hat x_t$. The Phillips curve of Section 5.2, which makes $\pi_t$ a state variable with independent pricing consequences via the measurement equation, has no RBC counterpart, since RBC has no meaningful role for inflation as a driver of real outcomes. Module 1 must therefore be specified as a New Keynesian, not Real Business Cycle, block.</p>
+
+    <p>RBC-style reasoning is not without a role in the framework: the EPS-decline and valuation-compression regularity of Section II is consistent with a negative TFP shock propagating through the corporate sector and through the risk-aversion term of the stochastic discount factor, a channel RBC and New Keynesian models share. The appropriate label for module 1 is therefore a New Keynesian DSGE core with a supply-side TFP channel, rather than either a pure RBC model or a New Keynesian model without any real driver of output.</p>
+
+  </div><!-- /sec7 -->
+
+  <!-- REFERENCES -->
+  <div class="section references" id="refs">
+    <h2 class="section-heading">References</h2>
+
+    <p>Adrian, Tobias, Richard K. Crump, and Emanuel Moench. 2013. "Pricing the Term Structure with Linear Regressions." <em>Journal of Financial Economics</em> 110(1): 110–138.</p>
+    <p>Ang, Andrew, and Monika Piazzesi. 2003. "A No-Arbitrage Vector Autoregression of Term Structure Dynamics with Macroeconomic and Latent Variables." <em>Journal of Monetary Economics</em> 50(4): 745–787.</p>
+    <p>Ang, Andrew, Geert Bekaert, and Min Wei. 2008. "The Term Structure of Real Rates and Expected Inflation." <em>Journal of Finance</em> 63(2): 797–849.</p>
+    <p>Bernanke, Ben S., Mark Gertler, and Simon Gilchrist. 1999. "The Financial Accelerator in a Quantitative Business Cycle Framework." In <em>Handbook of Macroeconomics</em>, Vol. 1C, edited by John B. Taylor and Michael Woodford, 1341–1393. Amsterdam: Elsevier.</p>
+    <p>Bianchi, Francesco. 2013. "Regime Switches, Agents' Beliefs, and Post-World War II U.S. Macroeconomic Dynamics." <em>Review of Economic Studies</em> 80(2): 463–490.</p>
+    <p>Bikbov, Ruslan, and Mikhail Chernov. 2013. "Monetary Policy Regimes and the Term Structure of Interest Rates." <em>Journal of Econometrics</em> 174(1): 27–43.</p>
+    <p>Chib, Siddhartha. 1996. "Calculating Posterior Distributions and Modal Estimates in Markov Mixture Models." <em>Journal of Econometrics</em> 75(1): 79–97.</p>
+    <p>Christiano, Lawrence J., Martin Eichenbaum, and Charles L. Evans. 2005. "Nominal Rigidities and the Dynamic Effects of a Shock to Monetary Policy." <em>Journal of Political Economy</em> 113(1): 1–45.</p>
+    <p>Farmer, Roger E. A., Daniel F. Waggoner, and Tao Zha. 2011. "Minimal State Variable Solutions to Markov-Switching Rational Expectations Models." <em>Journal of Economic Dynamics and Control</em> 35(12): 2150–2166.</p>
+    <p>Gertler, Mark, and Nobuhiro Kiyotaki. 2010. "Financial Intermediation and Credit Policy in Business Cycle Analysis." In <em>Handbook of Monetary Economics</em>, Vol. 3, edited by Benjamin M. Friedman and Michael Woodford, 547–599. Amsterdam: Elsevier.</p>
+    <p>Hamilton, James D. 1989. "A New Approach to the Economic Analysis of Nonstationary Time Series and the Business Cycle." <em>Econometrica</em> 57(2): 357–384.</p>
+    <p>He, Zhiguo, and Arvind Krishnamurthy. 2013. "Intermediary Asset Pricing." <em>American Economic Review</em> 103(2): 732–770.</p>
+    <p>Kim, Chang-Jin. 1994. "Dynamic Linear Models with Markov-Switching." <em>Journal of Econometrics</em> 60(1–2): 1–22.</p>
+    <p>Laubach, Thomas, and John C. Williams. 2003. "Measuring the Natural Rate of Interest." <em>Review of Economics and Statistics</em> 85(4): 1063–1070.</p>
+    <p>Sims, Christopher A., and Tao Zha. 2006. "Were There Regime Switches in U.S. Monetary Policy?" <em>American Economic Review</em> 96(1): 54–81.</p>
+    <p>Smets, Frank, and Rafael Wouters. 2007. "Shocks and Frictions in US Business Cycles: A Bayesian DSGE Approach." <em>American Economic Review</em> 97(3): 586–606.</p>
+    <p>Willer, Dirk, and Alex Saunders. 2026. <em>Trading Global Macro Markets</em>. Hoboken, NJ: Wiley.</p>
+
+  </div><!-- /refs -->
+  </article>
+
+</div><!-- /wrapper -->
+</main>
+
+<footer>
+  <div class="wrapper">
+    <p>© 2026 Dong Liu · Article · Draft · Comments Welcome</p>
+    <p style="margin-top:8px;">
+      <a href="https://www.linkedin.com/in/dong-liu/">LinkedIn</a> &nbsp;·&nbsp;
+      <a href="https://github.com/liudoong">GitHub</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
